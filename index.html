@@ -191,7 +191,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-16 01:02:26 / Modified: 16:46:18" itemprop="dateCreated datePublished" datetime="2020-06-16T01:02:26+08:00">2020-06-16</time>
+              <time title="Created: 2020-06-16 01:02:26 / Modified: 17:01:36" itemprop="dateCreated datePublished" datetime="2020-06-16T01:02:26+08:00">2020-06-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,6 +215,8 @@
 
       
           <p><a href="https://codeforces.ml/contest/1335" target="_blank" rel="noopener"><strong>Codeforces Round #634 (Div. 3)</strong></a></p>
+<!-- more-->
+
 <p><strong>A B C</strong><br>没啥好说的</p>
 <p><strong>D</strong><br>稍微卡了会，怕耽误时间就跳着去看了下E和F；之后发现过的人还是蛮多的，就开始回头做这个题。</p>
 <p>最开始做的时候没有什么思路，后来考虑先把九宫格内满足anti条件，可以想到，每一个九宫格至少将一个数变成其他的数，才有可能满足anti条件；而题目约束至多只能改变9个数，那么显然一夹逼，就可以从这里下手进行进一步的处理。再多想一步，会发现每一个九宫格都要改变一次其实也就对应着每一行至少要改变一次，每一列至少要改变一次的情况。而又因为在一行/列/九宫格内只要将一个数变成其他数，就一定会出现2个相同数，所以我们剩余要做的就是将9个欲修改的数进行合理分布，使得每一行每一列每一个九宫格都仅(<del>更多数影响也是可以的，不过仅有一个数的构造更加方便简单</del>)受到一个数的影响，这样就可以保证anti条件。</p>
