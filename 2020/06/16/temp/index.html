@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Codeforces Round #634 (Div. 3)   A B C没啥好说的 D稍微卡了会，怕耽误时间就跳着去看了下E和F；之后发现过的人还是蛮多的，就开始回头做这个题。 最开始做的时候没有什么思路，后来考虑先把九宫格内满足anti条件，可以想到，每一个九宫格至少将一个数变成其他的数，才有可能满足anti条件；而题目约束至多只能改变9个数，那么显然一夹逼，就可以从这里下手进行进一步的处理">
+  <meta name="description" content="Codeforces Round #634 (Div. 3) A B C没啥好说的 D稍微卡了会，怕耽误时间就跳着去看了下E和F；之后发现过的人还是蛮多的，就开始回头做这个题。 最开始做的时候没有什么思路，后来考虑先把九宫格内满足anti条件，可以想到，每一个九宫格至少将一个数变成其他的数，才有可能满足anti条件；而题目约束至多只能改变9个数，那么显然一夹逼，就可以从这里下手进行进一步的处理。再">
 <meta property="og:type" content="article">
 <meta property="og:title" content="temp">
 <meta property="og:url" content="http://rqdmap.github.io/2020/06/16/temp/index.html">
 <meta property="og:site_name" content="rqdmap">
-<meta property="og:description" content="Codeforces Round #634 (Div. 3)   A B C没啥好说的 D稍微卡了会，怕耽误时间就跳着去看了下E和F；之后发现过的人还是蛮多的，就开始回头做这个题。 最开始做的时候没有什么思路，后来考虑先把九宫格内满足anti条件，可以想到，每一个九宫格至少将一个数变成其他的数，才有可能满足anti条件；而题目约束至多只能改变9个数，那么显然一夹逼，就可以从这里下手进行进一步的处理">
+<meta property="og:description" content="Codeforces Round #634 (Div. 3) A B C没啥好说的 D稍微卡了会，怕耽误时间就跳着去看了下E和F；之后发现过的人还是蛮多的，就开始回头做这个题。 最开始做的时候没有什么思路，后来考虑先把九宫格内满足anti条件，可以想到，每一个九宫格至少将一个数变成其他的数，才有可能满足anti条件；而题目约束至多只能改变9个数，那么显然一夹逼，就可以从这里下手进行进一步的处理。再">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200414173125188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hlcnJfU2hpaWlpaQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-06-15T17:02:26.000Z">
-<meta property="article:modified_time" content="2020-06-16T09:01:36.051Z">
+<meta property="article:modified_time" content="2020-06-16T09:05:43.643Z">
 <meta property="article:author" content="rqdmap">
 <meta property="article:tag" content="tag_test">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-16 01:02:26 / Modified: 17:01:36" itemprop="dateCreated datePublished" datetime="2020-06-16T01:02:26+08:00">2020-06-16</time>
+              <time title="Created: 2020-06-16 01:02:26 / Modified: 17:05:43" itemprop="dateCreated datePublished" datetime="2020-06-16T01:02:26+08:00">2020-06-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,12 +220,12 @@
 
       
         <p><a href="https://codeforces.ml/contest/1335" target="_blank" rel="noopener"><strong>Codeforces Round #634 (Div. 3)</strong></a></p>
-<!-- more-->
-
 <p><strong>A B C</strong><br>没啥好说的</p>
 <p><strong>D</strong><br>稍微卡了会，怕耽误时间就跳着去看了下E和F；之后发现过的人还是蛮多的，就开始回头做这个题。</p>
 <p>最开始做的时候没有什么思路，后来考虑先把九宫格内满足anti条件，可以想到，每一个九宫格至少将一个数变成其他的数，才有可能满足anti条件；而题目约束至多只能改变9个数，那么显然一夹逼，就可以从这里下手进行进一步的处理。再多想一步，会发现每一个九宫格都要改变一次其实也就对应着每一行至少要改变一次，每一列至少要改变一次的情况。而又因为在一行/列/九宫格内只要将一个数变成其他数，就一定会出现2个相同数，所以我们剩余要做的就是将9个欲修改的数进行合理分布，使得每一行每一列每一个九宫格都仅(<del>更多数影响也是可以的，不过仅有一个数的构造更加方便简单</del>)受到一个数的影响，这样就可以保证anti条件。</p>
 <p>那么随便构造一个类”九皇后”就行了。</p>
+<a id="more"></a>
+
 <p><strong>E</strong><br>直接看了E2..因为实在不想想两个算法。<br>这道题思路其实比较显然…枚举一个位置，快速计算另一个位置并计数…然而我大部分时间都花在了选择什么STL容器和怎么开容器并计算时空复杂度了…</p>
 <p>看了下tutorial的E2，大体思路类似，不过都是$O(n*200)$的，不知道有没有$O(nlogn)$的。</p>
 <p>在三元回文串中，最开始考虑枚举所有可能的字母，然后一个个枚举第二个子串终点的位置，利用预处理的结果快速得到该位置之后所可以获得的该字母的最多个数，利用这个个数再想个办法快速获得第一个子串的终点位置，最后再利用这两个终点位置$O(200)$的查询中间可能的最多个数。</p>
