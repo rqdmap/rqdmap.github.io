@@ -28,7 +28,7 @@
 <meta property="og:description" content="新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。 1 2017中国大学生程序设计竞赛-哈尔滨站  这好像是一场比较难(但是队友很顶)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq 不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的">
 <meta property="og:image" content="http://rqdmap.github.io/Users/shipengfei/Desktop/rqdmap.github.io/source/_posts/photo/1.png">
 <meta property="article:published_time" content="2020-06-16T11:40:08.000Z">
-<meta property="article:modified_time" content="2020-06-20T17:25:46.618Z">
+<meta property="article:modified_time" content="2020-06-20T17:40:34.531Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://rqdmap.github.io/Users/shipengfei/Desktop/rqdmap.github.io/source/_posts/photo/1.png">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 01:25:46" itemprop="dateModified" datetime="2020-06-21T01:25:46+08:00">2020-06-21</time>
+                <time title="Modified: 2020-06-21 01:40:34" itemprop="dateModified" datetime="2020-06-21T01:40:34+08:00">2020-06-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,7 +265,8 @@
 <p>求不定方程的整数解个数。</p>
 <p>那么结果显然，$(^{n+1}_{3})$</p>
 <p>接下来考虑第二天面试次序的值。考虑这样的枚举方法：枚举Bob和Alice的间距$d$，两人一共有$n-d$种可能的布置位置，而对于每一种位置，K可以取的范围为<code>[Bob, Alice)</code>，Alice第二天的面试次序对应分别为<code>1,2,...,d</code>。因而对于每一个$d$，都会有贡献$\frac{d *(d + 1)}{2}$。故在所有情况中，Alice的位置可以用以下和式表达：</p>
-<p>$\sum$</p>
+<p>$\sum_{d = 1}^{n-1}(n-d)<em>\frac{d </em>(d + 1)}{2}$</p>
+<p>化简一番得到$(^{n+2}_{\space\space4})$</p>
 
     </div>
 
@@ -469,6 +470,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
