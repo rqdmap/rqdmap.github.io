@@ -28,7 +28,7 @@
 <meta property="og:description" content="新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。 1 2017中国大学生程序设计竞赛-哈尔滨站  这好像是一场比较难(但是队友很顶)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq 不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的">
 <meta property="og:image" content="http://rqdmap.github.io/Users/shipengfei/Desktop/rqdmap.github.io/source/_posts/photo/1.png">
 <meta property="article:published_time" content="2020-06-16T11:40:08.000Z">
-<meta property="article:modified_time" content="2020-06-20T17:42:53.475Z">
+<meta property="article:modified_time" content="2020-06-21T13:33:26.423Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://rqdmap.github.io/Users/shipengfei/Desktop/rqdmap.github.io/source/_posts/photo/1.png">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 01:42:53" itemprop="dateModified" datetime="2020-06-21T01:42:53+08:00">2020-06-21</time>
+                <time title="Modified: 2020-06-21 21:33:26" itemprop="dateModified" datetime="2020-06-21T21:33:26+08:00">2020-06-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,10 +263,30 @@
 <p>令: <script type="math/tex">x= b- 1, y = k - b, z = a - k - 1, w = n - a</script></p>
 <p>则有: <script type="math/tex">x + y + z + w = n - 2, x, y, z, w>=0</script></p>
 <p>求不定方程的整数解个数。</p>
-<p>那么结果显然，$(^{n+1}_{3})$</p>
+<p>那么结果显然，总数有$(^{n+1}_{\space\space3})$</p>
 <p>接下来考虑第二天面试次序的值。考虑这样的枚举方法：枚举Bob和Alice的间距$d$，两人一共有$n-d$种可能的布置位置，而对于每一种位置，K可以取的范围为<code>[Bob, Alice)</code>，Alice第二天的面试次序对应分别为<code>1,2,...,d</code>。因而对于每一个$d$，都会有贡献$\frac{d *(d + 1)}{2}$。故在所有情况中，Alice的位置可以用以下和式表达：</p>
-<p>$\sum_{d = 1}^{n-1}(n-d)<em>{\frac{d </em>(d + 1)}{2}}$</p>
+<p>$\sum_{d = 1}^{n-1}$ $(n-d)<em>$ $ \frac {d </em>(d + 1)}{2}$       $(*)$</p>
 <p>化简一番得到$(^{n+2}_{\space\space4})$</p>
+<p>由于这个和式可以很容易地构造阶梯项做差消去中间量，所以没有花功夫再去学习<del>拉格朗日插值 生成函数</del>等算法。不过最主要的原因还是要学的东西太多了…而组合数学和具体数学已经无数次被提起日程并被拖延至今了。</p>
+<p>下面<strong>考虑Bob在第二天面试</strong>时。</p>
+<p>总数可以类似地考虑两个不等式的值:</p>
+<p>$0 &lt;= k &lt;a &lt;b &lt;= n$</p>
+<p>$0&lt;=k&lt;b&lt;a&lt;=n$</p>
+<p>这两个不等式形式对称，结合Bob第一天的讨论方法易知结果为$2*(^{n+1}_{\space\space3})$.</p>
+<p>而面试的次序分为两类情况讨论:</p>
+<ul>
+<li>$0 &lt;= k &lt; a &lt; b &lt;= n$. 在这种情况中，我们可以类似地枚举距离$d = b - k$，对于每一个距离Alice的次序会取到<code>[1,..,d-1]</code>，$d$从2取到n，将$(*)$式稍作变换就与这种情况相同。</li>
+<li>$0 &lt;= k &lt; b &lt; a &lt;= n$. 此时，我们枚举Alice在第二天的次序，即$d = a - k$。对于每一个次序，Bob可以取的范围在<code>[k + 1, a- 1]</code>，即有$d-1$种可行位置，那么结果就是$\sum_{d=2}^{n}$ $d(d-1)$，这恰是上一种情况、也就是$(*)$式的两倍。</li>
+</ul>
+<p>因而综上所示，Bob在第二天时位次的总和是$(<em>)$ 式的三倍，即$3</em>(^{n+2}_{\space\space4})$.</p>
+<p>至此，我们有了总数和每种情况下的次序之和，做除法就可以得到期望。结果分别为$\frac{n+2}{4}$与$\frac{3n+6}{8}$。</p>
+<p><strong>M</strong></p>
+<p><del>论如何爆交40发</del></p>
+<p>给出n个点，试找出一个圆过$ceil\frac n2$个点，保证这样的圆一定存在。</p>
+<p>很明显的一个随机化，容易推出任意找三个点不在该圆上的概率接近$\frac78$，因而我们只需要随机100次就可以几乎确定下来这个圆。那为什么WA了40发呢..以为是精度，结果是情况少考虑了。qaq在我的算法中，如果随机得到的3个点共线，就continue进行下一次。然而我没有特判4点共线的情况，导致了这种情况下找不到一个合适的圆。</p>
+<p>贴一个已知平面三点求圆心及其半径的板子。</p>
+<p>证明方法为做差解二元一次方程的行列式结果。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span><span class="params">(<span class="keyword">double</span> x1, <span class="keyword">double</span> y1, <span class="keyword">double</span> x2, <span class="keyword">double</span> y2, <span class="keyword">double</span> x3, <span class="keyword">double</span> y3)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> a, b, c, d, e, f;</span><br><span class="line">    a = <span class="number">2</span> * (x2 - x1);</span><br><span class="line">    b = <span class="number">2</span> * (y2 - y1);</span><br><span class="line">    c = x2 * x2 + y2 * y2 - x1 * x1 - y1 * y1;</span><br><span class="line">    d = <span class="number">2</span> * (x3 - x2);</span><br><span class="line">    e = <span class="number">2</span> * (y3 - y2);</span><br><span class="line">    f = x3 * x3 + y3 * y3 - x2 * x2 - y2 * y2;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> x, y, r;</span><br><span class="line">    x = (b * f - e * c)/(b * d - e * a);</span><br><span class="line">    y = (d * c - a * f)/(b * d - e * a);</span><br><span class="line">    r = <span class="built_in">sqrt</span>((x - x1) * (x - x1) + (y - y1) * (y - y1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -364,14 +384,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
