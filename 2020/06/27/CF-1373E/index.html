@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目要求我们写一个指定语法的程序，要求这个程序能够输出指定fibnacci数列中的某一项，询问至多不超过30项。">
+  <meta name="description" content="其实是一道比较简单的暴力构造题（？） 但是因为没有往这方面去考虑所以就… 正如之前看到过 第一个造原子弹的国家才是真正厉害的 因为这是开辟一条从0到1的道路 后面的效仿者已知结果可行再去效仿就容易很多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="0619-weekly-test-B">
-<meta property="og:url" content="http://rqdmap.github.io/2020/06/19/0619-weekly-test-B/index.html">
+<meta property="og:title" content="CF-1373E">
+<meta property="og:url" content="http://rqdmap.github.io/2020/06/27/CF-1373E/index.html">
 <meta property="og:site_name" content="rqdmap">
-<meta property="og:description" content="题目要求我们写一个指定语法的程序，要求这个程序能够输出指定fibnacci数列中的某一项，询问至多不超过30项。">
-<meta property="article:published_time" content="2020-06-19T13:38:03.000Z">
-<meta property="article:modified_time" content="2020-06-20T17:44:39.595Z">
+<meta property="og:description" content="其实是一道比较简单的暴力构造题（？） 但是因为没有往这方面去考虑所以就… 正如之前看到过 第一个造原子弹的国家才是真正厉害的 因为这是开辟一条从0到1的道路 后面的效仿者已知结果可行再去效仿就容易很多">
+<meta property="article:published_time" content="2020-06-27T10:09:30.000Z">
+<meta property="article:modified_time" content="2020-06-27T10:26:43.823Z">
 <meta property="article:author" content="rqdmap">
-<meta property="article:tag" content="模拟">
+<meta property="article:tag" content="构造">
+<meta property="article:tag" content="数码">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://rqdmap.github.io/2020/06/19/0619-weekly-test-B/">
+<link rel="canonical" href="http://rqdmap.github.io/2020/06/27/CF-1373E/">
 
 
 <script id="page-configurations">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>0619-weekly-test-B | rqdmap</title>
+  <title>CF-1373E | rqdmap</title>
   
 
 
@@ -170,7 +171,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2020/06/19/0619-weekly-test-B/">
+    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2020/06/27/CF-1373E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/huiye.png">
@@ -183,7 +184,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          0619-weekly-test-B
+          CF-1373E
         </h1>
 
         <div class="post-meta">
@@ -192,16 +193,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-06-19 21:38:03" itemprop="dateCreated datePublished" datetime="2020-06-19T21:38:03+08:00">2020-06-19</time>
+              <time title="Created: 2020-06-27 18:09:30 / Modified: 18:26:43" itemprop="dateCreated datePublished" datetime="2020-06-27T18:09:30+08:00">2020-06-27</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 01:44:39" itemprop="dateModified" datetime="2020-06-21T01:44:39+08:00">2020-06-21</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a>
+                </span>
+            </span>
 
           
 
@@ -214,14 +218,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>题目要求我们写一个指定语法的程序，要求这个程序能够输出指定fibnacci数列中的某一项，询问至多不超过30项。</p>
+        <p>其实是一道比较简单的暴力构造题（？）</p>
+<p>但是因为没有往这方面去考虑所以就…</p>
+<p><del>正如之前看到过 第一个造原子弹的国家才是真正厉害的 因为这是开辟一条从0到1的道路 后面的效仿者已知结果可行再去效仿就容易很多</del></p>
 <a id="more"></a>
-<p>这道题目还是蛮新颖的，虽然不算很难，但是因为坑到我了…所以还是写篇简短的博客记录一番。</p>
-<p>这道题目可行的程序很多<del>以至于WA了之后不知道怎么改</del>，我的算法是初始化<code>[n, 0, 1]</code>之后循环判断当前n是否为1，不是的话将<code>[n, y, x]</code>变成<code>[n - 1, x, x + y]</code>，然后再次jump到判断语句处。主要分成三个模块：判断是否为1，对n减一，变换<code>[y, x]</code>成为<code>[x, x + y]</code>。结合操作随意构造一番即可。</p>
-<p>坑点在于，题目费了很大的劲说了约束条件，约束了程序执行的最大次数1e3..如果我们循环的次数超过33次的话，就无法在1000行以内跑完项数最大30的情况，也是这里导致我WA到自闭QAQ…优化算法之后即可成功AC。</p>
-<p>以后读题目一定要仔细关注条件，不然总是死在奇奇怪怪的地方…</p>
-<p><del>当时以为自己程序错了还写了个解释器却发现结果符合的很好qaq</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; x; i++) <span class="built_in">printf</span>(<span class="string">"c"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">50</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec = &#123;</span><br><span class="line">    <span class="number">4</span>, <span class="number">7</span>, <span class="number">8</span>,</span><br><span class="line">    <span class="number">8</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">5</span>, <span class="number">3</span>, inf, <span class="number">6</span>,</span><br><span class="line">    <span class="number">7</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">6</span>,</span><br><span class="line">    <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">1</span>,</span><br><span class="line">    <span class="number">8</span>, <span class="number">11</span>, <span class="number">6</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> size = (<span class="keyword">int</span>)vec.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">        fun(vec[i]);</span><br><span class="line">        <span class="keyword">if</span>(i != size - <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>这道题中最麻烦的地方在于如果产生进位会如何影响结果。</p>
+<p>如果一个数末尾有连续k个9，那么对其加1后其数码之和会变化<code>+1 - 9k</code>。</p>
+<p>得知这个规律后就可以将$f(x) + f(x + 1) + …+f(x + k)$写成</p>
+<p>$(k + 1) <em> f(x) + \frac{k </em> (k + 1)}{2} - 9 <em> cnt </em> k$</p>
+<p>其中，$cnt$表示$f(x)…f(x +k)$其中会产生进位的数字的个数，$k$表示进位后会受到影响的9的个数。</p>
+<p>当我们枚举n、k时，可以再枚举<strong>cnt</strong>（因为k已经给定，所以只有末尾数字dig影响cnt的值，因而枚举cnt即枚举dig）以及<strong>k</strong>，每次看是否存在一个$f(x)$满足等式条件。如果满足整除条件，就利用参数$cnt(dig)、k、f(x)$进行构造并更新答案。</p>
+<p>每次构造先用$dig、k$填充低位，然后根据剩余的数码和构造高位。显然优先填够9，让总位数尽可能最小；当剩余数码不超过9时，直接填入该数码即可。有一个要注意的地方，因为枚举的$k$是末尾连续9的个数，所以当填充完$dig$和$k$个9后，下一位不能继续填9，而应该用8去填充作为分割。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">const</span> ll inf = <span class="number">1l</span>l &lt;&lt; <span class="number">62</span>;</span><br><span class="line">ll ans[maxn][<span class="number">15</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">int</span> last, <span class="keyword">int</span> num, <span class="keyword">int</span> sum)</span></span>&#123;</span><br><span class="line">    sum -= last; sum -= <span class="number">9</span> * num;</span><br><span class="line">    vec.clear(); vec.push_back(last);</span><br><span class="line">    <span class="keyword">while</span>(num--) vec.push_back(<span class="number">9</span>);</span><br><span class="line">    <span class="keyword">if</span>(sum &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(sum &gt;= <span class="number">8</span>)&#123;</span><br><span class="line">        <span class="comment">//作为分割符</span></span><br><span class="line">        vec.push_back(<span class="number">8</span>);</span><br><span class="line">        sum -= <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(sum &gt; <span class="number">9</span>)&#123;</span><br><span class="line">        vec.push_back(<span class="number">9</span>); sum -= <span class="number">9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(sum) vec.push_back(sum);</span><br><span class="line">    </span><br><span class="line">    ll res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> top = (<span class="keyword">int</span>)vec.size(); <span class="keyword">if</span>(top &gt; <span class="number">60</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = top - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        res *= <span class="number">10</span>;</span><br><span class="line">        res += vec[i];</span><br><span class="line">    &#125;</span><br><span class="line">    ans[n][k] = min(ans[n][k], res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sove</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n = <span class="number">1</span>; n &lt;= <span class="number">150</span>; n++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">9</span>; k++)&#123;</span><br><span class="line">            <span class="comment">//f[x] * (k + 1) + (1 + ... + k) - 9 * 数的个数 * 每个数中末尾连续9的个数 = n。</span></span><br><span class="line">            <span class="comment">//其中k是给定的，数的个数通过调节最后一位来控制，9的个数直接枚举.</span></span><br><span class="line">            <span class="keyword">int</span> now = n - (k + <span class="number">1</span>) * k / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> dig = <span class="number">0</span>; dig &lt;= <span class="number">9</span>; dig++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> num = <span class="number">0</span>; num &lt; len; num++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> cnt = max(<span class="number">0</span>, dig + k - <span class="number">10</span> + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">if</span>((now + <span class="number">9</span> * (num + <span class="number">1</span>) * cnt) % (k + <span class="number">1</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">                        make(n, k, dig, num, ((now + <span class="number">9</span> * (num + <span class="number">1</span>) * cnt) / (k + <span class="number">1</span>)));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxn; i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) ans[i][j] = inf;</span><br><span class="line">    sove();</span><br><span class="line"></span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> t; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t); <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n, k; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">        <span class="keyword">if</span>(ans[n][k] - inf) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans[n][k]);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -231,7 +240,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag"># 模拟</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"># 构造</a>
+              <a href="/tags/%E6%95%B0%E7%A0%81/" rel="tag"># 数码</a>
           </div>
 
         
@@ -240,13 +250,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/18/%E5%AF%B9%E6%8B%8D%E7%A8%8B%E5%BA%8F/" rel="prev" title="对拍程序">
-      <i class="fa fa-chevron-left"></i> 对拍程序
+    <a href="/2020/06/21/CF-651-div2/" rel="prev" title="CF-#651-div2">
+      <i class="fa fa-chevron-left"></i> CF-#651-div2
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/21/CF-651-div2/" rel="next" title="CF-#651-div2">
-      CF-#651-div2 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -496,7 +503,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'GitalkComments',
       owner       : 'rqdmap',
       admin       : ['rqdmap'],
-      id          : 'a440202d5bc675213cbf6990e8aed451',
+      id          : '8748a0f671deb28a0c512e617896c09c',
         language: '',
       distractionFreeMode: true
     });
