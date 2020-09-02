@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc] 坑">
 <meta property="article:published_time" content="2020-07-27T14:03:09.000Z">
-<meta property="article:modified_time" content="2020-07-27T16:55:52.074Z">
+<meta property="article:modified_time" content="2020-08-28T10:41:41.716Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-28 00:55:52" itemprop="dateModified" datetime="2020-07-28T00:55:52+08:00">2020-07-28</time>
+                <time title="Modified: 2020-08-28 18:41:41" itemprop="dateModified" datetime="2020-08-28T18:41:41+08:00">2020-08-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,6 +237,11 @@
 <p>虽然可以朴素地在trie中删去当前联通块中所有点、查询最短边、加回之前联通块中所有点（常数巨大）来处理，但是在牛客会TLE掉，真的非常慢。。</p>
 <p>一种很快的办法是在01Trie上做暴力搜索。可以料想，因为要使得异或后边权最小，所以在01trie上一定是子树的孩子之间会配对到最优的连边情况。因而递归处理，当处理完某个节点的左子树和右子树后，暴力枚举一边的子树，在另一端用01trie的性质贪心地找最短的边，从而完成左右子树的合并。可以动态维护vector，也可以比较漂亮地（而且速度快一倍orz）利用循环来划分左右子树，具体代码参见template。</p>
 <p><del>这道题虽然有个异或MST的知识点，但是能想到最开始的结论其实也不容易qaq。</del></p>
+<h2 id="C-生成函数-amp-构造"><a href="#C-生成函数-amp-构造" class="headerlink" title="C 生成函数&amp;构造"></a>C 生成函数&amp;构造</h2><p>根据生成函数理论，对于函数$f(x, y) = (x^1 + x^2 + …)^k (y^1+y^2+…)^k$，展开式中单项式$x^ny^m$的系数就是满足$\sum a_i = n, \sum b_i=m$的所有可能的序列个数。我们将序列拆分成k组$(x^1+x^2…)(y^1+y^2+…)$来看，假设该序列对答案贡献出了单项式$x^iy^j$，那么此时其系数贡献显然只有1，题目要求每一对$a_i, b_i$都要贡献出$min(a_i, b_i)$次，那么我们考虑构造出一种办法，可以让每一组$(x^1+x^2…)(y^1+y^2+…)$都能贡献出$min(i, j)$次$x^iy^j$个单项式。可以采取如下精妙的办法：将其修改为$(x^1+x^2…)(y^1+y^2+…)(1+xy+x^2y^2+…)$，这样在原先序列中的$x^iy^j, x^{i-1}y^{j-1},x^{i-2}y^{j-2},…$都会通过$(1+xy+x^2y^2+…)$中的某一项映射到$x^iy^j$,而序列$\{x^iy^j,x^{i-1}y^{k-1}, …x^0y^{j-i}\}$的个数就是$min(i, j)$，这样，这$min(i, j)$个单项式都会贡献出1，总共贡献就是$min(i,j)$。</p>
+<p>将所有的项叠加起来即可得到最终的结果.。</p>
+<p>最终要求的积式$\prod min(a_i, b_i) $的值就是$(x^1 + x^2 + …)^k (y^1+y^2+…)^k(1+xy+x^2y^2+…)^k$中$x^ny^m$的系数。</p>
+<p>根据组合公式，易知其结果为$\sum_{i=0}^{min(n-k, m-k)}(^{i+k-1}_{k-1})(^{n-i-1}_{k-1})(^{m-i-1}_{k-1})$</p>
+<p>预处理一下$C(n,k-1)$即可，复杂度$O(Tn)$</p>
 
     </div>
 
@@ -318,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-数学构造题"><span class="nav-number">1.</span> <span class="nav-text">I 数学构造题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-置换与大数LCM"><span class="nav-number">2.</span> <span class="nav-text">E 置换与大数LCM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-LIS"><span class="nav-number">3.</span> <span class="nav-text">D LIS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-异或MST"><span class="nav-number">4.</span> <span class="nav-text">B 异或MST</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-数学构造题"><span class="nav-number">1.</span> <span class="nav-text">I 数学构造题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-置换与大数LCM"><span class="nav-number">2.</span> <span class="nav-text">E 置换与大数LCM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-LIS"><span class="nav-number">3.</span> <span class="nav-text">D LIS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-异或MST"><span class="nav-number">4.</span> <span class="nav-text">B 异或MST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-生成函数-amp-构造"><span class="nav-number">5.</span> <span class="nav-text">C 生成函数&amp;构造</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -334,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
