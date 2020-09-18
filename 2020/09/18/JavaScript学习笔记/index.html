@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="[toc]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript">
+<meta property="og:url" content="http://rqdmap.github.io/2020/09/18/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="rqdmap">
+<meta property="og:description" content="[toc]">
+<meta property="article:published_time" content="2020-09-18T05:25:55.000Z">
+<meta property="article:modified_time" content="2020-09-18T06:55:14.787Z">
+<meta property="article:author" content="rqdmap">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://rqdmap.github.io/2020/09/18/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>JavaScript | rqdmap</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">rqdmap</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2020/09/18/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/huiye.png">
+      <meta itemprop="name" content="rqdmap">
+      <meta itemprop="description" content="My new blogs.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="rqdmap">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-18 13:25:55 / Modified: 14:55:14" itemprop="dateCreated datePublished" datetime="2020-09-18T13:25:55+08:00">2020-09-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[toc]</p>
+<a id="more"></a>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="数据变量与类型"><a href="#数据变量与类型" class="headerlink" title="数据变量与类型"></a>数据变量与类型</h2><p>JS中整数和浮点数统一对待，甚至可以对浮点数做<code>%</code>运算，但是整数数值的范围是<code>[-2^53, 2^53]</code><del>非常神秘</del></p>
+<p>表达一个字符串既可以用<code>&#39;</code>也可以用<code>&quot;</code>。</p>
+<p>JS有缺陷的一点在于，使用相等运算符<code>==</code>时，可以对不同类型的元素进行比较，这往往会导致奇怪的结果；为此，建议总是使用<code>===</code>这一相等运算符，该运算符会先比较类型是否相同，不同则返回<code>false</code>，相同再比较变量是否相同。</p>
+<p>浮点数的相等比较依然要设置<code>eps</code>，<del>而且我怀疑js中的精度可能比double垃圾很多</del></p>
+<p>js中<code>null</code>表示一个“空”的值，这和C中null表示0不同。</p>
+<p>建议通过<code>[]</code>来创建一个数组，下标一样从0开始。</p>
+<p>对象的定义方式与C++类似。</p>
+<p>变量通过<code>var</code>来声明，因其类型不固定，因而这种语言称为<code>动态语言</code></p>
+<p>为了显示变量的值，可以使用语句<code>console.log(variable)</code></p>
+<p>如果没有使用<code>`var</code>来声明一个变量，那么它就会成为一个全局变量。可以通过<code>&#39;use strict&#39;</code>来强制加上<code>var</code>关键字。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>可以通过<code>&#39;\x41&#39;</code>十六进制地表示一个字符，通过<code>\u4e2d</code>表示一个unicode字符。</p>
+<p>在输入多行字符串的时候为了避免较多<code>&#39;\n&#39;</code>带来的麻烦，可以使用<code>` </code>来表示多行字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`多</span></span><br><span class="line"><span class="string">行</span></span><br><span class="line"><span class="string">字符串`</span>;</span><br></pre></td></tr></table></figure>
+<p>众所周知C++可以使用<code>+</code>来连接若干个string，js更进一步可以使用<code>模版字符串</code>来连接字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'rqdmap'</span>;</span><br><span class="line"><span class="keyword">var</span> age = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> mes = <span class="string">`Hello <span class="subst">$&#123;name&#125;</span>, you are <span class="subst">$&#123;age&#125;</span> years old`</span>;</span><br><span class="line"><span class="built_in">console</span>.log(mes);</span><br></pre></td></tr></table></figure>
+<p>必须使用<code>` </code>，使用<code>&#39;</code>和<code>&quot;</code>均无法成功显示字符串的原本信息。</p>
+<p>通过<code>s.length</code>来获得字符串的长度。</p>
+<p>通过下标可以进行随机访问字符串的任意位置，但需要注意<strong>越界访问不会报错，只会返回undefined</strong></p>
+<p>js中的字符串是不可通过索引值进行改变的 <del>大概是因为C++直接操作地址而这里不知道实现了什么别的结构</del></p>
+<p>但是可以通过再次赋值改变整个字符串的值。</p>
+<p><strong>常用的一些操作方法</strong></p>
+<p>toUpperCase()</p>
+<p>toLowerCase()</p>
+<p>indexOf(“xxxx”): 搜索子串在主串中的位置，如果没有搜索到返回-1</p>
+<p>substring(int a): 从索引a开始到字符串结束</p>
+<p>substring(int a, int b): 返回子串<code>[s[a], s[b])</code></p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>js中的数组元素可以是不同类型，通过索引进行访问。</p>
+<p>直接给<code>array.length</code>进行赋值会导致数组的长度发生变化。</p>
+<p>可以通过索引值改变数组的某个元素。</p>
+<p><del>至此可以推断出js中的字符串不是<code>字符的数组</code>，而是一个基本的类型</del></p>
+<p>如果越界赋值也会导致数组的长度发生改变。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr[<span class="number">5</span>] = <span class="string">'x'</span>;</span><br><span class="line">arr; <span class="comment">// arr变为[1, 2, 3, undefined, undefined, 'x']</span></span><br></pre></td></tr></table></figure>
+<p><del>这种特性不知道是好是坏</del></p>
+<p><strong>常用操作</strong></p>
+<p>indeOf: 与string中的indexOf类似</p>
+<p>slice: 与substring类似；如果不给slice传任何参数，就会整个截取该数组，据此可以很容易的完成数组的复制。</p>
+<p>push/pop: 对数组的结尾进行添/删元素</p>
+<p>unshift/shift：对数组的头部进行添/删元素</p>
+<p>push和unshift可以一次添加若干个元素，而pop和shift只能删去一个元素；如果空数组继续删除，不会报错而会返回undefined.</p>
+<p>sort: 按默认顺序排序</p>
+<p>reverse: 反转</p>
+<p><strong>splice</strong>: 从指定的索引删除若干元素，然后再从该位置加入若干元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'Microsoft'</span>, <span class="string">'Apple'</span>, <span class="string">'Yahoo'</span>, <span class="string">'AOL'</span>, <span class="string">'Excite'</span>, <span class="string">'Oracle'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从索引2开始删除3个元素,然后再添加两个元素:</span></span><br><span class="line">arr.splice(<span class="number">2</span>, <span class="number">3</span>, <span class="string">'Google'</span>, <span class="string">'Facebook'</span>); <span class="comment">// 返回删除的元素 ['Yahoo', 'AOL', 'Excite']</span></span><br><span class="line">arr; <span class="comment">// ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只删除,不添加:</span></span><br><span class="line">arr.splice(<span class="number">2</span>, <span class="number">2</span>); <span class="comment">// ['Google', 'Facebook']</span></span><br><span class="line">arr; <span class="comment">// ['Microsoft', 'Apple', 'Oracle']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只添加,不删除:</span></span><br><span class="line">arr.splice(<span class="number">2</span>, <span class="number">0</span>, <span class="string">'Google'</span>, <span class="string">'Facebook'</span>); <span class="comment">// 返回[],因为没有删除任何元素</span></span><br><span class="line">arr; <span class="comment">// ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']</span></span><br></pre></td></tr></table></figure>
+<p>concat: 数组拼接</p>
+<p>concat可以接受任意多个元素，并且将array拆开将元素拼接入原数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">arr.concat(<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]); <span class="comment">// ['A', 'B', 'C', 1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<p>join：将数组的每个元素用指定的字符串进行连接，如果元素不是字符串则会先自动将其转换成字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.join(<span class="string">'-'</span>); <span class="comment">// 'A-B-C-1-2-3'</span></span><br></pre></td></tr></table></figure>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>JavaScript的对象是一种无序的集合数据类型，它由若干键值对组成。</p>
+<p>如果某个属性名中含有特殊字符，可以通过<code>object[&#39;属性名&#39;]</code>来进行访问；当然建议按照规范进行命名，这样就可以直接通过<code>.</code>操作符进行访问了。</p>
+<p>类似的，如果访问一个不存在的属性，那么会返回undefined.</p>
+<p>由于js的对象是动态属性，所以可以很容易为一个对象增添/删除属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span></span><br><span class="line">&#125;;</span><br><span class="line">xiaoming.age; <span class="comment">// undefined</span></span><br><span class="line">xiaoming.age = <span class="number">18</span>; <span class="comment">// 新增一个age属性</span></span><br><span class="line">xiaoming.age; <span class="comment">// 18</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> xiaoming.age; <span class="comment">// 删除age属性</span></span><br><span class="line">xiaoming.age; <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> xiaoming[<span class="string">'name'</span>]; <span class="comment">// 删除name属性</span></span><br><span class="line">xiaoming.name; <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> xiaoming.school; <span class="comment">// 删除一个不存在的school属性也不会报错</span></span><br></pre></td></tr></table></figure>
+<p>可以使用<code>in</code>来判断一个属性是否在一个对象中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    birth: <span class="number">1990</span>,</span><br><span class="line">    school: <span class="string">'No.1 Middle School'</span>,</span><br><span class="line">    height: <span class="number">1.70</span>,</span><br><span class="line">    weight: <span class="number">65</span>,</span><br><span class="line">    score: <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> xiaoming; <span class="comment">// true</span></span><br><span class="line"><span class="string">'grade'</span> <span class="keyword">in</span> xiaoming; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>不过in也会判断那些继承来的属性，为了判断对象自身所拥有的属性，可以使用<code>hasOwnProperty()</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span></span><br><span class="line">&#125;;</span><br><span class="line">xiaoming.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// true</span></span><br><span class="line">xiaoming.hasOwnProperty(<span class="string">'toString'</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="语句结构"><a href="#语句结构" class="headerlink" title="语句结构"></a>语句结构</h2><p>在<code>if</code>语句中，js把<code>null</code>, <code>undefined</code>, <code>0</code>, <code>NaN</code>和<code>&#39;&#39;</code>视为false，其余均视为true</p>
+<p>循环语句结构与C++类似，可以在for语句初始化值的位置定义变量，也可以使用自增自减运算符，也可以使用<code>+=</code>系列运算符。</p>
+<p>类似于C++的范围for语句，js有for in语句，用于将对象、数组的<code>属性</code>全部列出来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    name: <span class="string">'Jack'</span>,</span><br><span class="line">    age: <span class="number">20</span>,</span><br><span class="line">    city: <span class="string">'Beijing'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> o) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key); <span class="comment">// 'name', 'age', 'city'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果想要过滤掉父类的属性，可以在循环后面加一句<code>o.hasOwnProperty(key)</code>的判断语句。</p>
+<p><strong>对array进行<code>for in</code>循环时，数组的索引被认为是其属性，循环得到的不是<code>number</code>而是<code>string</code>！</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> a) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i); <span class="comment">// '0', '1', '2'</span></span><br><span class="line">    <span class="built_in">console</span>.log(a[i]); <span class="comment">// 'A', 'B', 'C'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Map与Set"><a href="#Map与Set" class="headerlink" title="Map与Set"></a>Map与Set</h2><p>有两种方法对Map进行初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用二维数组初始化一个Map</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'Michael'</span>, <span class="number">95</span>], [<span class="string">'Bob'</span>, <span class="number">75</span>], [<span class="string">'Tracy'</span>, <span class="number">85</span>]]);</span><br><span class="line">m.get(<span class="string">'Michael'</span>); <span class="comment">// 95</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以初始化一个空Map，然后利用以下方法添加元素。</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">// 空Map</span></span><br><span class="line">m.set(<span class="string">'Adam'</span>, <span class="number">67</span>); <span class="comment">// 添加新的key-value</span></span><br><span class="line">m.set(<span class="string">'Bob'</span>, <span class="number">59</span>);</span><br><span class="line">m.has(<span class="string">'Adam'</span>); <span class="comment">// 是否存在key 'Adam': true</span></span><br><span class="line">m.get(<span class="string">'Adam'</span>); <span class="comment">// 67</span></span><br><span class="line">m.delete(<span class="string">'Adam'</span>); <span class="comment">// 删除key 'Adam'</span></span><br><span class="line">m.get(<span class="string">'Adam'</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>一个键只能对应一个值，所以多次对一个键赋值会覆盖掉之前的值。</p>
+<p>类似地，可以初始化一个空Set或者用一维数组初始化一个Set。重复元素自动被删除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">s.add(<span class="number">4</span>);</span><br><span class="line">s; <span class="comment">// Set &#123;1, 2, 3, 4&#125;</span></span><br><span class="line">s.add(<span class="number">4</span>);</span><br><span class="line">s; <span class="comment">// 仍然是 Set &#123;1, 2, 3, 4&#125;</span></span><br><span class="line">s.delete(<span class="number">4</span>);</span><br><span class="line">s; <span class="comment">// Set&#123;1, 2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="iterable"><a href="#iterable" class="headerlink" title="iterable"></a>iterable</h2><p>通过<code>for ... of ...</code>循环可以遍历具有<code>iterable</code>类型的集合。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>]);</span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="number">1</span>, <span class="string">'x'</span>], [<span class="number">2</span>, <span class="string">'y'</span>], [<span class="number">3</span>, <span class="string">'z'</span>]]);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">of</span> a) &#123; <span class="comment">// 遍历Array</span></span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">of</span> s) &#123; <span class="comment">// 遍历Set</span></span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">of</span> m) &#123; <span class="comment">// 遍历Map</span></span><br><span class="line">    <span class="built_in">console</span>.log(x[<span class="number">0</span>] + <span class="string">'='</span> + x[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而以往的<code>for in</code>就无法遍历set和map。</p>
+<p><code>for in</code>循环访问的是对象的属性，而<code>for of</code>只循环集合本身的元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">a.name = <span class="string">'Hello'</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">in</span> a) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x); <span class="comment">// '0', '1', '2', 'name'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">a.name = <span class="string">'Hello'</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">of</span> a) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x); <span class="comment">// 'A', 'B', 'C'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/04/%E5%8A%9E%E5%85%AC%E6%A5%BCbiu/" rel="prev" title="办公楼biu">
+      <i class="fa fa-chevron-left"></i> 办公楼biu
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据变量与类型"><span class="nav-number">1.1.</span> <span class="nav-text">数据变量与类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.2.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">1.4.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句结构"><span class="nav-number">1.5.</span> <span class="nav-text">语句结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map与Set"><span class="nav-number">1.6.</span> <span class="nav-text">Map与Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterable"><span class="nav-number">1.7.</span> <span class="nav-text">iterable</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="rqdmap"
+      src="/uploads/huiye.png">
+  <p class="site-author-name" itemprop="name">rqdmap</p>
+  <div class="site-description" itemprop="description">My new blogs.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'bbbd1fae621180c2d543',
+      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
+      repo        : 'GitalkComments',
+      owner       : 'rqdmap',
+      admin       : ['rqdmap'],
+      id          : '22c177b06c91549c6b178d6bfe459b5e',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
