@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc]">
 <meta property="article:published_time" content="2021-01-17T07:47:57.000Z">
-<meta property="article:modified_time" content="2021-01-17T16:18:23.551Z">
+<meta property="article:modified_time" content="2021-01-17T16:33:34.956Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-18 00:18:23" itemprop="dateModified" datetime="2021-01-18T00:18:23+08:00">2021-01-18</time>
+                <time title="Modified: 2021-01-18 00:33:34" itemprop="dateModified" datetime="2021-01-18T00:33:34+08:00">2021-01-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,6 +238,10 @@
 <p>由于$<C, +, *>$是环，乘法对加法可分配，运算满足封闭性，很容易证明两边的因子全体相同。</p>
 <p>（<del>手算证明a、b的因子一定是a%b的因子，大概利用了上述的几个性质，不知道是否正确</del>）</p>
 <p>那么通过欧几里得不断辗转相除就可以得到给出的所有向量的最大公因子。</p>
+<p>得出的这个”Gcd”因子，就是我们要求的最终的基底向量。无需考虑转化为平面坐标上的基底，直接利用这个向量就可以得知需要几个向量才能构成一个题目要求的”正方形”：将给出的所有向量除以该基底，按道理可以得到标准的<strong>高斯整数</strong>，实部可以看作是为了表示这个向量，实轴基底所需要的数量，虚部可以看作是虚轴基底所需要的数量。不断地用横纵坐标更新最大最小值，最后在这个矩形区域中最长的边（即长方形的长），这就是为了表示所有的复数所需要的最少的基底数量，也就是题目要求中的K。显然，因为基底最大，相应的K就会最小。</p>
+<p>此外，因为题目还允许变化基础偏移值$(a, b)$，所以给出的n个复数不需要全部使用，可以认为某一个为原点，考虑剩余$n-1$个对它的相对坐标，使用相对坐标完成上述讨论的gcd等操作即可。</p>
+<p><del>因为看到了一份代码，在gcd中有四舍五入，而在将向量除以标准基底后得到的商上也进行了四舍五入，让人不禁怀疑这一坨四舍五入到底都是什么。事实上，gcd的四舍五入是高斯整数除法所内在要求的，而商上的四舍五入是为了防止double复数除法的精度问题。</del></p>
+<p>此时不禁赞叹这一份优美的自定义高斯整数结构的<a href="https://codeforces.ml/gym/100959/submission/30276053" target="_blank" rel="noopener">代码</a>。（可能需要coach才能查看）</p>
 <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>矩阵树定理</p>
 <p>Burnside定理</p>
 <h2 id="1E"><a href="#1E" class="headerlink" title="1E"></a>1E</h2><p>杨表</p>
