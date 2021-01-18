@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc]">
 <meta property="article:published_time" content="2021-01-17T07:47:57.000Z">
-<meta property="article:modified_time" content="2021-01-17T16:33:34.956Z">
+<meta property="article:modified_time" content="2021-01-18T06:18:12.984Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-18 00:33:34" itemprop="dateModified" datetime="2021-01-18T00:33:34+08:00">2021-01-18</time>
+                <time title="Modified: 2021-01-18 14:18:12" itemprop="dateModified" datetime="2021-01-18T14:18:12+08:00">2021-01-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +225,7 @@
         <p>[toc]</p>
 <a id="more"></a>
 <h1 id="2021-1-17-（一）"><a href="#2021-1-17-（一）" class="headerlink" title="2021.1.17 （一）"></a>2021.1.17 （一）</h1><h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>字符串上做快速幂优化的dp</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><h3 id="弱化：二维平面上求最长的基底长度"><a href="#弱化：二维平面上求最长的基底长度" class="headerlink" title="弱化：二维平面上求最长的基底长度"></a>弱化：二维平面上求最长的基底长度</h3><p><a href="https://codeforces.ml/gym/100959" target="_blank" rel="noopener">K题</a></p>
+<h2 id="C-三维平面上求最长的基底长度"><a href="#C-三维平面上求最长的基底长度" class="headerlink" title="C 三维平面上求最长的基底长度"></a>C 三维平面上求最长的基底长度</h2><h3 id="弱化：二维平面上求最长的基底长度"><a href="#弱化：二维平面上求最长的基底长度" class="headerlink" title="弱化：二维平面上求最长的基底长度"></a>弱化：二维平面上求最长的基底长度</h3><p><a href="https://codeforces.ml/gym/100959" target="_blank" rel="noopener">K题</a></p>
 <p>如何说明gcd欧几里得算法的正确性？等价于说明$gcd(a, b) = gcd(b, a \% b)$：</p>
 <p>只要说明(a, b)的公因子一定是a%b的因子，(b, a % b)的公因子一定是a的因子。这样，双方的公因子全体必然相同，进而gcd相等。</p>
 <p>那么，在一般的欧几里得算法中，必须要证明上述的式子，即$fun(a, b) = fun(b, a\%b)$</p>
@@ -242,8 +242,9 @@
 <p>此外，因为题目还允许变化基础偏移值$(a, b)$，所以给出的n个复数不需要全部使用，可以认为某一个为原点，考虑剩余$n-1$个对它的相对坐标，使用相对坐标完成上述讨论的gcd等操作即可。</p>
 <p><del>因为看到了一份代码，在gcd中有四舍五入，而在将向量除以标准基底后得到的商上也进行了四舍五入，让人不禁怀疑这一坨四舍五入到底都是什么。事实上，gcd的四舍五入是高斯整数除法所内在要求的，而商上的四舍五入是为了防止double复数除法的精度问题。</del></p>
 <p>此时不禁赞叹这一份优美的自定义高斯整数结构的<a href="https://codeforces.ml/gym/100959/submission/30276053" target="_blank" rel="noopener">代码</a>。（可能需要coach才能查看）</p>
-<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>矩阵树定理</p>
-<p>Burnside定理</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GaussianInteger</span>&#123;</span></span><br><span class="line">    ll x, y;</span><br><span class="line">    <span class="function">ll <span class="title">norm</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> x * x + y * y;&#125;</span><br><span class="line">    GaussianInteger <span class="keyword">operator</span> + (<span class="keyword">const</span> GaussianInteger &amp;b)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;x + b.x, y + b.y&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    GaussianInteger <span class="keyword">operator</span> - (<span class="keyword">const</span> GaussianInteger &amp;b)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;x - b.x, y - b.y&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    GaussianInteger <span class="keyword">operator</span> * (<span class="keyword">const</span> GaussianInteger &amp;b)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;x * b.x - y * b.y, x * b.y + y * b.x&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//(专用! 因为此处b保证大于0)四舍五入除法</span></span><br><span class="line">    <span class="comment">//高斯整数商的实部虚部在某个整数的**(-1/2, 1/2]**区间中。</span></span><br><span class="line">    <span class="function">ll <span class="title">D</span><span class="params">(ll a, ll b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a &gt;= <span class="number">0</span>) <span class="keyword">return</span> (a % b) * <span class="number">2</span> &lt; b? a / b: a / b + <span class="number">1</span>;</span><br><span class="line">        a = -a; <span class="keyword">return</span> -((a % b) * <span class="number">2</span> &lt;= b? a / b: a / b + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    GaussianInteger <span class="keyword">operator</span> / (<span class="keyword">const</span> GaussianInteger &amp;b)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;D(x * b.x + y * b.y, x * b.x + y * b.y), D(y * b.x - x * b.y, x * b.x + y * b.y)&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    GaussianInteger <span class="keyword">operator</span> % (<span class="keyword">const</span> GaussianInteger &amp;b)&#123;</span><br><span class="line">        GaussianInteger a = &#123;x, y&#125;;</span><br><span class="line">        <span class="keyword">return</span> a - a / b * b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> GaussianInteger NODE;</span><br><span class="line"><span class="function">NODE <span class="title">gcd</span><span class="params">(NODE a, NODE b)</span></span>&#123;<span class="keyword">return</span> !b.norm()? a: gcd(b, a % b);&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line">NODE node[maxn];</span><br><span class="line"></span><br><span class="line">ll xmi, xmx, ymi, ymx;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   Fastin;</span><br><span class="line">    <span class="keyword">int</span> n; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) scnaf(<span class="string">"%lld %lld"</span>, &amp;node[i].x, &amp;node[i].y);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) node[i] = node[i] - node[<span class="number">0</span>];</span><br><span class="line">    NODE d = node[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) d = gcd(d, node[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        NODE p = node[i] / d;</span><br><span class="line">        xmi = min(xmi, p.x); xmx = max(xmx, p.x);</span><br><span class="line">        ymi = min(ymi, p.y); ymx = max(ymx, p.y);</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans = max(ymx - ymi + <span class="number">1</span>, xmx - xmi + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans - n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三维空间上利用四元数（留坑）"><a href="#三维空间上利用四元数（留坑）" class="headerlink" title="三维空间上利用四元数（留坑）"></a>三维空间上利用四元数（留坑）</h3><p><del>暂时不太愿意花费太多时间去研究四元数的若干表示形式 因而留坑待补（弃坑（bushi</del></p>
+<h2 id="D-无向图生成树计数-amp-允许旋转置换"><a href="#D-无向图生成树计数-amp-允许旋转置换" class="headerlink" title="D 无向图生成树计数 &amp; 允许旋转置换"></a>D 无向图生成树计数 &amp; 允许旋转置换</h2><h3 id="矩阵树定理"><a href="#矩阵树定理" class="headerlink" title="矩阵树定理"></a>矩阵树定理</h3><p>Burnside定理</p>
 <h2 id="1E"><a href="#1E" class="headerlink" title="1E"></a>1E</h2><p>杨表</p>
 <h2 id="Fre"><a href="#Fre" class="headerlink" title="Fre"></a>Fre</h2>
     </div>
@@ -263,7 +264,10 @@
     <a href="/2021/01/16/%E5%9D%97%E7%8A%B6DS/" rel="prev" title="块状DS">
       <i class="fa fa-chevron-left"></i> 块状DS
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/18/poj-1222/" rel="next" title="poj-1222">
+      poj-1222 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -323,7 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2021-1-17-（一）"><span class="nav-number">1.</span> <span class="nav-text">2021.1.17 （一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A"><span class="nav-number">1.1.</span> <span class="nav-text">A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B"><span class="nav-number">1.2.</span> <span class="nav-text">B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.3.</span> <span class="nav-text">C</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#弱化：二维平面上求最长的基底长度"><span class="nav-number">1.3.1.</span> <span class="nav-text">弱化：二维平面上求最长的基底长度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">1.4.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1E"><span class="nav-number">1.5.</span> <span class="nav-text">1E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fre"><span class="nav-number">1.6.</span> <span class="nav-text">Fre</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2021-1-17-（一）"><span class="nav-number">1.</span> <span class="nav-text">2021.1.17 （一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A"><span class="nav-number">1.1.</span> <span class="nav-text">A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B"><span class="nav-number">1.2.</span> <span class="nav-text">B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-三维平面上求最长的基底长度"><span class="nav-number">1.3.</span> <span class="nav-text">C 三维平面上求最长的基底长度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#弱化：二维平面上求最长的基底长度"><span class="nav-number">1.3.1.</span> <span class="nav-text">弱化：二维平面上求最长的基底长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三维空间上利用四元数（留坑）"><span class="nav-number">1.3.2.</span> <span class="nav-text">三维空间上利用四元数（留坑）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-无向图生成树计数-amp-允许旋转置换"><span class="nav-number">1.4.</span> <span class="nav-text">D 无向图生成树计数 &amp; 允许旋转置换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵树定理"><span class="nav-number">1.4.1.</span> <span class="nav-text">矩阵树定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1E"><span class="nav-number">1.5.</span> <span class="nav-text">1E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fre"><span class="nav-number">1.6.</span> <span class="nav-text">Fre</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -339,20 +343,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
