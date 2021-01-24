@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc]">
 <meta property="article:published_time" content="2021-01-17T07:47:57.000Z">
-<meta property="article:modified_time" content="2021-01-24T16:23:23.556Z">
+<meta property="article:modified_time" content="2021-01-24T16:34:02.353Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-25 00:23:23" itemprop="dateModified" datetime="2021-01-25T00:23:23+08:00">2021-01-25</time>
+                <time title="Modified: 2021-01-25 00:34:02" itemprop="dateModified" datetime="2021-01-25T00:34:02+08:00">2021-01-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,6 +263,7 @@
 <p>杨表的删除：假设要删除$(x, y)$，保证$(x, y)$是边角。设x = $S_{xy}$，如果x在第一行，删除x算法结束；不然，找出最大的小于x的位置，用x替换该位置上的元素y，再尝试在上一行中删除y，反复进行。</p>
 <p><strong>杨表$P_x$与LIS、LDS：</strong></p>
 <p>$P_x$中第一行的长度就是排列$X$的LIS的长度，第一列的长度是其LDS的长度</p>
+<p>定义k-LIS序列为LIS长度不超过k的序列，类似地定义k-LDS序列。那么杨表前k列的长度就是最长的k-LIS长度。</p>
 <h2 id="K-可持久化01线段树"><a href="#K-可持久化01线段树" class="headerlink" title="K 可持久化01线段树"></a>K 可持久化01线段树</h2><p>支持区间翻转，单点置值。每次操作完后输出整个序列中1的个数。</p>
 <p><del>貌似可持久化线段树不是很能支持直接的区间操作？</del></p>
 <p>在这道题中，如果出现区间翻转的操作，那么将所有有关的小线段都打上tag（实际是异或加1），并将他们的结果都用$r - l + 1 - st[p]$来代替本身；而如果出现了单点置值的情况，检查一路上遇到的所有的线段的tag，将将要置的值x不断地异或上这些tag，以最终的结果作为最终要置的值。这是因为，在一个已经翻转过的线段上置值（然而此时只是对这个大线段打了tag，没有实际地修改子线段，不然会T）等价于将要置的值先翻转，不断往下走，置好后再将$st[ls] + st[rs]$的值翻转一遍后置回本身。</p>
