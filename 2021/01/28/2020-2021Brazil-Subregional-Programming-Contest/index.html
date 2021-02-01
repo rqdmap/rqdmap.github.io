@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc]">
 <meta property="article:published_time" content="2021-01-28T13:51:34.000Z">
-<meta property="article:modified_time" content="2021-01-31T07:11:39.932Z">
+<meta property="article:modified_time" content="2021-02-01T10:17:43.266Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-31 15:11:39" itemprop="dateModified" datetime="2021-01-31T15:11:39+08:00">2021-01-31</time>
+                <time title="Modified: 2021-02-01 18:17:43" itemprop="dateModified" datetime="2021-02-01T18:17:43+08:00">2021-02-01</time>
               </span>
 
           
@@ -221,6 +221,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> SEG &amp;b) <span class="keyword">const</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(y != b.y) <span class="keyword">return</span> y &lt; b.y;</span><br><span class="line">  <span class="keyword">return</span> x &lt; b.x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>就会离奇TLE，经过assert检查是查出来的敌军总数超过题目的限制，从而TLE。</p>
 <p>按照道理来说，如果仅仅比较y都能够AC，那么再加上第二优先级比较x也应该能够AC，毕竟加上第二优先级只是仅仅比较y的一种特殊情况，然而却居然发生了这样的事情，至今不解。</p>
+<p>link to <a href="">cdq分治</a></p>
 
     </div>
 
@@ -239,7 +240,10 @@
     <a href="/2021/01/18/poj-1222/" rel="prev" title="poj-1222">
       <i class="fa fa-chevron-left"></i> poj-1222
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/01/cdq%E5%88%9D%E6%AD%A5/" rel="next" title="cdq初步">
+      cdq初步 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -315,7 +319,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -328,7 +332,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
