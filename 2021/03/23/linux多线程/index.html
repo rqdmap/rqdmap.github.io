@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="[toc] 在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。 使用头文件&lt;pthread.h&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux多线程">
+<meta property="og:url" content="http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:site_name" content="rqdmap">
+<meta property="og:description" content="[toc] 在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。 使用头文件&lt;pthread.h&gt;">
+<meta property="article:published_time" content="2021-03-23T04:45:36.000Z">
+<meta property="article:modified_time" content="2021-03-23T04:47:09.801Z">
+<meta property="article:author" content="rqdmap">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="多线程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>linux多线程 | rqdmap</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">rqdmap</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/huiye.png">
+      <meta itemprop="name" content="rqdmap">
+      <meta itemprop="description" content="My new blogs.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="rqdmap">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux多线程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-23 12:45:36 / Modified: 12:47:09" itemprop="dateCreated datePublished" datetime="2021-03-23T12:45:36+08:00">2021-03-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[toc]</p>
+<p>在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。</p>
+<p>使用头文件<code>&lt;pthread.h&gt;</code></p>
+<a id="more"></a>
+<h1 id="线程基本操作"><a href="#线程基本操作" class="headerlink" title="线程基本操作"></a>线程基本操作</h1><h2 id="线程的创建与退出"><a href="#线程的创建与退出" class="headerlink" title="线程的创建与退出"></a>线程的创建与退出</h2><h3 id="pthead-create"><a href="#pthead-create" class="headerlink" title="pthead_create"></a>pthead_create</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(<span class="keyword">pthread_t</span> *thread, <span class="keyword">pthread_attr_t</span> * attr, <span class="keyword">void</span> *(*start_routine)(<span class="keyword">void</span> *), <span class="keyword">void</span> *arg)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>传入参数：thread为线程标识符，attr为线程属性设置，start_routine为线程函数起始地址，arg为传给start_routine的参数。</p>
+<p>返回值：0成功，-1失败。</p>
+<h3 id="pthread-exit"><a href="#pthread-exit" class="headerlink" title="pthread_exit"></a>pthread_exit</h3><p>线程可以通过主动调用该函数结束自身。</p>
+<p>值得注意不能使用<code>exit</code>来结束当前<strong>线程</strong>，因为exit会终止<strong>进程</strong>，终止该进程中所有线程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pthread_exit</span><span class="params">(<span class="keyword">void</span> *retval)</span></span></span><br></pre></td></tr></table></figure>
+<p>传入参数：retval为调用者线程的返回值。</p>
+<h3 id="pthread-join"><a href="#pthread-join" class="headerlink" title="pthread_join"></a>pthread_join</h3><p>该函数用于将当前线程挂起，值得被等待的线程结束为止，当函数返回时，被等待线程的资源就被收回。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_join</span> <span class="params">((<span class="keyword">pthread_t</span> th, <span class="keyword">void</span> 参考资料**thread_return))</span></span></span><br></pre></td></tr></table></figure>
+<p>传入参数：th为等待线程的标识符，thread_return为用户定义的指针，用于存储被等待线程的返回值(不为NULL)时。</p>
+<h2 id="修改线程的属性资源"><a href="#修改线程的属性资源" class="headerlink" title="修改线程的属性资源"></a>修改线程的属性资源</h2><p>参考资料：<a href="https://blog.csdn.net/baobingji/article/details/84285951" target="_blank" rel="noopener">多线程属性pthread_attr详解</a></p>
+<p>在thread_create函数中，我们可以自定义线程的属性。线程主要有如下的一些属性：绑定属性、分离属性、堆栈地址、堆栈大小、优先级。默认的属性是非绑定、非分离、1M的堆栈、与父进程优先级相同。</p>
+<h3 id="pthread-attr-init"><a href="#pthread-attr-init" class="headerlink" title="pthread_attr_init"></a>pthread_attr_init</h3><p>线程属性的设置通常先调用该函数进行初始化，之后再调用相应的属性设置函数进行设置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_init</span><span class="params">(<span class="keyword">pthread_attr_t</span> *attr)</span></span></span><br></pre></td></tr></table></figure>
+<p>传入参数: attr线程属性</p>
+<p>返回值：成功0，失败-1</p>
+<h3 id="pthread-attr-setscope"><a href="#pthread-attr-setscope" class="headerlink" title="pthread_attr_setscope"></a>pthread_attr_setscope</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_getscope</span><span class="params">( <span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> * attr, <span class="keyword">int</span> * scope )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_setscope</span><span class="params">( <span class="keyword">pthread_attr_t</span>*, <span class="keyword">int</span> scope )</span></span>;</span><br></pre></td></tr></table></figure>
+<p>传入参数：</p>
+<ul>
+<li>attr线程属性</li>
+<li>scope：PTHREAD_SCOPE_SYSTEM 绑定(系统级竞争资源)，PTHREAD_SCOPE_PROCESS 非绑定(进程内竞争资源)</li>
+</ul>
+<h3 id="pthread-attr-setdetachstate"><a href="#pthread-attr-setdetachstate" class="headerlink" title="pthread_attr_setdetachstate"></a>pthread_attr_setdetachstate</h3><p>线程的分离状态决定一个线程以什么方式结束自己。默认情况下为非分离，此时原有的线程等待新线程的结束，只有当pthread_join返回时，新线程才算终止。而在分离状态下，新线程一旦运行结束马上释放资源。</p>
+<p>需要注意，在<strong>分离状态</strong>下，如果某一个进程运行的飞快，在pthread_create函数返回前就终止了，它终止后就可能将线程号和系统资源给其他线程使用，这时调用pthread_create就可能返回错误的线程号。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_setdetachstate</span><span class="params">(<span class="keyword">pthread_attr_t</span> *attr, <span class="keyword">int</span> detachstate)</span></span></span><br></pre></td></tr></table></figure>
+<p>detachstate: PTHREAD_CREATE_DETACHED 分离， PTHREAD _CREATE_JOINABLE 非分离</p>
+<h3 id="调度策略的获取-设置"><a href="#调度策略的获取-设置" class="headerlink" title="调度策略的获取/设置"></a>调度策略的获取/设置</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_getschedpolicy</span><span class="params">(<span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *, <span class="keyword">int</span> * policy)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_setschedpolicy</span><span class="params">(pthread_attr_*, <span class="keyword">int</span> policy)</span></span></span><br></pre></td></tr></table></figure>
+<p>传入参数：policy为调度策略，有若干种可能的情况：</p>
+<ul>
+<li>SCHED_FIFO</li>
+<li>SCHED_RR (轮转法)</li>
+<li>SHCED_OTHER</li>
+</ul>
+<p>前两种方法均支持优先级的使用，优先级从1-99，数值越大优先级越高。</p>
+<h3 id="优先级的获取-设置-最值查询"><a href="#优先级的获取-设置-最值查询" class="headerlink" title="优先级的获取/设置/最值查询"></a>优先级的获取/设置/最值查询</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_getschedparam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *,struct sched_param *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_setschedparam</span><span class="params">(<span class="keyword">pthread_attr_t</span> *,<span class="keyword">const</span> struct sched_param *)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>默认的结构大概是这样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sched_param</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> sched_priority;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>可以通过如下两个函数获取系统支持的优先级的最值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sched_get_priority_max</span><span class="params">( <span class="keyword">int</span> policy )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sched_get_priority_min</span><span class="params">( <span class="keyword">int</span> policy )</span></span>;</span><br></pre></td></tr></table></figure>
+<h1 id="线程访问控制"><a href="#线程访问控制" class="headerlink" title="线程访问控制"></a>线程访问控制</h1><p>由于线程共享进程资源，因而需要考虑资源访问的问题。</p>
+<h2 id="mutex互斥锁"><a href="#mutex互斥锁" class="headerlink" title="mutex互斥锁"></a>mutex互斥锁</h2><h3 id="互斥锁的类型"><a href="#互斥锁的类型" class="headerlink" title="互斥锁的类型"></a>互斥锁的类型</h3><p>参考资料 <a href="https://blog.csdn.net/qq_42169059/article/details/90600257" target="_blank" rel="noopener">九、Linux下线程互斥锁类型及属性</a></p>
+<ul>
+<li><p>PTHREAD_MUTEX_NORMAL：<strong><font color="#dd0000"> 标准互斥锁：第一次上锁成功，第二次上锁会阻塞。</font></strong><br>描述:<br>此类型的互斥锁不会检测死锁。如果线程在不首先解除互斥锁的情况下尝试重新锁定该互斥锁，则会产生死锁。尝试解除由其他线程锁定的互斥锁会产生不确定的行为。如果尝试解除锁定的互斥锁未锁定，则会产生不确定的行为。</p>
+</li>
+<li><p>PTHREAD_MUTEX_ERRORCHECK：<font color="#dd0000"> <strong>检错互斥锁：第一次上锁成功，第二次上锁会出错。</strong></font></p>
+<p>描述:<br>此类型的互斥锁可提供错误检查。如果线程在不首先解除锁定互斥锁的情况下尝试重新锁定该互斥锁，则会返回错误。如果线程尝试解除锁定的互斥锁已经由其他线程锁定，则会返回错误。如果线程尝试解除锁定的互斥锁未锁定，则会返回错误。</p>
+</li>
+<li><p>PTHREAD_MUTEX_RECURSIVE：<font color="#dd0000"><strong>递归互斥锁：第一次上锁成功，第二次上锁也会成功，内部计数。</strong></font><br>描述:操作操作<br>如果线程在不首先解除锁定互斥锁的情况下尝试重新锁定该互斥锁，则可成功锁定该互斥锁。 与 PTHREAD_MUTEX_NORMAL 类型的互斥锁不同，对此类型互斥锁进行重新锁定时不会产生死锁情况。多次锁定互斥锁需要进行相同次数的解除锁定才可以释放该锁，然后其他线程才能获取该互斥锁。如果线程尝试解除锁定的互斥锁已经由其他线程锁定，则会返回错误。 如果线程尝试解除锁定的互斥锁未锁定，则会返回错误。</p>
+</li>
+<li><p>PTHREAD_MUTEX_DEFAULT：<font color="#dd0000"><strong>默认互斥锁：同标准的互斥锁</strong></font><br>描述:<br>如果尝试以递归方式锁定此类型的互斥锁，则会产生不确定的行为。对于不是由调用线程锁定的此类型互斥锁，如果尝试对它解除锁定，则会产生不确定的行为。对于尚未锁定的此类型互斥锁，如果尝试对它解除锁定，也会产生不确定的行为。允许在实现中将该互斥锁映射到其他互斥锁类型之一。</p>
+</li>
+</ul>
+<h3 id="对互斥锁的操作"><a href="#对互斥锁的操作" class="headerlink" title="对互斥锁的操作"></a>对互斥锁的操作</h3><h4 id="互斥锁的创建"><a href="#互斥锁的创建" class="headerlink" title="互斥锁的创建"></a>互斥锁的创建</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_init</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex, <span class="keyword">const</span> <span class="keyword">pthread_mutexattr_t</span> *mutexattr)</span></span></span><br></pre></td></tr></table></figure>
+<p>mutexattr缺省时默认创建快速互斥锁（PTHREAD_MUTEX_DEFAULT）</p>
+<h4 id="互斥锁的操作"><a href="#互斥锁的操作" class="headerlink" title="互斥锁的操作"></a>互斥锁的操作</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_lock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_trylock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_unlock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex,)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_destroy</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex,)</span></span></span><br></pre></td></tr></table></figure>
+<p>（望文生义即可.jpg）</p>
+<h2 id="信号量线程控制"><a href="#信号量线程控制" class="headerlink" title="信号量线程控制"></a>信号量线程控制</h2><p>功能参见OS教材即可。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_init</span><span class="params">(<span class="keyword">sem_t</span> *sem, <span class="keyword">int</span> pshared, <span class="keyword">unsigned</span> <span class="keyword">int</span> value)</span></span></span><br></pre></td></tr></table></figure>
+<p>传入参数：</p>
+<ul>
+<li>sem信号量</li>
+<li>pshared决定信号量能在几个进程间共享，由于目前linux还不能实现进程间信号量的共享，所以该值只能取1</li>
+<li>value信号初始值</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_wait</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_trywait</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_post</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_getvalue</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_destroy</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br></pre></td></tr></table></figure>
+<p>望文生义即可。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/23/socket/" rel="prev" title="socket">
+      <i class="fa fa-chevron-left"></i> socket
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程基本操作"><span class="nav-number">1.</span> <span class="nav-text">线程基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的创建与退出"><span class="nav-number">1.1.</span> <span class="nav-text">线程的创建与退出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pthead-create"><span class="nav-number">1.1.1.</span> <span class="nav-text">pthead_create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-exit"><span class="nav-number">1.1.2.</span> <span class="nav-text">pthread_exit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-join"><span class="nav-number">1.1.3.</span> <span class="nav-text">pthread_join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改线程的属性资源"><span class="nav-number">1.2.</span> <span class="nav-text">修改线程的属性资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-attr-init"><span class="nav-number">1.2.1.</span> <span class="nav-text">pthread_attr_init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-attr-setscope"><span class="nav-number">1.2.2.</span> <span class="nav-text">pthread_attr_setscope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-attr-setdetachstate"><span class="nav-number">1.2.3.</span> <span class="nav-text">pthread_attr_setdetachstate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度策略的获取-设置"><span class="nav-number">1.2.4.</span> <span class="nav-text">调度策略的获取&#x2F;设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级的获取-设置-最值查询"><span class="nav-number">1.2.5.</span> <span class="nav-text">优先级的获取&#x2F;设置&#x2F;最值查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程访问控制"><span class="nav-number">2.</span> <span class="nav-text">线程访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mutex互斥锁"><span class="nav-number">2.1.</span> <span class="nav-text">mutex互斥锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁的类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">互斥锁的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对互斥锁的操作"><span class="nav-number">2.1.2.</span> <span class="nav-text">对互斥锁的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#互斥锁的创建"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">互斥锁的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互斥锁的操作"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">互斥锁的操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信号量线程控制"><span class="nav-number">2.2.</span> <span class="nav-text">信号量线程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">2.2.1.</span> <span class="nav-text">基本操作</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="rqdmap"
+      src="/uploads/huiye.png">
+  <p class="site-author-name" itemprop="name">rqdmap</p>
+  <div class="site-description" itemprop="description">My new blogs.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'bbbd1fae621180c2d543',
+      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
+      repo        : 'GitalkComments',
+      owner       : 'rqdmap',
+      admin       : ['rqdmap'],
+      id          : 'c4f82d91a603e3b70a9ab5799f1c3153',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
