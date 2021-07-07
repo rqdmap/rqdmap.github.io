@@ -1,237 +1,183 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="[toc]">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="qko-gym">
 <meta property="og:url" content="http://rqdmap.github.io/2021/04/02/qko-gym/index.html">
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc]">
+<meta property="og:locale">
 <meta property="article:published_time" content="2021-04-02T13:10:37.000Z">
-<meta property="article:modified_time" content="2021-04-10T11:22:02.228Z">
+<meta property="article:modified_time" content="2021-04-02T13:10:37.000Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>qko-gym</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="canonical" href="http://rqdmap.github.io/2021/04/02/qko-gym/">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
 
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/04/06/ftp-server/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/03/28/arc-116(%E5%9D%91)/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2021/04/02/qko-gym/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2021/04/02/qko-gym/&text=qko-gym"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2021/04/02/qko-gym/&is_video=false&description=qko-gym"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=qko-gym&body=Check out this article: http://rqdmap.github.io/2021/04/02/qko-gym/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2021/04/02/qko-gym/&name=qko-gym&description=&lt;p&gt;[toc]&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2021/04/02/qko-gym/&t=qko-gym"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-Hans'
-  };
-</script>
-
-  <title>qko-gym | rqdmap</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-        <span class="toggle-line toggle-line-first"></span>
-        <span class="toggle-line toggle-line-middle"></span>
-        <span class="toggle-line toggle-line-last"></span>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">rqdmap</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1"><span class="toc-number">1.</span> <span class="toc-text">Day1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hdu6643"><span class="toc-number">1.1.</span> <span class="toc-text">hdu6643</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">树形背包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E4%B8%8A%E5%90%88%E5%B9%B6"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">向上合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E4%B8%8B%E4%BC%A0%E9%80%92"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">向下传递</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">参考博客</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dfs%E5%BA%8F%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">dfs序优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.1.1.3.1.</span> <span class="toc-text">参考博客压缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E7%A7%AF%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.1.2.</span> <span class="toc-text">乘积压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AC%E4%B8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">AC下</span></a></li></ol></li></ol></li></ol>
     </div>
-  </div>
+  </span>
 </div>
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2021/04/02/qko-gym/">
+    <h1 class="posttitle" itemprop="name headline">
+        qko-gym
+    </h1>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/huiye.png">
-      <meta itemprop="name" content="rqdmap">
-      <meta itemprop="description" content="rqdmap's personal blogs.">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="rqdmap">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          qko-gym
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">rqdmap</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-02T13:10:37.000Z" itemprop="datePublished">2021-04-02</time>
+        
+        (Updated: <time datetime="2021-04-02T13:10:37.000Z" itemprop="dateModified">2021-04-02</time>)
+        
+      
+    </div>
 
-              <time title="Created: 2021-04-02 21:10:37" itemprop="dateCreated datePublished" datetime="2021-04-02T21:10:37+08:00">2021-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-10 19:22:02" itemprop="dateModified" datetime="2021-04-10T19:22:02+08:00">2021-04-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>[toc]</p>
-<a id="more"></a>
-<h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><h2 id="hdu6643"><a href="#hdu6643" class="headerlink" title="hdu6643"></a><a href="https://vjudge.net/contest/318115#problem/J" target="_blank" rel="noopener">hdu6643</a></h2><p>因为例题不仅有点分治还涉及到了树上依赖背包的算法，才发现自己并不太会树形背包的若干优化算法，故学习。</p>
-<h3 id="树形背包"><a href="#树形背包" class="headerlink" title="树形背包"></a>树形背包</h3><p><a href="https://www.acwing.com/problem/content/description/10/" target="_blank" rel="noopener">模板题</a></p>
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>[toc]</p>
+<span id="more"></span>
+<h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><h2 id="hdu6643"><a href="#hdu6643" class="headerlink" title="hdu6643"></a><a target="_blank" rel="noopener" href="https://vjudge.net/contest/318115#problem/J">hdu6643</a></h2><p>因为例题不仅有点分治还涉及到了树上依赖背包的算法，才发现自己并不太会树形背包的若干优化算法，故学习。</p>
+<h3 id="树形背包"><a href="#树形背包" class="headerlink" title="树形背包"></a>树形背包</h3><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/10/">模板题</a></p>
 <p>给出一颗依赖树，询问总重量限定下可能获得的最大价值。</p>
 <p>物品的数量和重量的限制均不超过100</p>
 <p>有不同的做法，复杂度也不同。</p>
 <h4 id="向上合并"><a href="#向上合并" class="headerlink" title="向上合并"></a>向上合并</h4><p>随意采取$O(nm^2)$的算法即可在树上合并。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> manx = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W, v[maxn], w[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp[i][j]表示i子树中重量为j下的最大价值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    dp[u][w[u]] = v[u];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(to, u);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = W; j &gt;= w[u]; j--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = j; k &gt;= w[u]; k--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[u][k] != <span class="number">-1</span> &amp;&amp; dp[to][j - k] != <span class="number">-1</span>)</span><br><span class="line">                    dp[u][j] = max(dp[u][j], dp[u][k] + dp[to][j - k]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    clr(head, <span class="number">-1</span>); clr(dp, <span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y, z; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;z); <span class="keyword">if</span>(z == <span class="number">-1</span>) z = <span class="number">0</span>;</span><br><span class="line">        w[i] = x; v[i] = y;<span class="keyword">const</span> <span class="keyword">int</span> manx = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W, v[maxn], w[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="comment">// printf("%d %d\n",树形背包 u, v);</span></span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp[i][j]表示i子树中重量为j下的最大价值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(to == par) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) dp[to][i] = dp[u][i];</span><br><span class="line">        dfs(to, u);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = W; i &gt;= w[to]; i--) <span class="keyword">if</span>(dp[to][i - w[to]] != <span class="number">-1</span>)</span><br><span class="line">            dp[u][i] = max(dp[u][i], dp[to][i - w[to]] + v[to]);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    clr(head, <span class="number">-1</span>); clr(dp, <span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y, z; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;z); <span class="keyword">if</span>(z == <span class="number">-1</span>) z = <span class="number">0</span>;</span><br><span class="line">        w[i] = x; v[i] = y;</span><br><span class="line">        add(z, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    dfs(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) ans = max(ans, dp[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        add(z, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    dfs(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) ans = max(ans, dp[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> manx = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W, v[maxn], w[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp[i][j]表示i子树中重量为j下的最大价值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    dp[u][w[u]] = v[u];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(to, u);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = W; j &gt;= w[u]; j--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = j; k &gt;= w[u]; k--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[u][k] != <span class="number">-1</span> &amp;&amp; dp[to][j - k] != <span class="number">-1</span>)</span><br><span class="line">                    dp[u][j] = <span class="built_in">max</span>(dp[u][j], dp[u][k] + dp[to][j - k]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>); <span class="built_in">clr</span>(dp, <span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y, z; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;x, &amp;y, &amp;z); <span class="keyword">if</span>(z == <span class="number">-1</span>) z = <span class="number">0</span>;</span><br><span class="line">        w[i] = x; v[i] = y;<span class="keyword">const</span> <span class="keyword">int</span> manx = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W, v[maxn], w[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="comment">// printf(&quot;%d %d\n&quot;,树形背包 u, v);</span></span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp[i][j]表示i子树中重量为j下的最大价值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(to == par) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) dp[to][i] = dp[u][i];</span><br><span class="line">        <span class="built_in">dfs</span>(to, u);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = W; i &gt;= w[to]; i--) <span class="keyword">if</span>(dp[to][i - w[to]] != <span class="number">-1</span>)</span><br><span class="line">            dp[u][i] = <span class="built_in">max</span>(dp[u][i], dp[to][i - w[to]] + v[to]);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>); <span class="built_in">clr</span>(dp, <span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y, z; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;x, &amp;y, &amp;z); <span class="keyword">if</span>(z == <span class="number">-1</span>) z = <span class="number">0</span>;</span><br><span class="line">        w[i] = x; v[i] = y;</span><br><span class="line">        <span class="built_in">add</span>(z, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) ans = <span class="built_in">max</span>(ans, dp[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">add</span>(z, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) ans = <span class="built_in">max</span>(ans, dp[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="向下传递"><a href="#向下传递" class="headerlink" title="向下传递"></a>向下传递</h4><p>在向下传递的更新背包过程时，dp数组的含义有了些许的变化。此时$dp[i][j]$表示选取i节点的子树<strong>且不允许选取</strong>i本身、总重量为j的最大价值。</p>
 <p>将所有孩子的背包信息存在父节点的dp数组中，但不包含父亲自身的信息，每次传递、回收都只涉及到所有的儿子节点。因而在使用这种方法时，一定要使用一个 <font color="#dd0000"> 超级源点    </font>来统一所有的信息！</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> manx = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W, v[maxn], w[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp[i][j]表示i子树中重量为j下的最大价值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;fun</span><br><span class="line">    dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(to == par) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) dp[to][i] = dp[u][i];</span><br><span class="line">        dfs(to, u);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = W; i &gt;= w[to]; i--) <span class="keyword">if</span>(dp[to][i - w[to]] != <span class="number">-1</span>)</span><br><span class="line">            dp[u][i] = max(dp[u][i], dp[to][i - w[to]] + v[to]);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    clr(head, <span class="number">-1</span>); clr(dp, <span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y, z; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;z); <span class="keyword">if</span>(z == <span class="number">-1</span>) z = <span class="number">0</span>;</span><br><span class="line">        w[i] = x; v[i] = y;</span><br><span class="line">        add(z, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    dfs(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) ans = max(ans, dp[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h5><p><a href="https://www.cnblogs.com/chdy/p/10095783.html" target="_blank" rel="noopener">树上依赖背包总结</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> manx = <span class="number">1e2</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W, v[maxn], w[maxn];</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp[i][j]表示i子树中重量为j下的最大价值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;fun</span><br><span class="line">    dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(to == par) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) dp[to][i] = dp[u][i];</span><br><span class="line">        <span class="built_in">dfs</span>(to, u);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = W; i &gt;= w[to]; i--) <span class="keyword">if</span>(dp[to][i - w[to]] != <span class="number">-1</span>)</span><br><span class="line">            dp[u][i] = <span class="built_in">max</span>(dp[u][i], dp[to][i - w[to]] + v[to]);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>); <span class="built_in">clr</span>(dp, <span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y, z; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;x, &amp;y, &amp;z); <span class="keyword">if</span>(z == <span class="number">-1</span>) z = <span class="number">0</span>;</span><br><span class="line">        w[i] = x; v[i] = y;</span><br><span class="line">        <span class="built_in">add</span>(z, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= W; i++) ans = <span class="built_in">max</span>(ans, dp[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h5><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chdy/p/10095783.html">树上依赖背包总结</a></p>
 <h4 id="dfs序优化"><a href="#dfs序优化" class="headerlink" title="dfs序优化"></a>dfs序优化</h4><p>我们记录树的dfs序列，以及每个节点及其子树的大小。</p>
 <p>有了这样的两个信息，我们就可以得到如下的转移方程</p>
 <p>$dp[i][j] = max(dp[i + size[list[i]]][j], dp[i + 1][j - w[i]] + v[i])$</p>
 <p>第一项表示完全不选这一棵子树，第二项则表示选这个子树并进行转移。</p>
 <p>非常的精妙。</p>
-<h5 id="参考博客压缩"><a href="#参考博客压缩" class="headerlink" title="参考博客压缩"></a>参考博客压缩</h5><p><a href="https://note.youdao.com/ynoteshare1/index.html?id=07619acf27a64381650dbb9dc2000f68&amp;type=note" target="_blank" rel="noopener">先序遍历优化树形背包</a></p>
+<h5 id="参考博客压缩"><a href="#参考博客压缩" class="headerlink" title="参考博客压缩"></a>参考博客压缩</h5><p><a target="_blank" rel="noopener" href="https://note.youdao.com/ynoteshare1/index.html?id=07619acf27a64381650dbb9dc2000f68&amp;type=note">先序遍历优化树形背包</a></p>
 <h3 id="乘积压缩"><a href="#乘积压缩" class="headerlink" title="乘积压缩"></a>乘积压缩</h3><p>当转移之间的关系不是加法而是乘法时，如果使用一般的方式空间利用密度较低，可以考虑使用一种压缩的方式达到$O(\sqrt W)$的状态空间。</p>
 <p>具体来说，设置$dp[i]$表示乘积$\prod a_i$满足关系 $\frac {W}{\prod a_i}=i$ 的某价值。</p>
 <p>从x到xy转移时即为从dp[W / x]到dp[W / x / y]转移。</p>
@@ -242,235 +188,185 @@
 <p>$dp[i][j]$由<strong>两部分</strong>构成，一部分是dfn[i]节点本身子树构成的总重量为j的计数方案，另一部分递归地继承dfs树上i的<strong>右兄弟</strong>的若干信息。因而除了根节点的dp数组为其真实情况，其余节点的dp数组均有一些继承右兄弟而来的计数方案，仅在前一个dfn元素就是其父亲时将这些贡献统一地传递给父亲。</p>
 <p>接下来用到乘积压缩即可，写的比较丑，将一一映射的关系进行保存，每次仅仅对这$\sqrt W$个可能的状态进行转移即可。</p>
 <p>基本的思路就是这些，把自己坑了一下午的点是最开始写的时候认为getroot后sove(root)时，当前连通块内每个节点的子树大小就是getroot处理出来的大小。这显然是错误的，一旦getroot换根后，子树大小显然也会发生改变，应该重新计数！</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxe = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> K =  <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> w[maxn];</span><br><span class="line">star edge[maxe &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mx[maxn], root, vis[maxn], S, sze[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> now, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[now] = <span class="number">1</span>; mx[now] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[now]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        getroot(to, now);</span><br><span class="line">        sze[now] += sze[to];</span><br><span class="line">        mx[now] = max(mx[now], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[now] = max(mx[now], S - mx[now]);</span><br><span class="line">    <span class="keyword">if</span>(mx[now] &lt; mx[root]) root = now;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dfn[maxn], cnt = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> now, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    dfn[cnt++] = now; sze[now] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[now]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || par == to) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(to, now);</span><br><span class="line">        sze[now] += sze[to];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ll ans = <span class="number">0</span>;</span><br><span class="line">ll dp[maxn][K];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="keyword">int</span> mp[K * K];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> now)</span></span>&#123;</span><br><span class="line">    cnt = <span class="number">0</span>; dfs(now, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= cnt; i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; vec.size(); j++) dp[i][j] = <span class="number">0</span>;</span><br><span class="line">    dp[cnt][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = cnt - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = dfn[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; vec.size(); j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(vec[j] / w[u])&#123;</span><br><span class="line">                <span class="keyword">int</span> pos = mp[vec[j] / w[u]];</span><br><span class="line">                </span><br><span class="line">                dp[i][pos] += dp[i + <span class="number">1</span>][j];</span><br><span class="line">                dp[i][pos] %= M;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i][j] += dp[i + sze[u]][j];</span><br><span class="line">            dp[i][j] %= M;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (itn)vec.size(); i++) ans = (ans + dp[<span class="number">0</span>][i]) % M;</span><br><span class="line">    ans = (ans + M - <span class="number">1</span>) % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sove</span><span class="params">(<span class="keyword">int</span> now)</span></span>&#123;</span><br><span class="line">    vis[now] = <span class="number">1</span>; </span><br><span class="line">    fun(now);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[now]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        getroot(to, now);</span><br><span class="line">        sove(root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    TTT&#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        clr(head, <span class="number">-1</span>); top = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;W);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) scnaf(<span class="string">"%d"</span>, w + i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> u, v; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;u, &amp;v);</span><br><span class="line">            add(u, v); add(v, u);</span><br><span class="line">        &#125;</span><br><span class="line">        vec.clear(); clr(mp, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= W; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> res = W / i; </span><br><span class="line">            <span class="keyword">if</span>(vec.empty() || *vec.rbegin() != res) vec.push_back(res);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++) mp[vec[i]] = i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        root = <span class="number">0</span>;</span><br><span class="line">        S = mx[<span class="number">0</span>] = n;</span><br><span class="line">        clr(vis, <span class="number">0</span>); clr(dp, <span class="number">-1</span>);</span><br><span class="line">        getroot(<span class="number">1</span>, <span class="number">0</span>); sove(root);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxe = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> K =  <span class="number">2e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, W;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> w[maxn];</span><br><span class="line">star edge[maxe &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mx[maxn], root, vis[maxn], S, sze[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> now, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[now] = <span class="number">1</span>; mx[now] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[now]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, now);</span><br><span class="line">        sze[now] += sze[to];</span><br><span class="line">        mx[now] = <span class="built_in">max</span>(mx[now], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[now] = <span class="built_in">max</span>(mx[now], S - mx[now]);</span><br><span class="line">    <span class="keyword">if</span>(mx[now] &lt; mx[root]) root = now;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dfn[maxn], cnt = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> now, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    dfn[cnt++] = now; sze[now] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[now]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || par == to) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(to, now);</span><br><span class="line">        sze[now] += sze[to];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ll ans = <span class="number">0</span>;</span><br><span class="line">ll dp[maxn][K];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="keyword">int</span> mp[K * K];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> now)</span></span>&#123;</span><br><span class="line">    cnt = <span class="number">0</span>; <span class="built_in">dfs</span>(now, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= cnt; i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; vec.<span class="built_in">size</span>(); j++) dp[i][j] = <span class="number">0</span>;</span><br><span class="line">    dp[cnt][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = cnt - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = dfn[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; vec.<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(vec[j] / w[u])&#123;</span><br><span class="line">                <span class="keyword">int</span> pos = mp[vec[j] / w[u]];</span><br><span class="line">                </span><br><span class="line">                dp[i][pos] += dp[i + <span class="number">1</span>][j];</span><br><span class="line">                dp[i][pos] %= M;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i][j] += dp[i + sze[u]][j];</span><br><span class="line">            dp[i][j] %= M;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (itn)vec.<span class="built_in">size</span>(); i++) ans = (ans + dp[<span class="number">0</span>][i]) % M;</span><br><span class="line">    ans = (ans + M - <span class="number">1</span>) % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sove</span><span class="params">(<span class="keyword">int</span> now)</span></span>&#123;</span><br><span class="line">    vis[now] = <span class="number">1</span>; </span><br><span class="line">    <span class="built_in">fun</span>(now);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[now]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, now);</span><br><span class="line">        <span class="built_in">sove</span>(root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin; </span></span><br><span class="line">    TTT&#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">clr</span>(head, <span class="number">-1</span>); top = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;W);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scnaf</span>(<span class="string">&quot;%d&quot;</span>, w + i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> u, v; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">            <span class="built_in">add</span>(u, v); <span class="built_in">add</span>(v, u);</span><br><span class="line">        &#125;</span><br><span class="line">        vec.<span class="built_in">clear</span>(); <span class="built_in">clr</span>(mp, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= W; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> res = W / i; </span><br><span class="line">            <span class="keyword">if</span>(vec.<span class="built_in">empty</span>() || *vec.<span class="built_in">rbegin</span>() != res) vec.<span class="built_in">push_back</span>(res);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.<span class="built_in">size</span>(); i++) mp[vec[i]] = i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        root = <span class="number">0</span>;</span><br><span class="line">        S = mx[<span class="number">0</span>] = n;</span><br><span class="line">        <span class="built_in">clr</span>(vis, <span class="number">0</span>); <span class="built_in">clr</span>(dp, <span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">getroot</span>(<span class="number">1</span>, <span class="number">0</span>); <span class="built_in">sove</span>(root);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>$\binom 12 (^1_1) $</p>
 
-    </div>
+  </div>
+</article>
 
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/03/28/arc-116(%E5%9D%91)/" rel="prev" title="arc-116">
-      <i class="fa fa-chevron-left"></i> arc-116
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/06/ftp-server/" rel="next" title="ftp-server">
-      ftp-server <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
+    </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
       </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Day1"><span class="nav-number">1.</span> <span class="nav-text">Day1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hdu6643"><span class="nav-number">1.1.</span> <span class="nav-text">hdu6643</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#树形背包"><span class="nav-number">1.1.1.</span> <span class="nav-text">树形背包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#向上合并"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">向上合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向下传递"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">向下传递</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考博客"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">参考博客</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dfs序优化"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">dfs序优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考博客压缩"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">参考博客压缩</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乘积压缩"><span class="nav-number">1.1.2.</span> <span class="nav-text">乘积压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AC下"><span class="nav-number">1.1.3.</span> <span class="nav-text">AC下</span></a></li></ol></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="rqdmap"
-      src="/uploads/huiye.png">
-  <p class="site-author-name" itemprop="name">rqdmap</p>
-  <div class="site-description" itemprop="description">rqdmap's personal blogs.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">49</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
-        </li>
-    </ul>
-  </div>
 
-      </div>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Day1"><span class="toc-number">1.</span> <span class="toc-text">Day1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hdu6643"><span class="toc-number">1.1.</span> <span class="toc-text">hdu6643</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">树形背包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E4%B8%8A%E5%90%88%E5%B9%B6"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">向上合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E4%B8%8B%E4%BC%A0%E9%80%92"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">向下传递</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">参考博客</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dfs%E5%BA%8F%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">dfs序优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.1.1.3.1.</span> <span class="toc-text">参考博客压缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E7%A7%AF%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.1.2.</span> <span class="toc-text">乘积压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AC%E4%B8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">AC下</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2021/04/02/qko-gym/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2021/04/02/qko-gym/&text=qko-gym"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2021/04/02/qko-gym/&is_video=false&description=qko-gym"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=qko-gym&body=Check out this article: http://rqdmap.github.io/2021/04/02/qko-gym/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2021/04/02/qko-gym/&title=qko-gym"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2021/04/02/qko-gym/&name=qko-gym&description=&lt;p&gt;[toc]&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2021/04/02/qko-gym/&t=qko-gym"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
         
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    rqdmap
   </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
 
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'bbbd1fae621180c2d543',
-      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
-      repo        : 'GitalkComments',
-      owner       : 'rqdmap',
-      admin       : ['rqdmap'],
-      id          : '2782e0636b06a292857ec7d2b01f9ef8',
-        language: '',
-      distractionFreeMode: true
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'rqdmap';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

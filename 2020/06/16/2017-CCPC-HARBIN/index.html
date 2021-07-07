@@ -1,235 +1,181 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。 1 2017中国大学生程序设计竞赛-哈尔滨站  这好像是一场比较难(但是队友很顶)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq 不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。 1 2017中国大学生程序设计竞赛-哈尔滨站  这好像是一场比较难(但是队友很顶)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq 不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2017_CCPC_HARBIN">
 <meta property="og:url" content="http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/index.html">
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。 1 2017中国大学生程序设计竞赛-哈尔滨站  这好像是一场比较难(但是队友很顶)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq 不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的">
+<meta property="og:locale">
 <meta property="og:image" content="http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/2017-CCPC-HARBIN/1.png">
 <meta property="article:published_time" content="2020-06-16T11:40:08.000Z">
-<meta property="article:modified_time" content="2020-06-27T15:15:38.000Z">
+<meta property="article:modified_time" content="2020-06-16T11:40:08.000Z">
 <meta property="article:author" content="rqdmap">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/2017-CCPC-HARBIN/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>2017_CCPC_HARBIN</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="canonical" href="http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
 
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2020/06/16/main/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&text=2017_CCPC_HARBIN"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&is_video=false&description=2017_CCPC_HARBIN"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2017_CCPC_HARBIN&body=Check out this article: http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&name=2017_CCPC_HARBIN&description=&lt;p&gt;新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://vjudge.net/contest/378359&#34;&gt;2017中国大学生程序设计竞赛-哈尔滨站&lt;/a&gt;&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;这好像是一场比较难(&lt;del&gt;但是队友很顶&lt;/del&gt;)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq&lt;/p&gt;
+&lt;p&gt;不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的快乐 /xyx&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&t=2017_CCPC_HARBIN"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-Hans'
-  };
-</script>
-
-  <title>2017_CCPC_HARBIN | rqdmap</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-        <span class="toggle-line toggle-line-first"></span>
-        <span class="toggle-line toggle-line-middle"></span>
-        <span class="toggle-line toggle-line-last"></span>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">rqdmap</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-%E5%9B%9E%E6%96%87%E4%B8%B2-amp-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text">A  回文串 &amp; 线段树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7-gt-%E4%BA%8C%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">B  区间第k大 -&gt; 二分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#J-%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6-amp-%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B"><span class="toc-number">3.</span> <span class="toc-text">J   组合数学 &amp; 数学期望</span></a></li></ol>
     </div>
-  </div>
+  </span>
 </div>
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/">
+    <h1 class="posttitle" itemprop="name headline">
+        2017_CCPC_HARBIN
+    </h1>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/huiye.png">
-      <meta itemprop="name" content="rqdmap">
-      <meta itemprop="description" content="rqdmap's personal blogs.">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="rqdmap">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          2017_CCPC_HARBIN
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">rqdmap</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-06-16T11:40:08.000Z" itemprop="datePublished">2020-06-16</time>
+        
+        (Updated: <time datetime="2020-06-16T11:40:08.000Z" itemprop="dateModified">2020-06-16</time>)
+        
+      
+    </div>
 
-              <time title="Created: 2020-06-16 19:40:08" itemprop="dateCreated datePublished" datetime="2020-06-16T19:40:08+08:00">2020-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-27 23:15:38" itemprop="dateModified" datetime="2020-06-27T23:15:38+08:00">2020-06-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">模拟赛</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。</p>
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B/">模拟赛</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。</p>
 <p>1</p>
-<p><strong><a href="https://vjudge.net/contest/378359" target="_blank" rel="noopener">2017中国大学生程序设计竞赛-哈尔滨站</a></strong> </p>
+<p><strong><a target="_blank" rel="noopener" href="https://vjudge.net/contest/378359">2017中国大学生程序设计竞赛-哈尔滨站</a></strong> </p>
 <p>这好像是一场比较难(<del>但是队友很顶</del>)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq</p>
 <p>不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的快乐 /xyx</p>
-<a id="more"></a>
+<span id="more"></span>
 <p><img src="2017-CCPC-HARBIN/1.png" alt="1" style="zoom:50%;" /></p>
 <hr>
 <h3 id="A-回文串-amp-线段树"><a href="#A-回文串-amp-线段树" class="headerlink" title="A  回文串 &amp; 线段树"></a><strong>A</strong>  回文串 &amp; 线段树</h3><p>场上队友过了这道题(<del>orz</del>)，赛后自己补一下</p>
@@ -245,14 +191,14 @@
 <p>其中$r[i]$是以i为中心的回文串的半径；$r$数组可以用Manacher算法$O(n)$的处理出来，接下来就是统计互相覆盖的点对。</p>
 <p>想了很久并没有想到好办法…学习了一番线段树的解法..</p>
 <p>我们先预处理出数组<code>vec[i]</code>表示以<code>i</code>为起点的回文串的中心位置，然后顺序遍历字符串，每次将数组<code>vec[i]</code>的中心位置加入线段树，接着查询<code>[i + 1, i + r[i]</code>点的个数。因为查询的是<code>[i + 1, i + r[i]]</code>，所以可以保证上述三个条件中的12条件；另一方面，因为该中心点已经出现在线段树中了，所以其起点的位置一定小于等于当前位置<code>i</code>，这也就保证条件3的成立。综上所述就可以$O(nlogn)$扫一遍得到所有的结果。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> Manacher算法</span></span><br><span class="line"><span class="comment"> 读入一个字符串temp及其长度n;</span></span><br><span class="line"><span class="comment"> 该算法构造出s并赋予截断标志, 自动初始化、获得数组p[i];</span></span><br><span class="line"><span class="comment"> 对于某个位置i∈[0, 2 * n], 以i为中心的回文串的参数如下:</span></span><br><span class="line"><span class="comment">    int start = (i / 2) - (p[i] / 2) + (i &amp; 1);    //回文串在原串中的起点</span></span><br><span class="line"><span class="comment">    int d = p[i] - 1;   //回文串在原串中的总长度</span></span><br><span class="line"><span class="comment">    int middle = (i - 1) / 2;   //回文串在原串的中点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">char</span> temp[maxn], s[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> p[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">manacher</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        s[i &lt;&lt; <span class="number">1</span>] = <span class="string">'#'</span>; s[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[n &lt;&lt; <span class="number">1</span>] = <span class="string">'#'</span>; s[n &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> id = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n &lt;&lt; <span class="number">1</span>; i++) p[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n &lt;&lt; <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt;= right) p[i] = min(right - i + <span class="number">1</span>, p[<span class="number">2</span> * id - i]);</span><br><span class="line">        <span class="keyword">while</span>(i + p[i] &lt;= <span class="number">2</span> * n &amp;&amp; i - p[i] &gt;= <span class="number">0</span> &amp;&amp; s[i + p[i]] == s[i - p[i]])</span><br><span class="line">            p[i]++;</span><br><span class="line">        <span class="keyword">if</span>(right &lt; i + p[i] - <span class="number">1</span>)&#123;</span><br><span class="line">            id = i; right = i + p[i] - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls (p &lt;&lt; 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs ((p &lt;&lt; 1) | 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mid ((l + r) &gt;&gt; 1)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec[maxn];</span><br><span class="line"></span><br><span class="line">ll st[maxn &lt;&lt; <span class="number">2</span>], tag[maxn &lt;&lt; <span class="number">2</span>];</span><br><span class="line"><span class="comment">//区间查询，单点置值。</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;st[p] = st[ls] + st[rs];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r &amp;&amp; l == k)&#123;</span><br><span class="line">        st[p] += <span class="number">1</span>;</span><br><span class="line">        tag[p] += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(k &lt;= mid) update(ls, l, mid, k);</span><br><span class="line">    <span class="keyword">else</span> update(rs, mid + <span class="number">1</span>, r, k);</span><br><span class="line">    up(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L &gt; R) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> st[p];</span><br><span class="line">    ll ans =<span class="number">0</span> ;</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= mid) ans += query(ls, l, mid, L, R);</span><br><span class="line">    <span class="keyword">if</span>(R &gt; mid) ans += query(rs, mid + <span class="number">1</span>, r, L, R);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> t; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t); <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        clr(st, <span class="number">0</span>); clr(tag, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, temp); n = (<span class="keyword">int</span>)<span class="built_in">strlen</span>(temp);</span><br><span class="line">        manacher();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) vec[i].clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">2</span> * n; i += <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> start = (i / <span class="number">2</span>) - (p[i] / <span class="number">2</span>) + (i &amp; <span class="number">1</span>), middle = (i - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            vec[start].push_back(middle);</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="comment">//2 * i + 1 是在s串中的下标。</span></span><br><span class="line">            <span class="keyword">int</span> r = (p[<span class="number">2</span> * i + <span class="number">1</span>] - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x: vec[i]) update(<span class="number">1</span>, <span class="number">0</span>, n - <span class="number">1</span>, x);</span><br><span class="line">            ans += query(<span class="number">1</span>, <span class="number">0</span>, n - <span class="number">1</span>, i + <span class="number">1</span>, i + r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> Manacher算法</span></span><br><span class="line"><span class="comment"> 读入一个字符串temp及其长度n;</span></span><br><span class="line"><span class="comment"> 该算法构造出s并赋予截断标志, 自动初始化、获得数组p[i];</span></span><br><span class="line"><span class="comment"> 对于某个位置i∈[0, 2 * n], 以i为中心的回文串的参数如下:</span></span><br><span class="line"><span class="comment">    int start = (i / 2) - (p[i] / 2) + (i &amp; 1);    //回文串在原串中的起点</span></span><br><span class="line"><span class="comment">    int d = p[i] - 1;   //回文串在原串中的总长度</span></span><br><span class="line"><span class="comment">    int middle = (i - 1) / 2;   //回文串在原串的中点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">char</span> temp[maxn], s[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> p[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">manacher</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        s[i &lt;&lt; <span class="number">1</span>] = <span class="string">&#x27;#&#x27;</span>; s[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[n &lt;&lt; <span class="number">1</span>] = <span class="string">&#x27;#&#x27;</span>; s[n &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> id = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n &lt;&lt; <span class="number">1</span>; i++) p[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n &lt;&lt; <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt;= right) p[i] = <span class="built_in">min</span>(right - i + <span class="number">1</span>, p[<span class="number">2</span> * id - i]);</span><br><span class="line">        <span class="keyword">while</span>(i + p[i] &lt;= <span class="number">2</span> * n &amp;&amp; i - p[i] &gt;= <span class="number">0</span> &amp;&amp; s[i + p[i]] == s[i - p[i]])</span><br><span class="line">            p[i]++;</span><br><span class="line">        <span class="keyword">if</span>(right &lt; i + p[i] - <span class="number">1</span>)&#123;</span><br><span class="line">            id = i; right = i + p[i] - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls (p &lt;&lt; 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs ((p &lt;&lt; 1) | 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mid ((l + r) &gt;&gt; 1)</span></span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; vec[maxn];</span><br><span class="line"></span><br><span class="line">ll st[maxn &lt;&lt; <span class="number">2</span>], tag[maxn &lt;&lt; <span class="number">2</span>];</span><br><span class="line"><span class="comment">//区间查询，单点置值。</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;st[p] = st[ls] + st[rs];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r &amp;&amp; l == k)&#123;</span><br><span class="line">        st[p] += <span class="number">1</span>;</span><br><span class="line">        tag[p] += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(k &lt;= mid) <span class="built_in">update</span>(ls, l, mid, k);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">update</span>(rs, mid + <span class="number">1</span>, r, k);</span><br><span class="line">    <span class="built_in">up</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L &gt; R) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> st[p];</span><br><span class="line">    ll ans =<span class="number">0</span> ;</span><br><span class="line">    <span class="keyword">if</span>(L &lt;= mid) ans += <span class="built_in">query</span>(ls, l, mid, L, R);</span><br><span class="line">    <span class="keyword">if</span>(R &gt; mid) ans += <span class="built_in">query</span>(rs, mid + <span class="number">1</span>, r, L, R);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> t; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t); <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">clr</span>(st, <span class="number">0</span>); <span class="built_in">clr</span>(tag, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, temp); n = (<span class="keyword">int</span>)<span class="built_in">strlen</span>(temp);</span><br><span class="line">        <span class="built_in">manacher</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) vec[i].<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">2</span> * n; i += <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> start = (i / <span class="number">2</span>) - (p[i] / <span class="number">2</span>) + (i &amp; <span class="number">1</span>), middle = (i - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            vec[start].<span class="built_in">push_back</span>(middle);</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="comment">//2 * i + 1 是在s串中的下标。</span></span><br><span class="line">            <span class="keyword">int</span> r = (p[<span class="number">2</span> * i + <span class="number">1</span>] - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x: vec[i]) <span class="built_in">update</span>(<span class="number">1</span>, <span class="number">0</span>, n - <span class="number">1</span>, x);</span><br><span class="line">            ans += <span class="built_in">query</span>(<span class="number">1</span>, <span class="number">0</span>, n - <span class="number">1</span>, i + <span class="number">1</span>, i + r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="B-区间第k大-gt-二分"><a href="#B-区间第k大-gt-二分" class="headerlink" title="B  区间第k大 -&gt; 二分"></a><strong>B</strong>  区间第k大 -&gt; 二分</h3><p>上一次见到区间第k大相关问题时是在2018CCPC网络赛，当时好像是个真实的在线查询与修改的主席树，而这一次是一个披着第k大外衣的二分算法。</p>
 <p>对于某个待检验的值x，我们统计该序列中所有<strong>满足其第k大的数大于等于x的区间</strong>的个数。如果有个数$cnt&gt;=m$，那么这个值$x$就有可能成为最终的第m大数，更新二分下界；不然，这个数肯定不会成为第m大数，更新二分上界。</p>
 <p>有的答案用了离散化&amp;二分答案，我学习了这种思想后觉得没有必要进行离散化的二分答案，可以直接对排过序、去过重的序列的下标进行二分，检查当前下标所对应的值以及序列中其他值的大小关系即可。</p>
 <p><del>因为学习的算法中从1开始编号，所以我在L13计算的时候也用了(n - vec[i] + 1)计算….因而DEBUG了半天才过….</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, l;</span><br><span class="line">ll m;</span><br><span class="line"><span class="keyword">int</span> a[maxn], b[maxn];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="comment">//检查多少个区间的第k大数 &gt;= x</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    vec.clear(); vec.push_back(<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="keyword">if</span>(a[i] &gt;= x) vec.push_back(i);</span><br><span class="line">    ll res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, top = (<span class="keyword">int</span>)vec.size(); i &lt; top; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= l) res += (vec[i - l + <span class="number">1</span>] - vec[i - l]) * <span class="number">1l</span>l * (n - vec[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res &gt;= m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> t; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t); <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d %lld"</span>, &amp;n, &amp;l, &amp;m); <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, a + i);</span><br><span class="line">            b[i] = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        sort(b, b + n);</span><br><span class="line">        <span class="keyword">int</span> top = (<span class="keyword">int</span>)(unique(b, b + n) - b);</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = top - <span class="number">1</span>, middle;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            middle = (left + right + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(check(b[middle])) left = middle;</span><br><span class="line">            <span class="keyword">else</span> right = middle - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, b[left]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, l;</span><br><span class="line">ll m;</span><br><span class="line"><span class="keyword">int</span> a[maxn], b[maxn];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"><span class="comment">//检查多少个区间的第k大数 &gt;= x</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    vec.<span class="built_in">clear</span>(); vec.<span class="built_in">push_back</span>(<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="keyword">if</span>(a[i] &gt;= x) vec.<span class="built_in">push_back</span>(i);</span><br><span class="line">    ll res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, top = (<span class="keyword">int</span>)vec.<span class="built_in">size</span>(); i &lt; top; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= l) res += (vec[i - l + <span class="number">1</span>] - vec[i - l]) * <span class="number">1ll</span> * (n - vec[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res &gt;= m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> t; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t); <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %lld&quot;</span>, &amp;n, &amp;l, &amp;m); <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, a + i);</span><br><span class="line">            b[i] = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(b, b + n);</span><br><span class="line">        <span class="keyword">int</span> top = (<span class="keyword">int</span>)(<span class="built_in">unique</span>(b, b + n) - b);</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = top - <span class="number">1</span>, middle;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            middle = (left + right + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">check</span>(b[middle])) left = middle;</span><br><span class="line">            <span class="keyword">else</span> right = middle - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, b[left]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><del>因为与2020校赛网络赛I题类似，而当时那道题看题解好像好难的样子就没有补，所以借此机会也补完了I题学习了第一个可持久化结构</del></p>
-<h3 id="J-组合数学-amp-数学期望"><a href="#J-组合数学-amp-数学期望" class="headerlink" title="J   组合数学 &amp; 数学期望"></a>J   组合数学 &amp; 数学期望</h3><p>学习于博客 : <a href="https://blog.csdn.net/axuhongbo/article/details/78684561" target="_blank" rel="noopener">hdu6239 Interview 期望+拉格朗日插值法|生成函数 推公式</a></p>
+<h3 id="J-组合数学-amp-数学期望"><a href="#J-组合数学-amp-数学期望" class="headerlink" title="J   组合数学 &amp; 数学期望"></a>J   组合数学 &amp; 数学期望</h3><p>学习于博客 : <a target="_blank" rel="noopener" href="https://blog.csdn.net/axuhongbo/article/details/78684561">hdu6239 Interview 期望+拉格朗日插值法|生成函数 推公式</a></p>
 <p>算是一个比较纯粹的数学题，但是发现这道题目的时候已经有点晚，没有来得及推完所有结果。</p>
 <p>最初我自己想的时候没有考虑清楚，认为当前观测到的事实所带来一些约束条件出现的几率都是等可能的，但是这不符合题目的要求；题目只保证了在最开始经理选择K值时每个位置几率相等，所以当观测发生后，尽管K可能出现的范围确定，但是他们的几率不是等可能的，不能简单的进行等概率计算。</p>
 <p>一种可行的办法是转化为古典概型，通过情况的总数、每一种情况下的观测值进行计算随机变量的数学期望。</p>
@@ -285,285 +231,186 @@
 <p>证明方法为做差解二元一次方程的行列式结果。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span><span class="params">(<span class="keyword">double</span> x1, <span class="keyword">double</span> y1, <span class="keyword">double</span> x2, <span class="keyword">double</span> y2, <span class="keyword">double</span> x3, <span class="keyword">double</span> y3)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> a, b, c, d, e, f;</span><br><span class="line">    a = <span class="number">2</span> * (x2 - x1);</span><br><span class="line">    b = <span class="number">2</span> * (y2 - y1);</span><br><span class="line">    c = x2 * x2 + y2 * y2 - x1 * x1 - y1 * y1;</span><br><span class="line">    d = <span class="number">2</span> * (x3 - x2);</span><br><span class="line">    e = <span class="number">2</span> * (y3 - y2);</span><br><span class="line">    f = x3 * x3 + y3 * y3 - x2 * x2 - y2 * y2;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> x, y, r;</span><br><span class="line">    x = (b * f - e * c)/(b * d - e * a);</span><br><span class="line">    y = (d * c - a * f)/(b * d - e * a);</span><br><span class="line">    r = <span class="built_in">sqrt</span>((x - x1) * (x - x1) + (y - y1) * (y - y1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
+  </div>
+</article>
 
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/06/16/main/" rel="prev" title="main">
-      <i class="fa fa-chevron-left"></i> main
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/" rel="next" title="利用可持久化01Trie解决区间异或一类问题">
-      利用可持久化01Trie解决区间异或一类问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
+    </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
       </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-回文串-amp-线段树"><span class="nav-number">1.</span> <span class="nav-text">A  回文串 &amp; 线段树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-区间第k大-gt-二分"><span class="nav-number">2.</span> <span class="nav-text">B  区间第k大 -&gt; 二分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-组合数学-amp-数学期望"><span class="nav-number">3.</span> <span class="nav-text">J   组合数学 &amp; 数学期望</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="rqdmap"
-      src="/uploads/huiye.png">
-  <p class="site-author-name" itemprop="name">rqdmap</p>
-  <div class="site-description" itemprop="description">rqdmap's personal blogs.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">49</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
-        </li>
-    </ul>
-  </div>
 
-      </div>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-%E5%9B%9E%E6%96%87%E4%B8%B2-amp-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text">A  回文串 &amp; 线段树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7-gt-%E4%BA%8C%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">B  区间第k大 -&gt; 二分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#J-%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6-amp-%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B"><span class="toc-number">3.</span> <span class="toc-text">J   组合数学 &amp; 数学期望</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&text=2017_CCPC_HARBIN"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&is_video=false&description=2017_CCPC_HARBIN"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2017_CCPC_HARBIN&body=Check out this article: http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&title=2017_CCPC_HARBIN"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&name=2017_CCPC_HARBIN&description=&lt;p&gt;新博客的第一篇文章，打算吸取一下之前CSDN写完博客找不到题的教训：对于套题的补题应该设置一些比较明显的目录以待今后查阅，每个题目的题目以及知识点都予以简单的描述。&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://vjudge.net/contest/378359&#34;&gt;2017中国大学生程序设计竞赛-哈尔滨站&lt;/a&gt;&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;这好像是一场比较难(&lt;del&gt;但是队友很顶&lt;/del&gt;)的训练赛，然而我又一次死在了计算几何上，并且成为爆交狂魔…qaq&lt;/p&gt;
+&lt;p&gt;不过总而言之打套题还是感觉不仅对于算法力还是对于码力都有很大的提升，自此我找到了真正的快乐 /xyx&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2020/06/16/2017-CCPC-HARBIN/&t=2017_CCPC_HARBIN"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
         
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
+    
+    2020-2021
+    rqdmap
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'bbbd1fae621180c2d543',
-      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
-      repo        : 'GitalkComments',
-      owner       : 'rqdmap',
-      admin       : ['rqdmap'],
-      id          : '5f12730d2f7de92f1668e9bede636b8c',
-        language: '',
-      distractionFreeMode: true
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'rqdmap';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

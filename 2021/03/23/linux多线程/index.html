@@ -1,224 +1,177 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="[toc] 在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。 使用头文件&lt;pthread.h&gt;">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc] 在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。 使用头文件&lt;pthread.h&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux多线程">
 <meta property="og:url" content="http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc] 在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。 使用头文件&lt;pthread.h&gt;">
+<meta property="og:locale">
 <meta property="article:published_time" content="2021-03-23T04:45:36.000Z">
-<meta property="article:modified_time" content="2021-03-25T17:49:50.955Z">
+<meta property="article:modified_time" content="2021-03-23T04:45:36.000Z">
 <meta property="article:author" content="rqdmap">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>linux多线程</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="canonical" href="http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
 
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/03/24/test%E5%9B%BE%E7%89%87/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/03/23/socket/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&text=linux多线程"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&is_video=false&description=linux多线程"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=linux多线程&body=Check out this article: http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&name=linux多线程&description=&lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。&lt;/p&gt;
+&lt;p&gt;使用头文件&lt;code&gt;&amp;lt;pthread.h&amp;gt;&lt;/code&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&t=linux多线程"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-Hans'
-  };
-</script>
-
-  <title>linux多线程 | rqdmap</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-        <span class="toggle-line toggle-line-first"></span>
-        <span class="toggle-line toggle-line-middle"></span>
-        <span class="toggle-line toggle-line-last"></span>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">rqdmap</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">线程基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%80%80%E5%87%BA"><span class="toc-number">1.1.</span> <span class="toc-text">线程的创建与退出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pthead-create"><span class="toc-number">1.1.1.</span> <span class="toc-text">pthead_create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-exit"><span class="toc-number">1.1.2.</span> <span class="toc-text">pthread_exit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-join"><span class="toc-number">1.1.3.</span> <span class="toc-text">pthread_join</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%B1%9E%E6%80%A7%E8%B5%84%E6%BA%90"><span class="toc-number">1.2.</span> <span class="toc-text">修改线程的属性资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-attr-init"><span class="toc-number">1.2.1.</span> <span class="toc-text">pthread_attr_init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-attr-setscope"><span class="toc-number">1.2.2.</span> <span class="toc-text">pthread_attr_setscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-attr-setdetachstate"><span class="toc-number">1.2.3.</span> <span class="toc-text">pthread_attr_setdetachstate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E7%9A%84%E8%8E%B7%E5%8F%96-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.4.</span> <span class="toc-text">调度策略的获取&#x2F;设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E8%8E%B7%E5%8F%96-%E8%AE%BE%E7%BD%AE-%E6%9C%80%E5%80%BC%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.5.</span> <span class="toc-text">优先级的获取&#x2F;设置&#x2F;最值查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">线程访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mutex%E4%BA%92%E6%96%A5%E9%94%81"><span class="toc-number">2.1.</span> <span class="toc-text">mutex互斥锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">互斥锁的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.2.</span> <span class="toc-text">对互斥锁的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">互斥锁的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">互斥锁的操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%BA%BF%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">信号量线程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.2.</span> <span class="toc-text">基本操作</span></a></li></ol></li></ol></li></ol>
     </div>
-  </div>
+  </span>
 </div>
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <h1 class="posttitle" itemprop="name headline">
+        linux多线程
+    </h1>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/huiye.png">
-      <meta itemprop="name" content="rqdmap">
-      <meta itemprop="description" content="rqdmap's personal blogs.">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="rqdmap">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          linux多线程
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">rqdmap</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-23T04:45:36.000Z" itemprop="datePublished">2021-03-23</time>
+        
+        (Updated: <time datetime="2021-03-23T04:45:36.000Z" itemprop="dateModified">2021-03-23</time>)
+        
+      
+    </div>
 
-              <time title="Created: 2021-03-23 12:45:36" itemprop="dateCreated datePublished" datetime="2021-03-23T12:45:36+08:00">2021-03-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-26 01:49:50" itemprop="dateModified" datetime="2021-03-26T01:49:50+08:00">2021-03-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>[toc]</p>
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/linux/" rel="tag">linux</a>, <a class="tag-link-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>[toc]</p>
 <p>在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。</p>
 <p>使用头文件<code>&lt;pthread.h&gt;</code></p>
-<a id="more"></a>
+<span id="more"></span>
 <h1 id="线程基本操作"><a href="#线程基本操作" class="headerlink" title="线程基本操作"></a>线程基本操作</h1><h2 id="线程的创建与退出"><a href="#线程的创建与退出" class="headerlink" title="线程的创建与退出"></a>线程的创建与退出</h2><h3 id="pthead-create"><a href="#pthead-create" class="headerlink" title="pthead_create"></a>pthead_create</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(<span class="keyword">pthread_t</span> *thread, <span class="keyword">pthread_attr_t</span> * attr, <span class="keyword">void</span> *(*start_routine)(<span class="keyword">void</span> *), <span class="keyword">void</span> *arg)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>传入参数：thread为线程标识符，attr为线程属性设置，start_routine为线程函数起始地址，arg为传给start_routine的参数。</p>
 <p>返回值：0成功，-1失败。</p>
@@ -229,7 +182,7 @@
 <h3 id="pthread-join"><a href="#pthread-join" class="headerlink" title="pthread_join"></a>pthread_join</h3><p>该函数用于将当前线程挂起，值得被等待的线程结束为止，当函数返回时，被等待线程的资源就被收回。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_join</span> <span class="params">((<span class="keyword">pthread_t</span> th, <span class="keyword">void</span> 参考资料**thread_return))</span></span></span><br></pre></td></tr></table></figure>
 <p>传入参数：th为等待线程的标识符，thread_return为用户定义的指针，用于存储被等待线程的返回值(不为NULL)时。</p>
-<h2 id="修改线程的属性资源"><a href="#修改线程的属性资源" class="headerlink" title="修改线程的属性资源"></a>修改线程的属性资源</h2><p>参考资料：<a href="https://blog.csdn.net/baobingji/article/details/84285951" target="_blank" rel="noopener">多线程属性pthread_attr详解</a></p>
+<h2 id="修改线程的属性资源"><a href="#修改线程的属性资源" class="headerlink" title="修改线程的属性资源"></a>修改线程的属性资源</h2><p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/baobingji/article/details/84285951">多线程属性pthread_attr详解</a></p>
 <p>在thread_create函数中，我们可以自定义线程的属性。线程主要有如下的一些属性：绑定属性、分离属性、堆栈地址、堆栈大小、优先级。默认的属性是非绑定、非分离、1M的堆栈、与父进程优先级相同。</p>
 <h3 id="pthread-attr-init"><a href="#pthread-attr-init" class="headerlink" title="pthread_attr_init"></a>pthread_attr_init</h3><p>线程属性的设置通常先调用该函数进行初始化，之后再调用相应的属性设置函数进行设置。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_attr_init</span><span class="params">(<span class="keyword">pthread_attr_t</span> *attr)</span></span></span><br></pre></td></tr></table></figure>
@@ -259,7 +212,7 @@
 <p>可以通过如下两个函数获取系统支持的优先级的最值</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sched_get_priority_max</span><span class="params">( <span class="keyword">int</span> policy )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sched_get_priority_min</span><span class="params">( <span class="keyword">int</span> policy )</span></span>;</span><br></pre></td></tr></table></figure>
 <h1 id="线程访问控制"><a href="#线程访问控制" class="headerlink" title="线程访问控制"></a>线程访问控制</h1><p>由于线程共享进程资源，因而需要考虑资源访问的问题。</p>
-<h2 id="mutex互斥锁"><a href="#mutex互斥锁" class="headerlink" title="mutex互斥锁"></a>mutex互斥锁</h2><h3 id="互斥锁的类型"><a href="#互斥锁的类型" class="headerlink" title="互斥锁的类型"></a>互斥锁的类型</h3><p>参考资料 <a href="https://blog.csdn.net/qq_42169059/article/details/90600257" target="_blank" rel="noopener">九、Linux下线程互斥锁类型及属性</a></p>
+<h2 id="mutex互斥锁"><a href="#mutex互斥锁" class="headerlink" title="mutex互斥锁"></a>mutex互斥锁</h2><h3 id="互斥锁的类型"><a href="#互斥锁的类型" class="headerlink" title="互斥锁的类型"></a>互斥锁的类型</h3><p>参考资料 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42169059/article/details/90600257">九、Linux下线程互斥锁类型及属性</a></p>
 <ul>
 <li><p>PTHREAD_MUTEX_NORMAL：<strong><font color="#dd0000"> 标准互斥锁：第一次上锁成功，第二次上锁会阻塞。</font></strong><br>描述:<br>此类型的互斥锁不会检测死锁。如果线程在不首先解除互斥锁的情况下尝试重新锁定该互斥锁，则会产生死锁。尝试解除由其他线程锁定的互斥锁会产生不确定的行为。如果尝试解除锁定的互斥锁未锁定，则会产生不确定的行为。</p>
 </li>
@@ -287,236 +240,184 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_wait</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_trywait</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_post</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_getvalue</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_destroy</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span></span><br></pre></td></tr></table></figure>
 <p>望文生义即可。</p>
 
-    </div>
+  </div>
+</article>
 
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/linux/" rel="tag"># linux</a>
-              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/03/23/socket/" rel="prev" title="socket">
-      <i class="fa fa-chevron-left"></i> socket
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/24/test%E5%9B%BE%E7%89%87/" rel="next" title="test">
-      test <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
+    </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
       </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程基本操作"><span class="nav-number">1.</span> <span class="nav-text">线程基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的创建与退出"><span class="nav-number">1.1.</span> <span class="nav-text">线程的创建与退出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pthead-create"><span class="nav-number">1.1.1.</span> <span class="nav-text">pthead_create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-exit"><span class="nav-number">1.1.2.</span> <span class="nav-text">pthread_exit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-join"><span class="nav-number">1.1.3.</span> <span class="nav-text">pthread_join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改线程的属性资源"><span class="nav-number">1.2.</span> <span class="nav-text">修改线程的属性资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-attr-init"><span class="nav-number">1.2.1.</span> <span class="nav-text">pthread_attr_init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-attr-setscope"><span class="nav-number">1.2.2.</span> <span class="nav-text">pthread_attr_setscope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread-attr-setdetachstate"><span class="nav-number">1.2.3.</span> <span class="nav-text">pthread_attr_setdetachstate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度策略的获取-设置"><span class="nav-number">1.2.4.</span> <span class="nav-text">调度策略的获取&#x2F;设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级的获取-设置-最值查询"><span class="nav-number">1.2.5.</span> <span class="nav-text">优先级的获取&#x2F;设置&#x2F;最值查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程访问控制"><span class="nav-number">2.</span> <span class="nav-text">线程访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mutex互斥锁"><span class="nav-number">2.1.</span> <span class="nav-text">mutex互斥锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#互斥锁的类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">互斥锁的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对互斥锁的操作"><span class="nav-number">2.1.2.</span> <span class="nav-text">对互斥锁的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#互斥锁的创建"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">互斥锁的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互斥锁的操作"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">互斥锁的操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信号量线程控制"><span class="nav-number">2.2.</span> <span class="nav-text">信号量线程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头文件"><span class="nav-number">2.2.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">2.2.2.</span> <span class="nav-text">基本操作</span></a></li></ol></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="rqdmap"
-      src="/uploads/huiye.png">
-  <p class="site-author-name" itemprop="name">rqdmap</p>
-  <div class="site-description" itemprop="description">rqdmap's personal blogs.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">49</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
-        </li>
-    </ul>
-  </div>
 
-      </div>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">线程基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%80%80%E5%87%BA"><span class="toc-number">1.1.</span> <span class="toc-text">线程的创建与退出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pthead-create"><span class="toc-number">1.1.1.</span> <span class="toc-text">pthead_create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-exit"><span class="toc-number">1.1.2.</span> <span class="toc-text">pthread_exit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-join"><span class="toc-number">1.1.3.</span> <span class="toc-text">pthread_join</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%B1%9E%E6%80%A7%E8%B5%84%E6%BA%90"><span class="toc-number">1.2.</span> <span class="toc-text">修改线程的属性资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-attr-init"><span class="toc-number">1.2.1.</span> <span class="toc-text">pthread_attr_init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-attr-setscope"><span class="toc-number">1.2.2.</span> <span class="toc-text">pthread_attr_setscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pthread-attr-setdetachstate"><span class="toc-number">1.2.3.</span> <span class="toc-text">pthread_attr_setdetachstate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E7%9A%84%E8%8E%B7%E5%8F%96-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.4.</span> <span class="toc-text">调度策略的获取&#x2F;设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E8%8E%B7%E5%8F%96-%E8%AE%BE%E7%BD%AE-%E6%9C%80%E5%80%BC%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.5.</span> <span class="toc-text">优先级的获取&#x2F;设置&#x2F;最值查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">线程访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mutex%E4%BA%92%E6%96%A5%E9%94%81"><span class="toc-number">2.1.</span> <span class="toc-text">mutex互斥锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">互斥锁的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.2.</span> <span class="toc-text">对互斥锁的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">互斥锁的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">互斥锁的操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%BA%BF%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">信号量线程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.2.</span> <span class="toc-text">基本操作</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&text=linux多线程"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&is_video=false&description=linux多线程"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=linux多线程&body=Check out this article: http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=linux多线程"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&name=linux多线程&description=&lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;在linux下，Pthread是一套通用的线程库，由POSIX提出，具有较好的移植性。&lt;/p&gt;
+&lt;p&gt;使用头文件&lt;code&gt;&amp;lt;pthread.h&amp;gt;&lt;/code&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2021/03/23/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B/&t=linux多线程"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
         
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    rqdmap
   </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
 
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'bbbd1fae621180c2d543',
-      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
-      repo        : 'GitalkComments',
-      owner       : 'rqdmap',
-      admin       : ['rqdmap'],
-      id          : 'c4f82d91a603e3b70a9ab5799f1c3153',
-        language: '',
-      distractionFreeMode: true
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'rqdmap';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

@@ -1,246 +1,193 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="[toc]">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="点分治">
 <meta property="og:url" content="http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/index.html">
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="[toc]">
+<meta property="og:locale">
 <meta property="article:published_time" content="2021-02-01T11:11:48.000Z">
-<meta property="article:modified_time" content="2021-02-05T14:00:13.000Z">
+<meta property="article:modified_time" content="2021-02-01T11:11:48.000Z">
 <meta property="article:author" content="rqdmap">
 <meta property="article:tag" content="树">
 <meta property="article:tag" content="点分治">
 <meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>点分治</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="canonical" href="http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
 
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/02/05/%E7%82%B9%E5%88%86%E6%A0%91/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/02/01/cdq%E5%88%9D%E6%AD%A5/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&text=点分治"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&is_video=false&description=点分治"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=点分治&body=Check out this article: http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&name=点分治&description=&lt;p&gt;[toc]&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&t=点分治"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-Hans'
-  };
-</script>
-
-  <title>点分治 | rqdmap</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-        <span class="toggle-line toggle-line-first"></span>
-        <span class="toggle-line toggle-line-middle"></span>
-        <span class="toggle-line toggle-line-last"></span>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">rqdmap</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B4%9B%E8%B0%B7-P3806"><span class="toc-number">1.</span> <span class="toc-text">洛谷 P3806</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nmlog-2n-%E4%BB%A3%E7%A0%81-%E4%B8%8D%E5%BC%80%E6%A1%B6"><span class="toc-number">1.1.</span> <span class="toc-text">$O(nmlog^2n)$代码 不开桶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nmlogn-%E8%BF%9B%E8%A1%8Cm%E6%AC%A1%E7%82%B9%E5%88%86%E6%B2%BB-%E5%BC%80%E6%A1%B6-%E5%B8%B8%E6%95%B0%E8%BE%83%E5%A4%A7"><span class="toc-number">1.2.</span> <span class="toc-text">$O(nmlogn)$ 进行m次点分治 开桶 常数较大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nmlogn-%E4%B8%80%E6%AC%A1%E7%82%B9%E5%88%86%E6%B2%BB-%E5%90%8C%E6%97%B6%E5%A4%84%E7%90%86m%E6%AC%A1%E8%AF%A2%E9%97%AE-%E5%BC%80%E6%A1%B6-%E5%B8%B8%E6%95%B0%E8%BE%83%E5%B0%8F-AC"><span class="toc-number">1.3.</span> <span class="toc-text">$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VK-Cup-2012-Round-1-D"><span class="toc-number">2.</span> <span class="toc-text">VK Cup 2012 Round 1 D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P2634"><span class="toc-number">3.</span> <span class="toc-text">P2634</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">小问题</span></a></li></ol>
     </div>
-  </div>
+  </span>
 </div>
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/">
+    <h1 class="posttitle" itemprop="name headline">
+        点分治
+    </h1>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/huiye.png">
-      <meta itemprop="name" content="rqdmap">
-      <meta itemprop="description" content="rqdmap's personal blogs.">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="rqdmap">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          点分治
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">rqdmap</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-01T11:11:48.000Z" itemprop="datePublished">2021-02-01</time>
+        
+        (Updated: <time datetime="2021-02-01T11:11:48.000Z" itemprop="dateModified">2021-02-01</time>)
+        
+      
+    </div>
 
-              <time title="Created: 2021-02-01 19:11:48" itemprop="dateCreated datePublished" datetime="2021-02-01T19:11:48+08:00">2021-02-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-05 22:00:13" itemprop="dateModified" datetime="2021-02-05T22:00:13+08:00">2021-02-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">知识点</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>[toc]</p>
-<a id="more"></a>
-<h2 id="洛谷-P3806"><a href="#洛谷-P3806" class="headerlink" title="洛谷 P3806"></a><a href="https://www.luogu.com.cn/problem/P3806" target="_blank" rel="noopener">洛谷 P3806</a></h2><p>从一道经典的点分治问题入门</p>
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%A0%91/" rel="tag">树</a>, <a class="tag-link-link" href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/" rel="tag">点分治</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>[toc]</p>
+<span id="more"></span>
+<h2 id="洛谷-P3806"><a href="#洛谷-P3806" class="headerlink" title="洛谷 P3806"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3806">洛谷 P3806</a></h2><p>从一道经典的点分治问题入门</p>
 <p>给出n个节点的树，树上的边有边权，进行m次查询，每次查询一个值k，询问是否存在一条两点间的路径使得路径上权值和为k</p>
 <p>$n &lt;=10^4,m&lt;=10^2,k&lt;=10^7, w_i&lt;=10^4$</p>
 <p>因为该题有多组查询，可以考虑一次点分后同时对m次查询进行处理，也可以考虑每次查询都进行一次点分。时间复杂度同为$O(nmlogn)$，但是后者因为会进行若干次点分，所以常数更大。</p>
 <p>此外，为了能够$O(nlogn)$地进行统计，需要开设桶来加速统计结果。如果没有采用桶，而使用二分序列等方法，那么会多上一个log，应该是无法通过3806这题的，但是对于一些查询的k更大的题目，二分仍然有可取之处。故这里也贴上一份不能AC3806但是可能仍有用武之处的$O(nmlog^2n)$的代码（能顺利AC所有非TLE的点，但是正确性仍需更强的检验，使用时应更加谨慎）</p>
-<h3 id="O-nmlog-2n-代码-不开桶"><a href="#O-nmlog-2n-代码-不开桶" class="headerlink" title="$O(nmlog^2n)$代码 不开桶"></a>$O(nmlog^2n)$代码 不开桶</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, k;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = max(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = max(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;ll&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, ll d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.push_back(&#123;d + edge[i].w&#125;);</span><br><span class="line">        dfs(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getcnt</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(upper_bound(dis.begin(), dis.end(), x) - lower_bound(dis.begin(), dis.end(), x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.clear(); dis.push_back(d); dfs(u, <span class="number">0</span>, d);</span><br><span class="line">    sort(dis.begin(), dis.end());</span><br><span class="line">    <span class="comment">//两条长度相同的路径和k</span></span><br><span class="line">    <span class="keyword">if</span>(k % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        ll temp = getcnt(k / <span class="number">2</span>);</span><br><span class="line">        ans += temp * (temp - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="comment">//两条长度不同的路径和为k</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] &gt;= k) <span class="keyword">break</span>;</span><br><span class="line">        ans += getcnt(k - dis[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = fun(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= fun(to, edge[i].w);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        ans += sove(root);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    clr(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        add(u, v, w); add(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">        S = n; clr(vis, <span class="number">0</span>);</span><br><span class="line">        getroot(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        ll ans = sove(root);</span><br><span class="line">        <span class="built_in">puts</span>(ans? <span class="string">"AYE"</span>: <span class="string">"NAY"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="O-nmlogn-进行m次点分治-开桶-常数较大"><a href="#O-nmlogn-进行m次点分治-开桶-常数较大" class="headerlink" title="$O(nmlogn)$ 进行m次点分治 开桶 常数较大"></a>$O(nmlogn)$ 进行m次点分治 开桶 常数较大</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, k;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = max(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = max(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d &gt; k) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.push_back(d + edge[i].w);</span><br><span class="line">        dfs(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据题目的数据范围进行修改！</span></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">10000010</span>];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.clear(); dis.push_back(d); dfs(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] &lt; k) ans += tong[k - dis[i]];</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] == k) ans += tong[dis[i]] - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]--;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = fun(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= fun(to, edge[i].w);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        ans += sove(root);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    clr(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        add(u, v, w); add(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">        S = n; clr(vis, <span class="number">0</span>);</span><br><span class="line">        getroot(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        ll ans = sove(root);</span><br><span class="line">        <span class="built_in">puts</span>(ans? <span class="string">"AYE"</span>: <span class="string">"NAY"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="O-nmlogn-一次点分治-同时处理m次询问-开桶-常数较小-AC"><a href="#O-nmlogn-一次点分治-同时处理m次询问-开桶-常数较小-AC" class="headerlink" title="$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)"></a>$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = max(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = max(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d &gt; <span class="number">10000000</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.push_back(d + edge[i].w);</span><br><span class="line">        dfs(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">10000010</span>];</span><br><span class="line"><span class="keyword">int</span> k[maxn], ans[maxn];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    dis.clear(); dis.push_back(d); dfs(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) <span class="keyword">if</span>(dis[i] &lt;= <span class="number">10000000</span>) tong[dis[i]]++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dis[i] + dis[i] &lt; k[j]) ans[j] += (tong[k[j] - dis[i]]) * x;</span><br><span class="line">            <span class="keyword">if</span>(dis[i] + dis[i] == k[j]) ans[j] += (tong[dis[i]] - <span class="number">1</span>) * x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) <span class="keyword">if</span>(dis[i] &lt;= <span class="number">10000000</span>) tong[dis[i]]--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; fun(u, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        fun(to, edge[i].w, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        sove(root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    clr(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        add(u, v, w); add(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, k + i);</span><br><span class="line"></span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    S = n; clr(vis, <span class="number">0</span>);</span><br><span class="line">    getroot(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    sove(root);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) <span class="built_in">puts</span>(ans[i]? <span class="string">"AYE"</span>: <span class="string">"NAY"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="O-nmlog-2n-代码-不开桶"><a href="#O-nmlog-2n-代码-不开桶" class="headerlink" title="$O(nmlog^2n)$代码 不开桶"></a>$O(nmlog^2n)$代码 不开桶</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, k;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = <span class="built_in">max</span>(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = <span class="built_in">max</span>(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;ll&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, ll d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.<span class="built_in">push_back</span>(&#123;d + edge[i].w&#125;);</span><br><span class="line">        <span class="built_in">dfs</span>(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getcnt</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(<span class="built_in">upper_bound</span>(dis.<span class="built_in">begin</span>(), dis.<span class="built_in">end</span>(), x) - <span class="built_in">lower_bound</span>(dis.<span class="built_in">begin</span>(), dis.<span class="built_in">end</span>(), x));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.<span class="built_in">clear</span>(); dis.<span class="built_in">push_back</span>(d); <span class="built_in">dfs</span>(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="built_in">sort</span>(dis.<span class="built_in">begin</span>(), dis.<span class="built_in">end</span>());</span><br><span class="line">    <span class="comment">//两条长度相同的路径和k</span></span><br><span class="line">    <span class="keyword">if</span>(k % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        ll temp = <span class="built_in">getcnt</span>(k / <span class="number">2</span>);</span><br><span class="line">        ans += temp * (temp - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="comment">//两条长度不同的路径和为k</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] &gt;= k) <span class="keyword">break</span>;</span><br><span class="line">        ans += <span class="built_in">getcnt</span>(k - dis[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = <span class="built_in">fun</span>(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= <span class="built_in">fun</span>(to, edge[i].w);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        ans += <span class="built_in">sove</span>(root);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        <span class="built_in">add</span>(u, v, w); <span class="built_in">add</span>(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;k);</span><br><span class="line">        S = n; <span class="built_in">clr</span>(vis, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">getroot</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        ll ans = <span class="built_in">sove</span>(root);</span><br><span class="line">        <span class="built_in">puts</span>(ans? <span class="string">&quot;AYE&quot;</span>: <span class="string">&quot;NAY&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="O-nmlogn-进行m次点分治-开桶-常数较大"><a href="#O-nmlogn-进行m次点分治-开桶-常数较大" class="headerlink" title="$O(nmlogn)$ 进行m次点分治 开桶 常数较大"></a>$O(nmlogn)$ 进行m次点分治 开桶 常数较大</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, k;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = <span class="built_in">max</span>(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = <span class="built_in">max</span>(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d &gt; k) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.<span class="built_in">push_back</span>(d + edge[i].w);</span><br><span class="line">        <span class="built_in">dfs</span>(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据题目的数据范围进行修改！</span></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">10000010</span>];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.<span class="built_in">clear</span>(); dis.<span class="built_in">push_back</span>(d); <span class="built_in">dfs</span>(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] &lt; k) ans += tong[k - dis[i]];</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] == k) ans += tong[dis[i]] - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]--;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = <span class="built_in">fun</span>(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= <span class="built_in">fun</span>(to, edge[i].w);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        ans += <span class="built_in">sove</span>(root);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        <span class="built_in">add</span>(u, v, w); <span class="built_in">add</span>(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;k);</span><br><span class="line">        S = n; <span class="built_in">clr</span>(vis, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">getroot</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        ll ans = <span class="built_in">sove</span>(root);</span><br><span class="line">        <span class="built_in">puts</span>(ans? <span class="string">&quot;AYE&quot;</span>: <span class="string">&quot;NAY&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="O-nmlogn-一次点分治-同时处理m次询问-开桶-常数较小-AC"><a href="#O-nmlogn-一次点分治-同时处理m次询问-开桶-常数较小-AC" class="headerlink" title="$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)"></a>$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = <span class="built_in">max</span>(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = <span class="built_in">max</span>(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d &gt; <span class="number">10000000</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.<span class="built_in">push_back</span>(d + edge[i].w);</span><br><span class="line">        <span class="built_in">dfs</span>(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">10000010</span>];</span><br><span class="line"><span class="keyword">int</span> k[maxn], ans[maxn];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    dis.<span class="built_in">clear</span>(); dis.<span class="built_in">push_back</span>(d); <span class="built_in">dfs</span>(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) <span class="keyword">if</span>(dis[i] &lt;= <span class="number">10000000</span>) tong[dis[i]]++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dis[i] + dis[i] &lt; k[j]) ans[j] += (tong[k[j] - dis[i]]) * x;</span><br><span class="line">            <span class="keyword">if</span>(dis[i] + dis[i] == k[j]) ans[j] += (tong[dis[i]] - <span class="number">1</span>) * x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) <span class="keyword">if</span>(dis[i] &lt;= <span class="number">10000000</span>) tong[dis[i]]--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; <span class="built_in">fun</span>(u, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">fun</span>(to, edge[i].w, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        <span class="built_in">sove</span>(root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        <span class="built_in">add</span>(u, v, w); <span class="built_in">add</span>(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, k + i);</span><br><span class="line"></span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    S = n; <span class="built_in">clr</span>(vis, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">getroot</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">sove</span>(root);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) <span class="built_in">puts</span>(ans[i]? <span class="string">&quot;AYE&quot;</span>: <span class="string">&quot;NAY&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>本地测试洛谷提供的最大的数据跑了1s，而之前的m次点分治跑了3s；而在oj上则从371ms加速到48ms</p>
 <p><del>还说不卡常！还说不卡常！</del></p>
-<h2 id="VK-Cup-2012-Round-1-D"><a href="#VK-Cup-2012-Round-1-D" class="headerlink" title="VK Cup 2012 Round 1 D"></a><a href="http://codeforces.com/problemset/problem/161/D" target="_blank" rel="noopener">VK Cup 2012 Round 1 D</a></h2><p>查询树上经过边数恰为k的两点路径数量，$<u, v>$与$<v, u>$计数时视为同一对点。</p>
+<h2 id="VK-Cup-2012-Round-1-D"><a href="#VK-Cup-2012-Round-1-D" class="headerlink" title="VK Cup 2012 Round 1 D"></a><a target="_blank" rel="noopener" href="http://codeforces.com/problemset/problem/161/D">VK Cup 2012 Round 1 D</a></h2><p>查询树上经过边数恰为k的两点路径数量，$<u, v>$与$<v, u>$计数时视为同一对点。</p>
 <p>稍微改一下洛谷的板子即可。注意桶的范围，点数maxn</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = max(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = max(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d &gt; k) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.push_back(d + <span class="number">1</span>);</span><br><span class="line">        dfs(to, u, d + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据题目的数据范围进行修改！</span></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">50010</span>];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.clear(); dis.push_back(d); dfs(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] &lt; k) ans += tong[k - dis[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(k % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; tong[k / <span class="number">2</span>]) ans += tong[k / <span class="number">2</span>] * <span class="number">1l</span>l * (tong[k / <span class="number">2</span>] - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]--;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = fun(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= fun(to, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        ans += sove(root);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    clr(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;u, &amp;v);</span><br><span class="line">        add(u, v); add(v, u);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    S = n; clr(vis, <span class="number">0</span>);</span><br><span class="line">    getroot(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    ll ans = sove(root);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = <span class="built_in">max</span>(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = <span class="built_in">max</span>(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d &gt; k) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.<span class="built_in">push_back</span>(d + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">dfs</span>(to, u, d + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据题目的数据范围进行修改！</span></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">50010</span>];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.<span class="built_in">clear</span>(); dis.<span class="built_in">push_back</span>(d); <span class="built_in">dfs</span>(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] + dis[i] &lt; k) ans += tong[k - dis[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(k % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; tong[k / <span class="number">2</span>]) ans += tong[k / <span class="number">2</span>] * <span class="number">1ll</span> * (tong[k / <span class="number">2</span>] - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) <span class="keyword">if</span>(dis[i] &lt;= k) tong[dis[i]]--;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = <span class="built_in">fun</span>(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= <span class="built_in">fun</span>(to, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        ans += <span class="built_in">sove</span>(root);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">        <span class="built_in">add</span>(u, v); <span class="built_in">add</span>(v, u);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    S = n; <span class="built_in">clr</span>(vis, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">getroot</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    ll ans = <span class="built_in">sove</span>(root);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="P2634"><a href="#P2634" class="headerlink" title="P2634"></a>P2634</h2><p>查询路径长度为三的倍数的数量</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, itn w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = max(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = max(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据需要的是边数还是边权修改1/edge[i].w</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.push_back(d + edge[i].w);</span><br><span class="line">        dfs(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据题目的数据范围进行修改！</span></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">3</span>];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.clear(); dis.push_back(d); dfs(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.size(); i++) tong[dis[i] % <span class="number">3</span>]++;</span><br><span class="line">    </span><br><span class="line">    ans += tong[<span class="number">0</span>] * <span class="number">1l</span>l * tong[<span class="number">0</span>] + tong[<span class="number">1</span>] * tong[<span class="number">2</span>] * <span class="number">2</span>;</span><br><span class="line">    </span><br><span class="line">    clr(tong, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = fun(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= fun(to, edge[i].w % <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        getroot(to, u);</span><br><span class="line">        ans += sove(root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    clr(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        add(u, v, w); add(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    S = n; clr(vis, <span class="number">0</span>);</span><br><span class="line">    getroot(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    ll ans = sove(root);</span><br><span class="line">    ll d = gcd(ans, n * <span class="number">1l</span>l * n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld/%lld\n"</span>, ans / d, n * <span class="number">1l</span>l * n / d);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">star</span>&#123;</span><span class="keyword">int</span> to, next, w;&#125;;</span><br><span class="line"><span class="keyword">int</span> head[maxn], top = <span class="number">0</span>;</span><br><span class="line">star edge[maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, itn w)</span></span>&#123;</span><br><span class="line">    edge[top].to = v;</span><br><span class="line">    edge[top].next = head[u];</span><br><span class="line">    edge[top].w = w;</span><br><span class="line">    head[u] = top++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用getroot前应该初始化S！！！</span></span><br><span class="line"><span class="keyword">int</span> root = <span class="number">0</span>, S;</span><br><span class="line"><span class="keyword">int</span> vis[maxn], sze[maxn], mx[maxn];;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getroot</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par)</span></span>&#123;</span><br><span class="line">    sze[u] = <span class="number">1</span>; mx[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = haed[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        sze[u] += sze[to];</span><br><span class="line">        mx[u] = <span class="built_in">max</span>(mx[u], sze[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[u] = <span class="built_in">max</span>(mx[u], S - sze[u]);</span><br><span class="line">    <span class="keyword">if</span>(mx[u] &lt; mx[root]) root = u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据需要的是边数还是边权修改1/edge[i].w</span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> par, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to] || to == par) <span class="keyword">continue</span>;</span><br><span class="line">        dis.<span class="built_in">push_back</span>(d + edge[i].w);</span><br><span class="line">        <span class="built_in">dfs</span>(to, u, d + edge[i].w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据题目的数据范围进行修改！</span></span><br><span class="line"><span class="keyword">int</span> tong[<span class="number">3</span>];</span><br><span class="line"><span class="comment">//获取经过u的答案，路径长度有基础偏移值d</span></span><br><span class="line"><span class="function">ll <span class="title">fun</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    dis.<span class="built_in">clear</span>(); dis.<span class="built_in">push_back</span>(d); <span class="built_in">dfs</span>(u, <span class="number">0</span>, d);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)dis.<span class="built_in">size</span>(); i++) tong[dis[i] % <span class="number">3</span>]++;</span><br><span class="line">    </span><br><span class="line">    ans += tong[<span class="number">0</span>] * <span class="number">1ll</span> * tong[<span class="number">0</span>] + tong[<span class="number">1</span>] * tong[<span class="number">2</span>] * <span class="number">2</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">clr</span>(tong, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//u是重心，考察以经过u的路径长度</span></span><br><span class="line"><span class="function">ll <span class="title">sove</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="comment">//封锁u节点，分治地寻找子树.</span></span><br><span class="line">    vis[u] = <span class="number">1</span>; ll ans = <span class="built_in">fun</span>(u, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = head[u]; ~i; i = edge[i].next)&#123;</span><br><span class="line">        <span class="keyword">int</span> to = edge[i].to; <span class="keyword">if</span>(vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">        ans -= <span class="built_in">fun</span>(to, edge[i].w % <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        S = sze[to]; root = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">getroot</span>(to, u);</span><br><span class="line">        ans += <span class="built_in">sove</span>(root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="built_in">clr</span>(head, <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">        <span class="built_in">add</span>(u, v, w); <span class="built_in">add</span>(v, u, w);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mx[<span class="number">0</span>] = n; root = <span class="number">0</span>;</span><br><span class="line">    S = n; <span class="built_in">clr</span>(vis, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">getroot</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    ll ans = <span class="built_in">sove</span>(root);</span><br><span class="line">    ll d = <span class="built_in">gcd</span>(ans, n * <span class="number">1ll</span> * n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld/%lld\n&quot;</span>, ans / d, n * <span class="number">1ll</span> * n / d);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>当处理一些与子树有关的问题时，可以采用点分治，比较典型的问题就是对树上满足特定限制的路径的计数。</p>
 <p>在点分治时，每次通过选取子树的重心将当前子树进行划分，从而可以在子树之间进行复杂度较为优秀的一系列操作。</p>
 <h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(sze[to] &lt; sze[u]) S = sze[to];</span><br><span class="line"><span class="keyword">else</span> S = sze[to] - sze[u];</span><br></pre></td></tr></table></figure>
@@ -248,289 +195,182 @@
 <p>为何洛谷上千篇一律的是直接<code>S=sze[to]</code>？莫非对总的时间复杂度没有过多的影响？</p>
 <p>修改这一处后再次提交仍是TLE的TLE、AC的AC…非常的神秘</p>
 
-    </div>
+  </div>
+</article>
 
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
-              <a href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/" rel="tag"># 点分治</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/02/01/cdq%E5%88%9D%E6%AD%A5/" rel="prev" title="cdq初步">
-      <i class="fa fa-chevron-left"></i> cdq初步
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/02/05/%E7%82%B9%E5%88%86%E6%A0%91/" rel="next" title="点分树">
-      点分树 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
+    </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
       </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#洛谷-P3806"><span class="nav-number">1.</span> <span class="nav-text">洛谷 P3806</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-nmlog-2n-代码-不开桶"><span class="nav-number">1.1.</span> <span class="nav-text">$O(nmlog^2n)$代码 不开桶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-nmlogn-进行m次点分治-开桶-常数较大"><span class="nav-number">1.2.</span> <span class="nav-text">$O(nmlogn)$ 进行m次点分治 开桶 常数较大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-nmlogn-一次点分治-同时处理m次询问-开桶-常数较小-AC"><span class="nav-number">1.3.</span> <span class="nav-text">$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VK-Cup-2012-Round-1-D"><span class="nav-number">2.</span> <span class="nav-text">VK Cup 2012 Round 1 D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2634"><span class="nav-number">3.</span> <span class="nav-text">P2634</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小问题"><span class="nav-number">5.</span> <span class="nav-text">小问题</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="rqdmap"
-      src="/uploads/huiye.png">
-  <p class="site-author-name" itemprop="name">rqdmap</p>
-  <div class="site-description" itemprop="description">rqdmap's personal blogs.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">49</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
-        </li>
-    </ul>
-  </div>
 
-      </div>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B4%9B%E8%B0%B7-P3806"><span class="toc-number">1.</span> <span class="toc-text">洛谷 P3806</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nmlog-2n-%E4%BB%A3%E7%A0%81-%E4%B8%8D%E5%BC%80%E6%A1%B6"><span class="toc-number">1.1.</span> <span class="toc-text">$O(nmlog^2n)$代码 不开桶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nmlogn-%E8%BF%9B%E8%A1%8Cm%E6%AC%A1%E7%82%B9%E5%88%86%E6%B2%BB-%E5%BC%80%E6%A1%B6-%E5%B8%B8%E6%95%B0%E8%BE%83%E5%A4%A7"><span class="toc-number">1.2.</span> <span class="toc-text">$O(nmlogn)$ 进行m次点分治 开桶 常数较大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nmlogn-%E4%B8%80%E6%AC%A1%E7%82%B9%E5%88%86%E6%B2%BB-%E5%90%8C%E6%97%B6%E5%A4%84%E7%90%86m%E6%AC%A1%E8%AF%A2%E9%97%AE-%E5%BC%80%E6%A1%B6-%E5%B8%B8%E6%95%B0%E8%BE%83%E5%B0%8F-AC"><span class="toc-number">1.3.</span> <span class="toc-text">$O(nmlogn)$ 一次点分治 同时处理m次询问 开桶 常数较小 (AC)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VK-Cup-2012-Round-1-D"><span class="toc-number">2.</span> <span class="toc-text">VK Cup 2012 Round 1 D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P2634"><span class="toc-number">3.</span> <span class="toc-text">P2634</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">小问题</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&text=点分治"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&is_video=false&description=点分治"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=点分治&body=Check out this article: http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&title=点分治"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&name=点分治&description=&lt;p&gt;[toc]&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2021/02/01/%E7%82%B9%E5%88%86%E6%B2%BB/&t=点分治"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
         
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
+    
+    2020-2021
+    rqdmap
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'bbbd1fae621180c2d543',
-      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
-      repo        : 'GitalkComments',
-      owner       : 'rqdmap',
-      admin       : ['rqdmap'],
-      id          : 'b9215d644d57ea57fa62cce1cdb3281b',
-        language: '',
-      distractionFreeMode: true
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'rqdmap';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

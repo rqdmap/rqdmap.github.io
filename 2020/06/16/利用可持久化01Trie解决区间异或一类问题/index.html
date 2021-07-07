@@ -1,236 +1,189 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"rqdmap.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq 借助这几道题学习一番可持久化01Trie的有关知识 [toc]">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq 借助这几道题学习一番可持久化01Trie的有关知识 [toc]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用可持久化01Trie解决区间异或一类问题">
 <meta property="og:url" content="http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="rqdmap">
 <meta property="og:description" content="为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq 借助这几道题学习一番可持久化01Trie的有关知识 [toc]">
+<meta property="og:locale">
 <meta property="article:published_time" content="2020-06-16T14:16:25.000Z">
-<meta property="article:modified_time" content="2021-01-16T06:09:41.000Z">
+<meta property="article:modified_time" content="2020-06-16T14:16:25.000Z">
 <meta property="article:author" content="rqdmap">
 <meta property="article:tag" content="Trie">
 <meta property="article:tag" content="可持久化">
 <meta property="article:tag" content="可持久化01Trie">
 <meta property="article:tag" content="字符串">
 <meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>利用可持久化01Trie解决区间异或一类问题</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="canonical" href="http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
 
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2020/06/17/template/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2020/06/16/2017-CCPC-HARBIN/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&text=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&is_video=false&description=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=利用可持久化01Trie解决区间异或一类问题&body=Check out this article: http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&name=利用可持久化01Trie解决区间异或一类问题&description=&lt;p&gt;为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq&lt;/p&gt;
+&lt;p&gt;借助这几道题学习一番可持久化01Trie的有关知识&lt;/p&gt;
+&lt;p&gt;[toc]&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&t=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-Hans'
-  };
-</script>
-
-  <title>利用可持久化01Trie解决区间异或一类问题 | rqdmap</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-        <span class="toggle-line toggle-line-first"></span>
-        <span class="toggle-line toggle-line-middle"></span>
-        <span class="toggle-line toggle-line-last"></span>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">rqdmap</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">莫被环境同化了野心。</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P4735-%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C"><span class="toc-number">1.</span> <span class="toc-text">P4735 最大异或和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P5283-%E5%8D%81%E4%BA%8C%E7%9C%81%E8%81%94%E8%80%832019-%E5%BC%82%E6%88%96%E7%B2%BD%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">P5283 [十二省联考2019]异或粽子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9AP1631-%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6"><span class="toc-number">2.1.</span> <span class="toc-text">前置知识点：P1631 序列合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%88%96%E7%B2%BD%E5%AD%90"><span class="toc-number">2.2.</span> <span class="toc-text">异或粽子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2020%E6%A0%A1%E8%B5%9B%E7%BD%91%E7%BB%9C%E8%B5%9BI-%E7%AC%ACk%E5%A4%A7%E5%8C%BA%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">2020校赛网络赛I 第k大区间</span></a></li></ol>
     </div>
-  </div>
+  </span>
 </div>
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/">
+    <h1 class="posttitle" itemprop="name headline">
+        利用可持久化01Trie解决区间异或一类问题
+    </h1>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/huiye.png">
-      <meta itemprop="name" content="rqdmap">
-      <meta itemprop="description" content="rqdmap's personal blogs.">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="rqdmap">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          利用可持久化01Trie解决区间异或一类问题
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">rqdmap</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-06-16T14:16:25.000Z" itemprop="datePublished">2020-06-16</time>
+        
+        (Updated: <time datetime="2020-06-16T14:16:25.000Z" itemprop="dateModified">2020-06-16</time>)
+        
+      
+    </div>
 
-              <time title="Created: 2020-06-16 22:16:25" itemprop="dateCreated datePublished" datetime="2020-06-16T22:16:25+08:00">2020-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-16 14:09:41" itemprop="dateModified" datetime="2021-01-16T14:09:41+08:00">2021-01-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq</p>
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Trie/" rel="tag">Trie</a>, <a class="tag-link-link" href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96/" rel="tag">可持久化</a>, <a class="tag-link-link" href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie/" rel="tag">可持久化01Trie</a>, <a class="tag-link-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq</p>
 <p>借助这几道题学习一番可持久化01Trie的有关知识</p>
 <p>[toc]</p>
-<a id="more"></a>
-<p>参考博客：<strong><a href="https://blog.csdn.net/qq_42447015/article/details/97812659" target="_blank" rel="noopener">可持久化01Trie + 异或粽子 （精心)</a></strong></p>
+<span id="more"></span>
+<p>参考博客：<strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42447015/article/details/97812659">可持久化01Trie + 异或粽子 （精心)</a></strong></p>
 <hr>
-<h3 id="P4735-最大异或和"><a href="#P4735-最大异或和" class="headerlink" title="P4735 最大异或和"></a><strong><a href="https://www.luogu.com.cn/problem/P4735" target="_blank" rel="noopener">P4735 最大异或和</a></strong></h3><p>题目要求区间中某个位置<code>p∈[L, R]</code>使得<code>a[p] ^ a[p + 1]^ ... ^ a[n] ^ x</code>最大，其中<code>p, L, R</code>给定，允许在该序列末尾动态添加数字。首先根据异或的性质等价转化要求的表达式：<code>`a[p] ^ a[p + 1]^ ... ^ a[n] ^ x = x ^ sum ^ a[1] ^ a[2] ^ ... ^ a[p - 1]</code>，其中sum是整个序列的异或值；因而在某个给定的状态下，我们只需要找位置p-1使得其前缀异或值和x^sum异或值最大即可。为了完成动态修改、查询的工作，我们使用可持久化01Trie，其思想与主席树类似（<del>尽管我还没学但是不妨碍我学会01Trie</del>)。</p>
+<h3 id="P4735-最大异或和"><a href="#P4735-最大异或和" class="headerlink" title="P4735 最大异或和"></a><strong><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4735">P4735 最大异或和</a></strong></h3><p>题目要求区间中某个位置<code>p∈[L, R]</code>使得<code>a[p] ^ a[p + 1]^ ... ^ a[n] ^ x</code>最大，其中<code>p, L, R</code>给定，允许在该序列末尾动态添加数字。首先根据异或的性质等价转化要求的表达式：<code>`a[p] ^ a[p + 1]^ ... ^ a[n] ^ x = x ^ sum ^ a[1] ^ a[2] ^ ... ^ a[p - 1]</code>，其中sum是整个序列的异或值；因而在某个给定的状态下，我们只需要找位置p-1使得其前缀异或值和x^sum异或值最大即可。为了完成动态修改、查询的工作，我们使用可持久化01Trie，其思想与主席树类似（<del>尽管我还没学但是不妨碍我学会01Trie</del>)。</p>
 <p>可持久化01Trie的核心思想在于：在插入一个新数的时候用该数本身拥有的值新建节点，对于本身不拥有的值则继承上一颗树的情况，即L11、L12所示。</p>
 <p>而在本题中因为要查找一段区间最优的一个异或值，所以为了方便查找额外设置size数组记录当前节点拥有字符串的个数。如果同一个节点在两个不同版本之间的size值不同，那么说明这段版本之间一定拥有一个含有这个值的串，所以应该将指针沿着这个方向前进。因为本题要求异或值最大，所以我们找方向边是否存在，存在的话毫无疑问应该从反向边往后查找，这也就是query函数所完成的工作。</p>
 <p>此外，因为我们分析出来如果给定区间<code>[L, R]</code>，那么最终我们要找的前缀和应该在<code>[L - 1, R - 1]</code>之中，用Trie的版本号表示就意味找<code>R-1</code>和<code>L - 2</code>的差值。为了防止溢出等麻烦的问题，我们添加冗余项<code>0</code>，这样原序列整体下标后移1位，所以就变成了查找<code>R</code>与<code>L - 1</code>的差值。</p>
 <p>最后，因为初始给定3e5的原始序列和<strong>操作</strong>，所以最终串的长度有可能成为<strong>6e5</strong>！又因为可持久化Trie存了每个版本的信息，所以每多一个版本，就会再花费N个节点，N是表达一个数最多需要的位数，故总复杂度应该设置为<strong>6e5 * N</strong>。<del>不然RE</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">24</span>;</span><br><span class="line"><span class="keyword">const</span> itn maxn = <span class="number">6e5</span> * N + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TRIE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> version = <span class="number">0</span>, top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>], root[maxn];;</span><br><span class="line">    <span class="keyword">int</span> size[maxn];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rot = root[version];</span><br><span class="line">        root[++version] = ++top;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            ch[top][id] = top + <span class="number">1</span>;		<span class="comment">//新建</span></span><br><span class="line">            ch[top][!id] = ch[rot][!id];		<span class="comment">//继承</span></span><br><span class="line">            size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">            top++; rot = ch[rot][id];</span><br><span class="line">        &#125;</span><br><span class="line">        size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R, itn x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = root[L], r = root[R];</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(size[ch[r][!id]] - size[ch[l][!id]] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                ans |= <span class="number">1</span> &lt;&lt; i;</span><br><span class="line">                r = ch[r][!id]; l = ch[l][!id];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                r = ch[r][id];</span><br><span class="line">                l = ch[l][id];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TRIE tree;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    tree.insert(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x); sum ^= x;</span><br><span class="line">        tree.insert(sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l, r, x;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">        <span class="keyword">char</span> op[<span class="number">2</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, op);</span><br><span class="line">        <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'A'</span>)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x); sum ^= x;</span><br><span class="line">            tree.insert(sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;l, &amp;r, &amp;x);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tree.query(l - <span class="number">1</span>, r, x ^ sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">24</span>;</span><br><span class="line"><span class="keyword">const</span> itn maxn = <span class="number">6e5</span> * N + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TRIE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> version = <span class="number">0</span>, top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>], root[maxn];;</span><br><span class="line">    <span class="keyword">int</span> size[maxn];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rot = root[version];</span><br><span class="line">        root[++version] = ++top;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            ch[top][id] = top + <span class="number">1</span>;		<span class="comment">//新建</span></span><br><span class="line">            ch[top][!id] = ch[rot][!id];		<span class="comment">//继承</span></span><br><span class="line">            size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">            top++; rot = ch[rot][id];</span><br><span class="line">        &#125;</span><br><span class="line">        size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R, itn x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = root[L], r = root[R];</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(size[ch[r][!id]] - size[ch[l][!id]] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                ans |= <span class="number">1</span> &lt;&lt; i;</span><br><span class="line">                r = ch[r][!id]; l = ch[l][!id];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                r = ch[r][id];</span><br><span class="line">                l = ch[l][id];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TRIE tree;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    tree.<span class="built_in">insert</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x); sum ^= x;</span><br><span class="line">        tree.<span class="built_in">insert</span>(sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l, r, x;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">        <span class="keyword">char</span> op[<span class="number">2</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, op);</span><br><span class="line">        <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x); sum ^= x;</span><br><span class="line">            tree.<span class="built_in">insert</span>(sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;l, &amp;r, &amp;x);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, tree.<span class="built_in">query</span>(l - <span class="number">1</span>, r, x ^ sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="P5283-十二省联考2019-异或粽子"><a href="#P5283-十二省联考2019-异或粽子" class="headerlink" title="P5283 [十二省联考2019]异或粽子"></a><strong>P5283 [十二省联考2019]异或粽子</strong></h3><h4 id="前置知识点：P1631-序列合并"><a href="#前置知识点：P1631-序列合并" class="headerlink" title="前置知识点：P1631 序列合并"></a>前置知识点：P1631 序列合并</h4><p>简而言之，用堆$O(logn)$维护n个有序队列各自的最大值，将$n ^2$的比较变成了$n$的比较，值得学习的手法！</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[maxn], b[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NODE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i, j, sum;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> NODE &amp;b)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum &gt; b.sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;NODE&gt; pq;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> n; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, a + i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, b + i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) pq.push(&#123;i, <span class="number">0</span>, a[i] + b[<span class="number">0</span>]&#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> times = n;</span><br><span class="line">    <span class="keyword">while</span>(times--)&#123;</span><br><span class="line">        NODE temp = pq.top(); pq.pop();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>, temp.sum); <span class="keyword">if</span>(times) <span class="built_in">printf</span>(<span class="string">" "</span>); <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i = temp.i, j = temp.j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= n) <span class="keyword">continue</span>;</span><br><span class="line">        pq.push(&#123;i, j, a[i] + b[j]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[maxn], b[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NODE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i, j, sum;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> NODE &amp;b)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum &gt; b.sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;NODE&gt; pq;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> n; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, a + i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, b + i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) pq.<span class="built_in">push</span>(&#123;i, <span class="number">0</span>, a[i] + b[<span class="number">0</span>]&#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> times = n;</span><br><span class="line">    <span class="keyword">while</span>(times--)&#123;</span><br><span class="line">        NODE temp = pq.<span class="built_in">top</span>(); pq.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, temp.sum); <span class="keyword">if</span>(times) <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>); <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i = temp.i, j = temp.j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= n) <span class="keyword">continue</span>;</span><br><span class="line">        pq.<span class="built_in">push</span>(&#123;i, j, a[i] + b[j]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="异或粽子"><a href="#异或粽子" class="headerlink" title="异或粽子"></a>异或粽子</h4><p>给出$n &lt;= 5e5$的序列，问所有区间异或值中前$k &lt;= 2e5$大之和。</p>
 <p>首先做异或前缀，这样就可以用两点表示一段区间，接下里将这些前缀插入到可持久化01Trie中。下面考虑如何查找前k大的每一个数，主要思想与P1631序列合并类似：我们枚举右端点<code>j</code>，对每一个右端点所拥有的一串有序序列从大到小一个个插入到堆中。那么如何维护这个有序队列呢？我们设置结构<code>[i, j, l, r, sum]</code>表示右端点在<code>j</code>，在区间<code>[l, r]</code>中找到的最优左端点是<code>i</code>，其异或值是<code>sum</code>。那么当我们从堆中拿出一个节点后，下一个就应该从右端点在<code>j</code>，左端点处于区间<code>[l, i - 1]</code>和区间<code>[i + 1, r]</code>中找更大的结果并放入堆中。<del>我自己写的时候没有判断哪一边更大而是两边都放进去了 因为不想判断左极限右极限的情况 仅仅多一个log2的复杂度问题不大</del></p>
 <p>不过这里面有一些地方很绕…我想了很久才基本理清楚。<del>qaq</del></p>
@@ -239,7 +192,7 @@
 <p><strong>因为要存版本，所以会多开maxn个节点！</strong></p>
 <p>然而这不意味着要把N开大，因为N开大插入的每一个数占用的节点也会对应变大！</p>
 <p>所以应该在maxn中添加一些冗余的位置，不修改N的最大值！</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">33</span>;</span><br><span class="line"><span class="keyword">const</span> itn maxn = <span class="number">5e5</span> * (N + <span class="number">5</span>) + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TRIE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> version = <span class="number">0</span>, top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>], root[maxn];;</span><br><span class="line">    <span class="keyword">int</span> size[maxn], id[maxn];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(ll x, <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rot = root[version];</span><br><span class="line">        root[++version] = ++top;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            ch[top][id] = top + <span class="number">1</span>;</span><br><span class="line">            ch[top][!id] = ch[rot][!id];</span><br><span class="line">            size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">            top++; rot = ch[rot][id];</span><br><span class="line">        &#125;</span><br><span class="line">        size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;id[top] = id;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R, ll x, <span class="keyword">int</span> &amp;k, ll &amp;sum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = root[L], r = root[R];</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(size[ch[r][!id]] - size[ch[l][!id]] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                sum |= <span class="number">1l</span>l &lt;&lt; i;</span><br><span class="line">                r = ch[r][!id]; l = ch[l][!id];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                l = ch[l][id];</span><br><span class="line">                r = ch[r][id];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        k = <span class="keyword">this</span>-&gt;id[r];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">TRIE tree;</span><br><span class="line"></span><br><span class="line"><span class="comment">//右端点j给定，每次找i；当前区间为[l, r]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NODE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i, j, l, r;</span><br><span class="line">    ll sum;</span><br><span class="line">    NODE(<span class="keyword">int</span> _i, <span class="keyword">int</span>  _j, <span class="keyword">int</span> _l ,itn _r, ll _sum)&#123;</span><br><span class="line">        i = _i; j = _j; l = _l; r = _r; sum = _sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> NODE &amp;b)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum &lt; b.sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ll a[<span class="number">500010</span>];</span><br><span class="line">priority_queue&lt;NODE&gt; pq;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    tree.insert(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, a + i);</span><br><span class="line">        a[i] ^= a[i - <span class="number">1</span>];</span><br><span class="line">        tree.insert(a[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> k; ll sum;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="comment">//查询[1, i]</span></span><br><span class="line">        tree.query(<span class="number">0</span>, i, a[i], k, sum);</span><br><span class="line">        <span class="comment">//[k + 1, i]</span></span><br><span class="line">        pq.push(NODE(k + <span class="number">1</span>, i, <span class="number">1</span>, i, sum));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        NODE temp = pq.top(); pq.pop();</span><br><span class="line">        ans += temp.sum;</span><br><span class="line">        <span class="keyword">int</span> i = temp.i, j = temp.j, l = temp.l, r = temp.r;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(i - <span class="number">1</span> &gt;= l)&#123;</span><br><span class="line">            <span class="comment">//划分左端点，查询[l, i - 1]中最合适的端点。</span></span><br><span class="line">            tree.query(l - <span class="number">1</span>, i - <span class="number">1</span>, a[j], k, sum);</span><br><span class="line">            pq.push(NODE(k + <span class="number">1</span>, j, l, i - <span class="number">1</span>, sum));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i + <span class="number">1</span> &lt;= r)&#123;</span><br><span class="line">            tree.query(i, r, a[j], k, sum);</span><br><span class="line">            pq.push(NODE(k + <span class="number">1</span>, j, i + <span class="number">1</span>, r, sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">33</span>;</span><br><span class="line"><span class="keyword">const</span> itn maxn = <span class="number">5e5</span> * (N + <span class="number">5</span>) + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TRIE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> version = <span class="number">0</span>, top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>], root[maxn];;</span><br><span class="line">    <span class="keyword">int</span> size[maxn], id[maxn];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(ll x, <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rot = root[version];</span><br><span class="line">        root[++version] = ++top;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            ch[top][id] = top + <span class="number">1</span>;</span><br><span class="line">            ch[top][!id] = ch[rot][!id];</span><br><span class="line">            size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">            top++; rot = ch[rot][id];</span><br><span class="line">        &#125;</span><br><span class="line">        size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;id[top] = id;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R, ll x, <span class="keyword">int</span> &amp;k, ll &amp;sum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = root[L], r = root[R];</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(size[ch[r][!id]] - size[ch[l][!id]] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                sum |= <span class="number">1ll</span> &lt;&lt; i;</span><br><span class="line">                r = ch[r][!id]; l = ch[l][!id];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                l = ch[l][id];</span><br><span class="line">                r = ch[r][id];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        k = <span class="keyword">this</span>-&gt;id[r];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">TRIE tree;</span><br><span class="line"></span><br><span class="line"><span class="comment">//右端点j给定，每次找i；当前区间为[l, r]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NODE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i, j, l, r;</span><br><span class="line">    ll sum;</span><br><span class="line">    <span class="built_in">NODE</span>(<span class="keyword">int</span> _i, <span class="keyword">int</span>  _j, <span class="keyword">int</span> _l ,itn _r, ll _sum)&#123;</span><br><span class="line">        i = _i; j = _j; l = _l; r = _r; sum = _sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> NODE &amp;b)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum &lt; b.sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ll a[<span class="number">500010</span>];</span><br><span class="line">priority_queue&lt;NODE&gt; pq;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    tree.<span class="built_in">insert</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, a + i);</span><br><span class="line">        a[i] ^= a[i - <span class="number">1</span>];</span><br><span class="line">        tree.<span class="built_in">insert</span>(a[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> k; ll sum;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="comment">//查询[1, i]</span></span><br><span class="line">        tree.<span class="built_in">query</span>(<span class="number">0</span>, i, a[i], k, sum);</span><br><span class="line">        <span class="comment">//[k + 1, i]</span></span><br><span class="line">        pq.<span class="built_in">push</span>(<span class="built_in">NODE</span>(k + <span class="number">1</span>, i, <span class="number">1</span>, i, sum));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        NODE temp = pq.<span class="built_in">top</span>(); pq.<span class="built_in">pop</span>();</span><br><span class="line">        ans += temp.sum;</span><br><span class="line">        <span class="keyword">int</span> i = temp.i, j = temp.j, l = temp.l, r = temp.r;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(i - <span class="number">1</span> &gt;= l)&#123;</span><br><span class="line">            <span class="comment">//划分左端点，查询[l, i - 1]中最合适的端点。</span></span><br><span class="line">            tree.<span class="built_in">query</span>(l - <span class="number">1</span>, i - <span class="number">1</span>, a[j], k, sum);</span><br><span class="line">            pq.<span class="built_in">push</span>(<span class="built_in">NODE</span>(k + <span class="number">1</span>, j, l, i - <span class="number">1</span>, sum));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i + <span class="number">1</span> &lt;= r)&#123;</span><br><span class="line">            tree.<span class="built_in">query</span>(i, r, a[j], k, sum);</span><br><span class="line">            pq.<span class="built_in">push</span>(<span class="built_in">NODE</span>(k + <span class="number">1</span>, j, i + <span class="number">1</span>, r, sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="2020校赛网络赛I-第k大区间"><a href="#2020校赛网络赛I-第k大区间" class="headerlink" title="2020校赛网络赛I 第k大区间"></a><strong>2020校赛网络赛I 第k大区间</strong></h3><p>xdoj好像最近升级升爆了交不了题</p>
 <p>不知道自己正确与否就又顺手用写了个对拍程序。。原来MacOS也支持system函数那就好写了！</p>
 <p>之前尝试过用管道实现进程通信….然而失败了….qaq</p>
@@ -250,293 +203,186 @@
 <li>如果二分答案在该位为0，那么$a[j]$在该位的值与其反向边所拥有的所有串异或全部都可以取，同向边则需要进一步dfs看更低位的情况。</li>
 <li>如果二分答案在该位为0，那么必须走反向边才能满足这一位不比1小，素以从反向边开始进一步dfs；这里要判断一下是否存在至少一个反向边，如果没有直接返回0即可。（因为终点根据wei是否小于0判断，小于0返回1，其前提是前面的每一位都相等，所以不允许之前有不存在的情况）</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">32</span>;</span><br><span class="line"><span class="keyword">const</span> itn maxn = <span class="number">1e5</span> * (N + <span class="number">5</span>) + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TRIE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> version = <span class="number">0</span>, top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>], root[maxn];;</span><br><span class="line">    <span class="keyword">int</span> size[maxn];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rot = root[version];</span><br><span class="line">        root[++version] = ++top;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            ch[top][id] = top + <span class="number">1</span>;</span><br><span class="line">            ch[top][!id] = ch[rot][!id];</span><br><span class="line">            size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">            top++; rot = ch[rot][id];</span><br><span class="line">        &#125;</span><br><span class="line">        size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查询[L + 1, R]区间中异或上x后大于等于key的数量</span></span><br><span class="line">    <span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, ll x, ll key, <span class="keyword">int</span> wei)</span></span>&#123;</span><br><span class="line">        <span class="comment">//什么时候会进行递归？前面的所有位都相等的情况！</span></span><br><span class="line">        <span class="keyword">if</span>(wei &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        ll res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> op = (key &gt;&gt; wei) &amp; <span class="number">1</span>, id = (x &gt;&gt; wei) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//key的这一位是0，结果可以是0/1</span></span><br><span class="line">            res += size[ch[r][!id]] - size[ch[l][!id]];</span><br><span class="line">            <span class="keyword">if</span>(size[ch[r][id]] - size[ch[l][id]] &gt; <span class="number">0</span>)</span><br><span class="line">                res += query(ch[l][id], ch[r][id], x, key, wei - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(size[ch[r][!id]] - size[ch[l][!id]] &gt; <span class="number">0</span>)</span><br><span class="line">            res += query(ch[l][!id], ch[r][!id], x, key, wei - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">TRIE tree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line">ll a[<span class="number">100010</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*对于每个右端点j，查询左端点[1, j]看多少个区间的值大于等于x</span></span><br><span class="line"><span class="comment">     前缀左端点区间[0, j - 1] 查询[-1, j - 1] 添加冗余项0 故查询[0, j]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> l = tree.root[<span class="number">0</span>], r = tree.root[i];</span><br><span class="line">        ans += tree.query(l, r, a[i], x, N - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans &gt;= m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    tree.insert(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, a + i);</span><br><span class="line">        a[i] ^= a[i - <span class="number">1</span>];</span><br><span class="line">        tree.insert(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    ll left = <span class="number">0</span>, right = (<span class="number">1l</span>l &lt;&lt; <span class="number">32</span>) - <span class="number">1</span>, middle;</span><br><span class="line">    <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">        middle = (left + right + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(check(middle)) left = middle;</span><br><span class="line">        <span class="keyword">else</span> right = middle - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, left);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">32</span>;</span><br><span class="line"><span class="keyword">const</span> itn maxn = <span class="number">1e5</span> * (N + <span class="number">5</span>) + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TRIE</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> version = <span class="number">0</span>, top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ch[maxn][<span class="number">2</span>], root[maxn];;</span><br><span class="line">    <span class="keyword">int</span> size[maxn];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rot = root[version];</span><br><span class="line">        root[++version] = ++top;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> id = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">            ch[top][id] = top + <span class="number">1</span>;</span><br><span class="line">            ch[top][!id] = ch[rot][!id];</span><br><span class="line">            size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">            top++; rot = ch[rot][id];</span><br><span class="line">        &#125;</span><br><span class="line">        size[top] = size[rot] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查询[L + 1, R]区间中异或上x后大于等于key的数量</span></span><br><span class="line">    <span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, ll x, ll key, <span class="keyword">int</span> wei)</span></span>&#123;</span><br><span class="line">        <span class="comment">//什么时候会进行递归？前面的所有位都相等的情况！</span></span><br><span class="line">        <span class="keyword">if</span>(wei &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        ll res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> op = (key &gt;&gt; wei) &amp; <span class="number">1</span>, id = (x &gt;&gt; wei) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//key的这一位是0，结果可以是0/1</span></span><br><span class="line">            res += size[ch[r][!id]] - size[ch[l][!id]];</span><br><span class="line">            <span class="keyword">if</span>(size[ch[r][id]] - size[ch[l][id]] &gt; <span class="number">0</span>)</span><br><span class="line">                res += <span class="built_in">query</span>(ch[l][id], ch[r][id], x, key, wei - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(size[ch[r][!id]] - size[ch[l][!id]] &gt; <span class="number">0</span>)</span><br><span class="line">            res += <span class="built_in">query</span>(ch[l][!id], ch[r][!id], x, key, wei - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">TRIE tree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line">ll a[<span class="number">100010</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*对于每个右端点j，查询左端点[1, j]看多少个区间的值大于等于x</span></span><br><span class="line"><span class="comment">     前缀左端点区间[0, j - 1] 查询[-1, j - 1] 添加冗余项0 故查询[0, j]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> l = tree.root[<span class="number">0</span>], r = tree.root[i];</span><br><span class="line">        ans += tree.<span class="built_in">query</span>(l, r, a[i], x, N - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans &gt;= m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    Fastin;</span></span><br><span class="line">    tree.<span class="built_in">insert</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, a + i);</span><br><span class="line">        a[i] ^= a[i - <span class="number">1</span>];</span><br><span class="line">        tree.<span class="built_in">insert</span>(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    ll left = <span class="number">0</span>, right = (<span class="number">1ll</span> &lt;&lt; <span class="number">32</span>) - <span class="number">1</span>, middle;</span><br><span class="line">    <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">        middle = (left + right + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(middle)) left = middle;</span><br><span class="line">        <span class="keyword">else</span> right = middle - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, left);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
+  </div>
+</article>
 
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Trie/" rel="tag"># Trie</a>
-              <a href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96/" rel="tag"># 可持久化</a>
-              <a href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie/" rel="tag"># 可持久化01Trie</a>
-              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/06/16/2017-CCPC-HARBIN/" rel="prev" title="2017_CCPC_HARBIN">
-      <i class="fa fa-chevron-left"></i> 2017_CCPC_HARBIN
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/17/template/" rel="next" title="template">
-      template <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
+    </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
       </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#P4735-最大异或和"><span class="nav-number">1.</span> <span class="nav-text">P4735 最大异或和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5283-十二省联考2019-异或粽子"><span class="nav-number">2.</span> <span class="nav-text">P5283 [十二省联考2019]异或粽子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前置知识点：P1631-序列合并"><span class="nav-number">2.1.</span> <span class="nav-text">前置知识点：P1631 序列合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异或粽子"><span class="nav-number">2.2.</span> <span class="nav-text">异或粽子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020校赛网络赛I-第k大区间"><span class="nav-number">3.</span> <span class="nav-text">2020校赛网络赛I 第k大区间</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="rqdmap"
-      src="/uploads/huiye.png">
-  <p class="site-author-name" itemprop="name">rqdmap</p>
-  <div class="site-description" itemprop="description">rqdmap's personal blogs.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">49</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/rqdmap" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqdmap" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:414060972@qq.com" title="E-Mail → mailto:414060972@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Herr_Shiiiii" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Herr_Shiiiii" rel="noopener" target="_blank">原CSDN博客</a>
-        </li>
-    </ul>
-  </div>
 
-      </div>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P4735-%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C"><span class="toc-number">1.</span> <span class="toc-text">P4735 最大异或和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P5283-%E5%8D%81%E4%BA%8C%E7%9C%81%E8%81%94%E8%80%832019-%E5%BC%82%E6%88%96%E7%B2%BD%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">P5283 [十二省联考2019]异或粽子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9AP1631-%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6"><span class="toc-number">2.1.</span> <span class="toc-text">前置知识点：P1631 序列合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%88%96%E7%B2%BD%E5%AD%90"><span class="toc-number">2.2.</span> <span class="toc-text">异或粽子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2020%E6%A0%A1%E8%B5%9B%E7%BD%91%E7%BB%9C%E8%B5%9BI-%E7%AC%ACk%E5%A4%A7%E5%8C%BA%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">2020校赛网络赛I 第k大区间</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&text=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&is_video=false&description=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=利用可持久化01Trie解决区间异或一类问题&body=Check out this article: http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&title=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&name=利用可持久化01Trie解决区间异或一类问题&description=&lt;p&gt;为了补校赛网络的I题，就去看了异或粽子，然后就看到了Trie以及可持久化01Trie，进而就有了这篇博客qaq&lt;/p&gt;
+&lt;p&gt;借助这几道题学习一番可持久化01Trie的有关知识&lt;/p&gt;
+&lt;p&gt;[toc]&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://rqdmap.github.io/2020/06/16/%E5%88%A9%E7%94%A8%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601Trie%E8%A7%A3%E5%86%B3%E5%8C%BA%E9%97%B4%E5%BC%82%E6%88%96%E4%B8%80%E7%B1%BB%E9%97%AE%E9%A2%98/&t=利用可持久化01Trie解决区间异或一类问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">rqdmap</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
         
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
+    
+    2020-2021
+    rqdmap
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'bbbd1fae621180c2d543',
-      clientSecret: '89c23ca14e82470755f6d1e45485d1b266b8f0bb',
-      repo        : 'GitalkComments',
-      owner       : 'rqdmap',
-      admin       : ['rqdmap'],
-      id          : '83c4f4aebe32e582d98a69c8334f49f2',
-        language: '',
-      distractionFreeMode: true
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'rqdmap';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
