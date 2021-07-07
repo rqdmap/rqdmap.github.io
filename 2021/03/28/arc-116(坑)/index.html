@@ -16,7 +16,8 @@
 <meta property="article:published_time" content="2021-03-28T13:54:52.000Z">
 <meta property="article:modified_time" content="2021-03-28T13:54:52.000Z">
 <meta property="article:author" content="rqdmap">
-<meta property="article:tag" content="dp">
+<meta property="article:tag" content="博弈论">
+<meta property="article:tag" content="DP">
 <meta name="twitter:card" content="summary">
     
     
@@ -119,7 +120,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#D-%E6%80%BB%E5%92%8C%E7%BB%99%E5%AE%9A%E4%B8%8B%E8%BF%9B%E8%A1%8CNIM%E5%BF%85%E8%B4%A5%E6%80%81%E8%AE%A1%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">D 总和给定下进行NIM必败态计数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#E"><span class="toc-number">2.</span> <span class="toc-text">E</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#D-%E6%80%BB%E5%92%8C%E7%BB%99%E5%AE%9A%E4%B8%8B%E8%BF%9B%E8%A1%8CNIM%E5%BF%85%E8%B4%A5%E6%80%81%E8%AE%A1%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">D 总和给定下进行NIM必败态计数</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -154,14 +155,14 @@
       
     <div class="article-category">
         <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/atcoder/">atcoder</a>
+        <a class="category-link" href="/categories/ACM/">ACM</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/dp/" rel="tag">dp</a>
+        <a class="tag-link-link" href="/tags/DP/" rel="tag">DP</a>, <a class="tag-link-link" href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a>
     </div>
 
 
@@ -181,7 +182,7 @@
 <p>这个状态的转移本质上是用一些更小的情况不重不漏地刻画新的状态。如果当前已知dp[x]，将这n堆石子的二进制表示全部左移一位，再枚举n个最低位有多少个1，就是和为$2*x+k$的一种构造情况。</p>
 <p>这种思想跟用最小的素因子来刻画数字之间转化关系有着异曲同工之妙，但我暂时想不到什么形而上的表达形式来统一地刻画这种思考方式，故留坑。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">998244353</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    m = <span class="built_in">min</span>(m, n - m);</span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">        ans = ans * <span class="built_in">qp</span>(i, M - <span class="number">2</span>, M) % M;</span><br><span class="line">        ans = ans * (n + <span class="number">1</span> - i) % M;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ll dp[maxn];</span><br><span class="line">ll c[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Fastin;</span></span><br><span class="line">    <span class="keyword">int</span> n, m; <span class="built_in">scnaf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++) c[i] = <span class="built_in">C</span>(n, i);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &amp; <span class="number">1</span>) dp[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j + j &lt;= i &amp;&amp; j + j &lt;= n; j++)&#123;</span><br><span class="line">                dp[i] += c[<span class="number">2</span> * j] * dp[i / <span class="number">2</span> - j] % M;</span><br><span class="line">                dp[i] %= M;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// prt(dp, m + 1, 1);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, dp[m]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1>
+
   </div>
 </article>
 
@@ -216,7 +217,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#D-%E6%80%BB%E5%92%8C%E7%BB%99%E5%AE%9A%E4%B8%8B%E8%BF%9B%E8%A1%8CNIM%E5%BF%85%E8%B4%A5%E6%80%81%E8%AE%A1%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">D 总和给定下进行NIM必败态计数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#E"><span class="toc-number">2.</span> <span class="toc-text">E</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#D-%E6%80%BB%E5%92%8C%E7%BB%99%E5%AE%9A%E4%B8%8B%E8%BF%9B%E8%A1%8CNIM%E5%BF%85%E8%B4%A5%E6%80%81%E8%AE%A1%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">D 总和给定下进行NIM必败态计数</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
