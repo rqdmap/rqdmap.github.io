@@ -858,14 +858,14 @@
   </url>
   
   <url>
-    <loc>https://rqdmap.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>https://rqdmap.top/tags/%E5%AF%B9%E6%8B%8D/</loc>
     <lastmod>2021-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://rqdmap.top/tags/%E5%AF%B9%E6%8B%8D/</loc>
+    <loc>https://rqdmap.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -916,6 +916,13 @@
   </url>
   
   <url>
+    <loc>https://rqdmap.top/categories/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2021-07-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://rqdmap.top/categories/%E6%82%AC%E8%80%8C%E6%9C%AA%E5%86%B3/</loc>
     <lastmod>2021-07-12</lastmod>
     <changefreq>daily</changefreq>
@@ -959,13 +966,6 @@
   
   <url>
     <loc>https://rqdmap.top/categories/Socket/</loc>
-    <lastmod>2021-07-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://rqdmap.top/categories/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2021-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
