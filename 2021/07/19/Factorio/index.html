@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Factorio模块设计指北">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Factorio">
+<meta property="og:url" content="https://rqdmap.top/2021/07/19/Factorio/index.html">
+<meta property="og:site_name" content="rqdmap">
+<meta property="og:description" content="Factorio模块设计指北">
+<meta property="og:locale">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/one_second_counter_0.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/one_second_counter_1.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/one_second_counter_2.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/digit_disp.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/digit_control.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/digit_counter.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/digit_clock.png">
+<meta property="og:image" content="https://rqdmap.top/images/Factorio/lvban2.png">
+<meta property="article:published_time" content="2021-07-19T07:42:47.000Z">
+<meta property="article:modified_time" content="2021-07-19T07:42:47.000Z">
+<meta property="article:author" content="rqdmap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rqdmap.top/images/Factorio/one_second_counter_0.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Factorio</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/07/17/Linux-Kernel/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://rqdmap.top/2021/07/19/Factorio/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://rqdmap.top/2021/07/19/Factorio/&text=Factorio"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://rqdmap.top/2021/07/19/Factorio/&is_video=false&description=Factorio"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Factorio&body=Check out this article: https://rqdmap.top/2021/07/19/Factorio/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://rqdmap.top/2021/07/19/Factorio/&name=Factorio&description=&lt;p&gt;Factorio模块设计指北&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://rqdmap.top/2021/07/19/Factorio/&t=Factorio"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%92%E8%A1%A80%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">秒表0型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%92%E8%A1%A81%E5%9E%8B%EF%BC%88%E5%8F%AF%E6%B8%85%E9%9B%B6%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">秒表1型（可清零）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E7%89%A9%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">产物计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E6%97%B6%E9%92%9F"><span class="toc-number">1.4.</span> <span class="toc-text">电子时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB%E6%AE%B5%E6%95%B0%E7%A0%81%E7%AE%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text">八段数码管</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.4.2.</span> <span class="toc-text">控制信号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#60-60%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">1.4.3.</span> <span class="toc-text">*&#x2F;60&#x2F;60计数器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%97%B6%E9%92%9F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.4.</span> <span class="toc-text">完整时钟实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%BA%BF"><span class="toc-number">2.</span> <span class="toc-text">产线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BF%E6%9D%BF2"><span class="toc-number">2.1.</span> <span class="toc-text">绿板2</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Factorio
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">rqdmap</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-19T07:42:47.000Z" itemprop="datePublished">2021-07-19</time>
+        
+        (Updated: <time datetime="2021-07-19T07:42:47.000Z" itemprop="dateModified">2021-07-19</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Factorio模块设计指北</p>
+<span id="more"></span> 
+<p>[toc]</p>
+<p><del>看Linux内核看了一半来打游戏了qaq</del></p>
+<h2 id="电路"><a href="#电路" class="headerlink" title="电路"></a>电路</h2><h3 id="秒表0型"><a href="#秒表0型" class="headerlink" title="秒表0型"></a>秒表0型</h3><p>点信号恒定输出1，第一个判断器设置点信号小于60时输出点信号，且反馈到输入端。</p>
+<p>这样，在0tick时，输入端恒定1个点，1tick点信号通过判断器反馈到输入端，此时判断器上不仅有反馈来的点信号量，也有常量箱中恒定的1个点信号增量。不断反复循环，累积量通过判断器反馈，常量箱给出增量。该信号系统的点信号在1到60之间循环，每tick变换一次。</p>
+<p>第二个判断器检查点信号是否为<strong>60</strong>，注意，当第一个判断器输入59+1个点信号时，尽管不会输出60，但是在该信号系统中的点信号为60，因而与该系统相连的第二个判断器应该检查60。检查成功后输出一个S信号表示秒，类似地给出一个累加器即可记录总共经历的秒数。</p>
+<p>秒表0型实现简单，逻辑器件少，但是由于常量箱表示增量，因而开关常量箱只会暂停/继续计数，所以不支持清零。</p>
+<p><img src="/images/Factorio/one_second_counter_0.png" alt=""></p>
+<p>蓝图代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrNlW1vgjAQx7/LvUYjiIpk+xS+XAzh4dgugZaU1syYfvddYTJnNqKbLntD0uvd/x5+tD1AVhlsFAkN8QEol6KF+OkALT2LtHI2vW8QYtiR0oYtHoi0dobeY+KD9YBEga8Q+3brAQpNmrCX6Rb7RJg6Q8UOQ3SBORWoJrmsMxKploqVG9lyqBQuLctNounCgz3EEafgyrSSVZLhS7ojdmefd5GE94ousHXWklSrk4sbKKSGXr/VqRvDcuZWdZOqrqwYHjhGGt2Yn6g2ey7PCJ2UStYJCVaBWCuDtk8qMB8q991HYXE6Oiq6seWkckO6WwZ2y7HBZc6+9T5tz8e3Q9a2J7YjueA6csu/ILe5A7fN7agF59RGQYxDDc6pfU1pfh2l1f84X4835lSmVXu343UhiXAo+Nj4OIr1EcV08Q2MkiqN6srbeRi+cZP3T2/qX83HupueNNac6uMF8aBKM+S6QApMWnT/Tc8HXc87Lr9rOYj8cLUOVuFsvgrCyNo3FPk+Cg==1</span><br></pre></td></tr></table></figure>
+<h3 id="秒表1型（可清零）"><a href="#秒表1型（可清零）" class="headerlink" title="秒表1型（可清零）"></a>秒表1型（可清零）</h3><p>上述的简单模型无法解决清零的操作，因为每个信号都被存放在信号系统中而不可能被清零（除非手动拆线等），因而本模型添加了一个运算器，判断器在获得累加的结果后不直接反馈到输入端，而是<strong>通过一个运算器后</strong>再输出到输入端。这样我们就可以通过运算器来进行清零/不变的操作，但是要注意的是，每通过一个运算器都要消耗1tick，所以该模型下点信号达到30时就已经度过了1秒。</p>
+<p>具体来说，运算器中进行点信号乘以检查信号，输出点信号。当打开检查信号时开始计数，当关闭检查信号时反馈终止，判断器只能获得最初的一个点信号而无法获得以往的累积量，这样就实现了点信号的可清零操作。</p>
+<p>接下来考察秒数。如果直接按照计时器0统计S信号，会发现S每次跨度为2地增长。这是因为在模型0中，每个信号脉冲都只持续1tick，而在该模型中，点信号的传递经过2个运算器，需要2tick，也就是说2tick才会进行一次点信号自增，那么也就意味着该系统中信号的脉冲宽度为2，这就解释了为什么S信号会以2为步长进行增加。</p>
+<p>我们使用如下的结构来统计秒数，S信号输入到判断器中，判断器输出到运算器中，运算器再反馈到判断器的输入端。这个结构与点信号的结构相同，所以自然也支持清零操作。但是更精妙的是，在本模型中进位来的S信号持续2tick，在第1tick时累加的S信号通过判断器，达到运算器，在2tick时通过运算器，回到输入端，正好与进位S信号汇合。该过程说明了一个宽度为2的S进位信号脉冲恰好引起一次秒数累加器的进位（<del>其实这也说明了为什么1秒60tick的常量箱点信号只能产生30个点信号累加结果</del>），那么累加器中的秒数就直接是实际的秒数，而不需要任何的二次转化。</p>
+<p><img src="/images/Factorio/one_second_counter_1.png" alt=""></p>
+<p>蓝图代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrNlt1umzAUx9/FlxOpCjGQoq03fYRcTpVlzMlyNLCRMdGiiHefDRkNaRPhLNV2g2Sb8+H/7xzbB5KXLdQapSHZgaBQsiHZ9wNp8IfkpZsz+xpIRnaoTWtnAiJ55SaGPxYh6QKCsoBfJAu7wMPy5cQy6l4DAtKgQRgS6Ad7JtsqB21dj9YuRcOlWQhV5Si5Udq6rlVjbZV0ca2/xdNDHJC9tYsfYhumQA1iWI8C58JoVbIctnyH1t4abbA0oD03L7YgfrptCNU6BcMTKV77aSmHuI3zFrqPhuJ0g1gMKaEWLZp+6Gw7J+WZBtEYnms02woMiusqrC5okHyswZtbZpcLHBPfoG4Mmy1LoYwTpQHnhfmrqWrQfMiUfLG/qdbUrW/8br7+4YnYbkynPKKeZXTBmM6Dt7y1gOlnFvCR1N+V70wF6Bi8AIEF6Fm1O3f7R593Kdw/hCy1Rzeqaq77LDPy9dZydH7qPeuVZhutKobSeiGZ0S141OryrFaj81qdLifv2Vwu5Xfn0NRXOo9z7Mc58Tun78J5PaV8Dvn5Bsjr+yFOriNNfU6nmcySm5j9Z7357c7YNrxsfLhRn16L54FJve98Or58pmzo5975639646+97nt6vcFinwb7kKN9zKKByub39rwOSMlzsJshSgI7KtUXneuM0qHc2ft76KNVSNOnKKWPyzSiq677DVQ5/nw=</span><br></pre></td></tr></table></figure>
+<h3 id="产物计数器"><a href="#产物计数器" class="headerlink" title="产物计数器"></a>产物计数器</h3><p>借助秒表1型和一个简单的可清零累加器，就能够统计传送带上的物品速度。打开检查信号后开始统计，记录经过的秒数和经过的物品，作除法输出在最后一个运算器中。</p>
+<font color=#ee0000> 为了避免信号冲突，必须使用绿线与传送带连接。统计不同的产物时，应该更改累加器和均值器中对应的物品。</font>
+
+<p><img src="/images/Factorio/one_second_counter_2.png" alt=""></p>
+<p>蓝图代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrNV91u0zAUfhdfomwsWbq0EfASk7hBU5Qm7maRPznORFVFWhEbAm0DwSQECNguBgMJJqEJum4oD0PSbFe8AnZalbZr0yZbgZuqjn0+n3O+c/zZNVA2POhgZBEg14AOXQ0jhyDbAjIIG82wuXFeD6L1rTDYi558jza+xp/qv043o2D9fO8k/BHEOwfxSRA3g7CxHZ7unq/Vo8b7s+Bta3v/59r9+OTd2Ze9sLEVPd2MXz0Imx/iRx9bL74xhObO2eF+6/VRa+c4PjqMHu9GLw+iZ5vRm4fR2in9HzY+R4fHdBk1pFbR8zoFBBxAmm25QL5TAy5atlSD+U2qDqQOIwJNusJSTTbSoYZ0iGc02ywjSyU2Bj41t3R4D8i8z40FUDEiKyYkSBuOIfhLHIAWQQTBtkfJoKpYnlmGmG4yBooDju2idrZrgHklzhY4UAXyjEC30RGGWntW5AANm2DbUMpwRV1F1Jqa/IFV6LSeQLlsooKwS5Qx8UGDwmPbYk4hrHmIsOBcyKAu2q4iTDz6pWveXjGjrUDtLjO0HYjVTulco8tsjzheLid8PwnXakefBMSzHwz13jQjOlpgHCxjCK3BGZr8DmAypGRRVGEETKl/MT8pKl3IvL3AvNCNj1UrUS2Sznuhy/tsoZ95YTjzFWQQiEf0wSiqdDthWLM91u58TzMsTZ7x+ckyMJ/WhxcTIGULv4M5WdWPTUebIerzHBuZjooTL2VwI6WMx6I6VSXJtFLBtqkgi6IAmWAPZihvoSezbCwOJr9/WspS84VMWKN4FrPxXPoveb6Zg+fFFJYrquFmoXlIT43mrTgZMYWs4iPw2bjJKj6piZy66qTsnp+owfYsZum/Ynr/lSajeSGv0vDTVJouPZfTGv5Kjigp8zVMGpGihel2Queg+me9kOyf6fLFpXdHWvlPeI8o5tIX/m/qy2K/ugyKy60rFpeMVwgx/cgqXOrKMJyzUl7p4ackPdN49ywOdtz1HDzfztRvhXQqh7x4fPaQSaKXe176HDDUMjQSzaDVBRkjq/SMb6e8yItSSZDEuXlJEIu+/xv7McIE</span><br></pre></td></tr></table></figure>
+<h3 id="电子时钟"><a href="#电子时钟" class="headerlink" title="电子时钟"></a>电子时钟</h3><h4 id="八段数码管"><a href="#八段数码管" class="headerlink" title="八段数码管"></a>八段数码管</h4><p>设置ABCDEFG七个信号，同时开启颜色选项，不支持小数点。</p>
+<p><img src="/images/Factorio/digit_disp.png" alt=""></p>
+<p>蓝图代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrdmkuO2zAMhu+itWdgUX4vCvR9iCIInERtBfgR+BE0CLzoIbpvLzDopleauUblCVqkTAiYCxeQNwEsm1L0gSJ/0j6JTdHrfWOqTmQnYbZ11Yrsw0m05lOVF+NYd9xrkYmDabrejniiystx4PzEXSIGT5hqp7+ITA7eDUvT6fLCrMyL4q7Iy/2FIQwrT+iqM53R5/WfL47rqi83urEz37L3xL5urUldjavZae5kENyHnjiKLJH3oZ3f7qdr6mK90Z/zg6mb8cGtaba96db23u6v9UfTtN168q7fifPkbZeP5PzxotznTd6Na4gX4+2+1XaNom7sjrqm12eLSm/HNdtxETn+NHp3uWOzG3F4/1xLf1gNw8XgHyzAxuLPiuXlrFgkwhIQVNRUKrAEKgGiEhFUgqlU1BKo4COkCCrhVCr+EqhEiEpCUImmUpFLoKIQlZCgEk+kotL/k4RezUolwUlIElgSNhaXnSVEWGKCSspOzcphxWIVCvIWKjlLnw0GXAaDuKQUFsk+ReBwcImxuwDFBdhclMNcJPYXSTqMYp+jcFYw7+cFg2WuxFoGSBcK2KQChyNOikFR0leG7DrJaQ/CDiMp9SsjdqnkNBisfyUlgGXMrpacBoMlMFB9GJmwCyanwWARLCkVLFN2+g5cTt8w1WPAZ4Nx2mPia12DSFEFA/B7v/GspN7O27i6ciGqoQf87m/kMhg5VdiAYp+teT3m9bxgsDQGSthAwAYTuQxGTY7GIfsopS4fpavaiaoyIWKDSZYUY4CSwsBvBqcuHyUshRWZrvnt4GRRMYaSwsDuCKfz9snfzAsG1wiKen+gfG4fwmkwCscYRekYJbl9CLc9BpcEikrXCrh9CLc9Rk0Nvkpx+xBug8FvnRTVA1Zs5es2GLidlVbe+Wus7OKzL08U+Ubb/yySx4dfj99+Pn3/+vTww44fdNM+7w4SGcQpxIGvYgiSYfgN/VUK8A==</span><br></pre></td></tr></table></figure>
+<h4 id="控制信号"><a href="#控制信号" class="headerlink" title="控制信号"></a>控制信号</h4><p>10个常量箱中分别给出了0-9对应的7位硬编码，用于控制7个数码管。T信号为0-9的一个数码，通过绿线给进后，10个判断器会根据T的值决定到底输出哪一个X，X在10个逻辑与运算器下输出0/1决定7个数码管的开关。</p>
+<p><img src="/images/Factorio/digit_control.png" alt=""></p>
+<p>蓝图代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrNmjtv2zAQx78LZ6cQSUmUDHRIn1unDgGKwJBtJiGgh0HLaY1AQ7dOndq9nbq1XdJ+oib9GKWsxnFjPXiMKmkJIJF3Ov5/R4V38gWahiu+kCJO0fgCiVkSL9H41QVaitM4CPN76XrB0RidC5mu1J0RioMov1HMOPBQNkIinvM3aIyzUYmlSHm0YxYFYXgQBtFix5CUGlY98vGOJc2OR4jHqUgFLyLfXKwn8Sqacqli2loHUqRnEU/F7GCWRFMRB2kilfNFslTWSZw/WXk8wLb9wBmhNRr7VD1ISZLKJJxM+VlwLpSFmnbraqKG5xvzZT5wIuQynWiv5ChfyZLnPnJHyzTIOaiQkwWXQREUOnzxRBkmq3SxArg+RFlWRB/z2TY+nP+RfL6rlFBXRM0UcrYS6eZyA3JnGON/x0l2rHwTPWf55GzH4Q0ZYkCG9kuGtEHmEYgMridD7w7XgdmjWOurihs14Eb65Wa3we1xmzvKgXAj9dwcPW62ATer5zeh2wa4pyBwTj04BgHn1INjeuAcA3C4X3BeG9yegLjRem42hBut52brcXPh3KjXLze3lTflcxA40I5i9WS8ChTMAIXfLwraymHjGQiFXb+HXAgpu56Uq7eHvO2CbpRpwsZusKkzhwpvLmSx8OLfaAnGExGmXALLnjUPw+Q12ki7+nto31ZBx/qKa8rgb58/5zMx57JJBbcpef/6uV/mviwEuElZP7+IFoHchDVGDw0S9qhwuVhPNsJOTmQSTUSsfKBxKlcccnS28uLwVHIe7w15oHOzp0cJW+bZSv9nth7tJqpFzVLV35esVAQMzNXbctvpMFetYeUqqcnV+9R4e5W8ZpGHCZQi6YMiGRhFDKB4BwyoIsQNJ1SsWRNiCsVM+8CMB4aZVGMGdtIaMDdU/mV9uVLMNhSz1Qdme2CYaTXmhi4BBhU1uKFPgDUbBdiBYsZ9YKYDw2xXY24oiPZ3ey3mhpIIazbOsQutBrw+MLsDw+xUY2YNmH0Q5oYexV1vlZgZFLPfB2ZnYJjdasxuA2ZQjxC7DZg1u4TYM67tu8TsDQwzq8Tst7mZ/Zb2MriBw/qAzAYG2QM0cEYNex3W4Bk17PWKT9rgBtBt88PtqgHkGvZ/ykqXUhEwWATSuQi+Yb+27MRXKgIBi0C7zwRDDaimBhSsgdW5BtgihirYmirYYBVw5yow31AER1MEB9wZ97pPhTxKIxVcTRVcsAp+DxvCNBeYpgoMrILbQy4wQxU8TRXu8WWzu9eCoQaln4rUUW7zU9Dxzm9ORygMplyFhbyrr5dXH79ff3p7/fXz1fsvv979uP5w+fvnNzXnXC2iWKeHbeYTZluUEdvLsj/M45Vl</span><br></pre></td></tr></table></figure>
+<h4 id="60-60计数器"><a href="#60-60计数器" class="headerlink" title="*/60/60计数器"></a>*/60/60计数器</h4><p>计数时分秒，暂时不限制小时的上限。<del>大概一定玩不到那么久。</del></p>
+<p><img src="/images/Factorio/digit_counter.png" alt=""></p>
+<p>蓝图代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrNl01r4zAQhv/KMmenjWXZTkx72kthm1OOSzH+UHYFtmRkKTQE/feVnDYk3caNEicNGINGmlcjPbygWUNeKdIIyiQka6AFZy0kv9fQ0j8sq2xMrhoCCVBJavCAZbUdlaSgJRGjgtc5ZZnkArQHlJXkFRJfv3hAmKSSko1aN1ilTNU5EWZBn44HDW9NKmd2dyM38sPoLvRgBUmMzS6mRil4lebkb7akJsMse9NJzVzZ5bY2uqCilel/R1lSIZWJbKvYrBiVXMJGv5WZvZBobEd1k4musgQeTA5XslGnqDYrU55iMl0IXqeUGRVIpFBEbzZlpNhW7tufIOXu7dGyu7mCikJR2Q2RfjG56LjFvvb2plH/9MRo653YOzzkCi+8EXiPJ8Cb96BbZFV7MXbBRzifwwhcYeCrwJhfwEfz4VwUfCTRawxHUPta+DiO2JVjcBMcT7HUbEBLBS6kwuNQhK4o0FVQzC5gqdlwlgr7LYXPArWvFR/HMXLlOL4Kx6d9jtPpAByfhuMYuYCKnEChA6BiV1D+TRju8XtBhWeAOkRisq33/dxfoYi3KO7CAzAWtJJEHOgqvnzNKXv3/m5rcdaDS9vWpGtlkp3Ox4Mqy4mpCxC+j8bm+/Hz+ZcJL03h3XnRxMfxFMV4HMQIT7T+B3xTh1w=</span><br></pre></td></tr></table></figure>
+<h4 id="完整时钟实现"><a href="#完整时钟实现" class="headerlink" title="完整时钟实现"></a>完整时钟实现</h4><p><img src="/images/Factorio/digit_clock.png" alt=""></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">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</span><br></pre></td></tr></table></figure>
+<h2 id="产线"><a href="#产线" class="headerlink" title="产线"></a>产线</h2><p>为了实现标准的<code>3*n</code>物理结构，开始尝试学习混料技术，本章中的模板基本只使用混料技术。</p>
+<p>小标题命名规则：&lt;产物名&gt;&lt;组装机数量&gt;</p>
+<h3 id="绿板2"><a href="#绿板2" class="headerlink" title="绿板2"></a>绿板2</h3><p>组装机配比：铜线3，绿板2</p>
+<p>原材料配比：铁板2，铜板3</p>
+<p>测定了5台组装机不同的排序方式，使用了如下的方式，可以获得较高的产量。</p>
+<p>使用时需要往出口处放80个绿板左右以启动设施。</p>
+<p>稳定产量大约在133绿板/min</p>
+<p><img src="/images/Factorio/lvban2.png" alt=""></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0eNrVWt1u5DQUfhWUWxJIHOdvBE/CVqNM4ulYJE7keCqqaqSCkFZwUy5WICG4gl0qLpaLlQDtatt3gU67+xY4yXR+ndR2AGlv2ibxfCfnnM+fzzmdM2OSzVFJMWHG6MxIUZVQXDJcEGNk3F2+WD7//ublL28fX4zec1z3wxyTR+Tm9fXdk8vb735/+8P5m2efL6/Ol49fLi9+Wv785e2Tq9C++fPXu1fXtz9eL/94trx4cfPq6fKb35ZfX755fnX77eu/z794RAzTwElBKmP0yZlR4WMSZ7V5dloibhczlPMVJM7rK5ShhNGC4MRKME3mmBkL/nGSos+MkbM4Mg1EGGYYtWjNxemYzPMJonzBGmcaV8xiNCZVWVBmTVDGuJGyqHDr7pnB8Swn+sAzjdPVX9xQiim336yAC/MAH+ziz/lr0WNa8N+dFsJuC755H4Nizsp57emBRVffo1DGI7jGz1GK57nVJoCHvywy1O9Qa4AgfDybFHNaZyQ6Etjwdn3ApEKU8QcC8KAnWgJkf40cVxXKJxkmx1YeJzNMkAVEBry9t+fwuElBUpQlolYST7jbAlOBeupdmdRj0pH5UN0gGMa1SJkLoI8L0HSgiA6OLc8HR40PjqNKiKiLD0IhOjSorgjBIFY4rrJBfxgrHGWJ8HsVwnSEIuHIq4SnSApllXB1RcJRVwl7YHY0ZGIYAZVVwu6jA2cXcEV8ANIqYavRAahqBBgmEUBZIrxhlACuYoa83gRFpguECYKqfsFBxAOeYt5C3V0MfFnq+YrUU5YHxxnIhT15qMoMM6ErW5bCXTucv1Oc1R8SUt5cmR/zvqKg3DhfRjmBxO8TKUfAHsQa11Y2OKxscxV7EMdVK9hdoLi7D6rCne3NxQLaou3tKnYeB7XgNoNE+Bv5qHtDFhNmJUU+wSRmhYifParIQ8IxOC+z8QTN4hPOw/pTLWs72s4TTNmc31m/RbvCSmYo+bTuORPOEVab22o/zQf7V8w3h1VmMUPbGGCNASQwVvp0gOKuUVwJFHEnffhGcHHU3CekDWdVIzr1D4rS7SYb8yvIs7ZCa655R75YiLLrSevOLmuafbUtJRmaiveZr8hPqKbVbqCIH3Tz3xfz8z6Q/Fm6hppiWrGxIsva/cNLofoiL2Pa7KGR8VHzeGUGkfrAG6e4ag6+EaNztHlKUZyOZzFJ69dhPBjV/or7++3SvEg5hi1PHTfcp47Z+xzsPfe9Lq5tzriYk2aWI1Zzvk9LAkUl2eBuklX1ZKtLXBCvVuqUVKiGGe8kruB7Pl7N4t7fnKqK2AuFhAT7EQaNFADZ9RBIikEkLQZ+VxEi2qLQVj0Ko75KV1zmQke5gAh7leDBmg1uTviUl6xpXar2kTlSJPMKdCCTTxA9Zbz0Pu5XoL++eqrB5a1DuDwdN2fWeEqLfNyWXaNpnFVooa89/USXPeSg8iwG2DLU6KwtIVRiRt3p/v/M2MpdFyk+1pG3PcIJeVEfWCq0gA8oWj9POk8k6OlP7QOZ4hn6Q/4REQjo8CD1Ap0hvpwz4ZDReo8zPRIbDRmu68TP0xp6S8XPcwbMoLXC54EBQ2it6Lkaw2G54MEBE1stV7wBA1u9bPnqk1S52AX6k02t0IX6E0e9yEXqg0CpyPn2gDGYliu+/lhKziOgPS46wIf/drvcNQp5N9tmcc3hq87rdveiCBFqT1i6ED3tmUrwn89UDqdu7wQ9DppyeFjCCnPhD+hrA52+1g8GtEvBg+3SkdkmdLT1JSfTyGIOze+tvs/E7/A+omplLHRgEIEA2m4AYLhY/AOtQnOC</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%92%E8%A1%A80%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">秒表0型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%92%E8%A1%A81%E5%9E%8B%EF%BC%88%E5%8F%AF%E6%B8%85%E9%9B%B6%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">秒表1型（可清零）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E7%89%A9%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">产物计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E6%97%B6%E9%92%9F"><span class="toc-number">1.4.</span> <span class="toc-text">电子时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB%E6%AE%B5%E6%95%B0%E7%A0%81%E7%AE%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text">八段数码管</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.4.2.</span> <span class="toc-text">控制信号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#60-60%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">1.4.3.</span> <span class="toc-text">*&#x2F;60&#x2F;60计数器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%97%B6%E9%92%9F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.4.</span> <span class="toc-text">完整时钟实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%BA%BF"><span class="toc-number">2.</span> <span class="toc-text">产线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BF%E6%9D%BF2"><span class="toc-number">2.1.</span> <span class="toc-text">绿板2</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://rqdmap.top/2021/07/19/Factorio/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://rqdmap.top/2021/07/19/Factorio/&text=Factorio"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://rqdmap.top/2021/07/19/Factorio/&is_video=false&description=Factorio"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Factorio&body=Check out this article: https://rqdmap.top/2021/07/19/Factorio/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://rqdmap.top/2021/07/19/Factorio/&title=Factorio"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://rqdmap.top/2021/07/19/Factorio/&name=Factorio&description=&lt;p&gt;Factorio模块设计指北&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://rqdmap.top/2021/07/19/Factorio/&t=Factorio"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    rqdmap
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'rqdmap';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
