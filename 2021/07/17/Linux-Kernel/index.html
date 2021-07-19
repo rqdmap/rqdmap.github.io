@@ -300,6 +300,8 @@
 <p>VIVT存在上述两种问题，但是硬件设计上较为简单，并且每次查询chache时不需要MMU转换物理地址，一定程度上提升了速度。</p>
 <p>PIPT不存在上述两种问题，因为物理地址显然不会冲突。虽然其在软件层面基本不需要维护，但是在硬件层面比VIVT复杂很多。</p>
 <p><strong>VIPT不存在歧义，有可能存在别名问题。</strong>首先说明歧义问题。其实这一点还是很费解的，因为网上的资料要么直接说一句“因为使用物理地址作为Tag，所以不会产生歧义”，要么是像第一篇参考博客一样，说明了一种特殊实现下的无歧义情况。这种特殊实现是使用高20位作为Tag(默认页大小4KB)，这样的话显然是不会产生歧义。<del>但是离我心中的设想还是差了点味道，本以为是对于任意的实现都不会产生歧义</del>。接下来说明别名问题。文中费大力气说明了如果偏移量+索引号占的位数不超过页大小（即不超过12位），那么就不会产生别名，因为此时VIPT就是PIPT。？？？这不是很傻逼的行文方式吗。。这么说来的话，综合来看，当Tag不小于20位时，此时显然就是PIPT，则不会产生别名和歧义；不然则有可能产生上述问题。不知道我的理解是否正确，暂此打住。</p>
+<p>PIVT一般不使用。因为一方面必须等到物理地址转换完成后才能进入cache组查找，另一方面又可能产生各种错误，非常垃圾。</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/20787522/cache-addressing-methods-confusion">https://stackoverflow.com/questions/20787522/cache-addressing-methods-confusion</a></p>
 <h4 id="转换后援缓冲器TLB"><a href="#转换后援缓冲器TLB" class="headerlink" title="转换后援缓冲器TLB"></a>转换后援缓冲器TLB</h4><p><del>神秘的名字</del></p>
 <p>TLB全称Translation Lookaside Buffer</p>
 <p>该结构其实就是一个虚拟地址到物理地址转换的高速缓存表。</p>
